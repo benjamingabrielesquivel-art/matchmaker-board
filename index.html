@@ -376,8 +376,8 @@ function loadAll(){
     return api(path).then(function(d){
       var t = (d && d.tasks) || [];
       if (p === 0 && t.length && t[0].list && t[0].list.id) listId = t[0].list.id;
-      /* If this view leaves out the answers, read the list itself instead. */
-      if (!useList && p === 0 && t.length && !("custom_fields" in t[0]) && listId){ useList = true; return page(0); }
+      /* From now on read the list itself: it carries every field, including notes that the shared view does not show. */
+      if (!useList && p === 0 && listId){ useList = true; return page(0); }
       all = all.concat(t);
       var done = d.last_page === true || t.length === 0 || (d.last_page === undefined && t.length < 100) || p >= 40;
       return done ? all : page(p + 1);
