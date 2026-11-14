@@ -1,0 +1,579 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Matchmaking Intake</title>
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#0147ba">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Matchmaking">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src https://api.clickup.com; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" href="icon-192.png">
+<style>
+:root{
+  --blue:#0147ba; --ink:#0a2a6b; --yellow:#f8e59a; --bg:#f3f6fc; --card:#fff;
+  --line:#d9e2f2; --soft:#e7eefb; --muted:#566789; --ok:#178a48; --err:#c0392b;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+button{font:inherit}
+.demo{background:var(--yellow);color:var(--ink);text-align:center;font-size:14px;font-weight:600;padding:8px 16px}
+header.top{position:sticky;top:0;z-index:5;background:#fff;border-bottom:4px solid var(--blue);
+  padding:calc(12px + env(safe-area-inset-top)) 20px 12px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px}
+.logo{height:64px;width:auto;display:block}
+.ttl h1{margin:0;font-size:28px;line-height:1.05;letter-spacing:-.02em;color:var(--blue)}
+.ttl p{margin:4px 0 0;font-size:14px;color:var(--muted)}
+.live{margin-left:auto;display:flex;align-items:center;gap:10px;font-size:14px;color:var(--muted)}
+.dot{width:11px;height:11px;border-radius:50%;background:#a9b3c7;flex:none}
+.dot.ok{background:var(--ok);animation:pulse 2.4s infinite}
+.dot.load{background:var(--blue)}
+.dot.err{background:var(--err)}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(23,138,72,.45)}70%{box-shadow:0 0 0 9px rgba(23,138,72,0)}100%{box-shadow:0 0 0 0 rgba(23,138,72,0)}}
+.iconbtn{border:1.5px solid var(--line);background:#fff;border-radius:12px;height:42px;padding:0 14px;font-size:15px;font-weight:600;color:var(--blue);cursor:pointer}
+.wrap{max-width:1280px;margin:0 auto;padding:0 20px}
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding-top:16px}
+.search{flex:1 1 280px;min-width:0;font-size:17px;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;background:#fff;color:var(--ink)}
+.search:focus{outline:none;border-color:var(--blue)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:14px;font-weight:600;padding:9px 14px;border-radius:999px;border:1.5px solid var(--blue);background:#fff;color:var(--blue);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--blue);color:#fff}
+.sub{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;padding:12px 0 4px;font-size:15px;color:var(--muted)}
+.sub .chip{font-size:13px;padding:7px 12px}
+main.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,430px),1fr));gap:16px;padding:12px 0 48px}
+.card{background:var(--card);border-radius:18px;border:1px solid var(--line);padding:20px;display:flex;flex-direction:column;gap:12px;box-shadow:0 1px 3px rgba(10,42,107,.06)}
+.card.fresh{border-color:var(--blue);box-shadow:0 0 0 4px var(--yellow)}
+.card.seen{opacity:.5}
+.when{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:13px;color:var(--muted)}
+.new{background:var(--yellow);color:var(--ink);font-weight:700;font-size:12px;letter-spacing:.06em;padding:3px 8px;border-radius:6px}
+.name{margin:0;font-size:25px;line-height:1.15;letter-spacing:-.01em}
+.film{margin:0;font-size:20px;line-height:1.2;font-weight:700;color:var(--blue)}
+.film.none{color:var(--muted);font-weight:500;font-style:italic}
+.meta{font-size:15px;color:var(--muted);line-height:1.4}
+.q{background:var(--yellow);border-radius:12px;padding:12px 14px}
+.q b{display:block;font-size:12px;letter-spacing:.07em;text-transform:uppercase;margin-bottom:4px}
+.q p{margin:0;font-size:17px;line-height:1.4;white-space:pre-wrap;overflow-wrap:anywhere}
+.label{font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-size:14px;font-weight:600;padding:6px 11px;border-radius:999px;background:var(--soft);color:var(--blue)}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.fact{border:1px solid var(--line);border-radius:12px;padding:8px 10px;font-size:12px;line-height:1.3;color:var(--muted)}
+.fact strong{display:block;font-size:17px;margin-top:2px;color:var(--ink)}
+.fact.yes{background:var(--soft);border-color:var(--soft)}
+.fact.yes strong{color:var(--blue)}
+.fact.unsure{background:#fdf6dc;border-color:#f3e3a3}
+.fact.unsure strong{color:#7a5a00}
+details{border-top:1px solid var(--line);padding-top:10px}
+summary{cursor:pointer;font-weight:700;color:var(--blue);font-size:15px;list-style:none;padding:4px 0}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"+ "}
+details[open] summary::before{content:"\2212  "}
+dl{margin:4px 0 0}
+dt{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:12px}
+dd{margin:4px 0 0;font-size:16px;line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere}
+.actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding-top:2px}
+.btn{font-size:15px;font-weight:600;padding:10px 16px;border-radius:12px;border:1.5px solid var(--blue);background:#fff;color:var(--blue);cursor:pointer}
+.btn.primary{background:var(--blue);color:#fff}
+.btn.quiet{border-color:var(--line);color:var(--muted)}
+a.open{font-size:14px;color:var(--blue)}
+.empty{grid-column:1/-1;text-align:center;padding:64px 20px;color:var(--muted);font-size:18px;line-height:1.5}
+.overlay{position:fixed;inset:0;z-index:20;background:rgba(10,42,107,.55);display:flex;align-items:center;justify-content:center;padding:16px}
+.sheet{background:#fff;border-radius:20px;max-width:540px;width:100%;padding:26px;max-height:92vh;overflow:auto}
+.sheet h2{margin:0 0 6px;font-size:24px;color:var(--blue)}
+.sheet ol{padding-left:22px;line-height:1.55;font-size:16px}
+.sheet .note{font-size:14px;color:var(--muted);line-height:1.5}
+.sheet input{width:100%;font-size:17px;padding:13px 14px;border:1.5px solid var(--line);border-radius:12px;margin:6px 0 12px}
+.sheet input:focus{outline:none;border-color:var(--blue)}
+.sheet .row{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.msg{font-size:15px;font-weight:600;color:var(--err);min-height:1.2em;margin:4px 0}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:30;background:var(--blue);color:#fff;
+  padding:13px 20px;border-radius:14px;font-weight:700;font-size:16px;box-shadow:0 8px 24px rgba(10,42,107,.3)}
+footer{text-align:center;font-size:13px;color:var(--muted);padding:0 20px calc(28px + env(safe-area-inset-bottom));line-height:1.5}
+@media (max-width:640px){
+  header.top{padding-left:16px;padding-right:16px}
+  .wrap{padding:0 16px}
+  .logo{height:50px}
+  .ttl h1{font-size:22px}
+  .live{margin-left:0;width:100%;justify-content:space-between}
+  .name{font-size:22px}
+}
+</style>
+</head>
+<body>
+<div class="demo" id="demoBanner" hidden>Demo: these answers are made up. Open the page without “?demo” to see the real ones.</div>
+<header class="top">
+  <img class="logo" src="logo.png" alt="IDFA Industry Docs for Sale">
+  <div class="ttl">
+    <h1>Matchmaking intake</h1>
+    <p>Docs for Sale 2026 · answers from the intake form</p>
+  </div>
+  <div class="live">
+    <span class="dot" id="dot"></span>
+    <span id="status">Not connected</span>
+    <button class="iconbtn" id="settingsBtn" type="button">Settings</button>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="bar">
+    <input class="search" id="search" type="search" placeholder="Search name, film, country, question…" autocomplete="off" enterkeyhint="search">
+    <div class="chips" id="filters" role="group" aria-label="Looking for">
+      <button class="chip" type="button" data-f="all" aria-pressed="true">All</button>
+      <button class="chip" type="button" data-f="festivals" aria-pressed="false">Festivals</button>
+      <button class="chip" type="button" data-f="sales" aria-pressed="false">Sales agents</button>
+      <button class="chip" type="button" data-f="distributors" aria-pressed="false">Distributors</button>
+      <button class="chip" type="button" data-f="strategy" aria-pressed="false">Strategy advice</button>
+      <button class="chip" type="button" data-f="other" aria-pressed="false">Other</button>
+    </div>
+  </div>
+  <div class="sub">
+    <span id="count"></span>
+    <span class="chips">
+      <button class="chip" type="button" id="sortBtn" aria-pressed="false">Oldest first</button>
+      <button class="chip" type="button" id="hideSeenBtn" aria-pressed="false">Hide seen</button>
+    </span>
+  </div>
+  <main class="grid" id="grid" aria-live="polite"></main>
+</div>
+
+<footer>
+  This page keeps no answers. It reads them from the ClickUp “Matchmaker Form” list on this device, every 30 seconds.<br>
+  “Seen” marks stay on this device only.
+</footer>
+
+<div class="overlay" id="setup" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="setupTitle">
+    <h2 id="setupTitle">Connect this screen to ClickUp</h2>
+    <div id="setupConnect">
+      <ol>
+        <li>In ClickUp, click your profile picture (top right) and open <b>Settings</b>.</li>
+        <li>Open <b>Apps</b> and copy your <b>API token</b>. It starts with <b>pk_</b>.</li>
+        <li>Paste it below and tap <b>Connect</b>.</li>
+      </ol>
+      <input id="keyInput" type="password" placeholder="pk_…" autocomplete="off" autocapitalize="off" spellcheck="false">
+      <div class="msg" id="setupMsg"></div>
+      <div class="row">
+        <button class="btn primary" id="connectBtn" type="button">Connect</button>
+        <button class="btn" id="demoBtn" type="button">Show demo</button>
+        <button class="btn quiet" id="closeBtn1" type="button" hidden>Close</button>
+      </div>
+      <p class="note">The key is saved on this device only and is sent only to ClickUp. Anyone who uses this device can see the answers. Tap <b>Forget key</b> in Settings when the festival is over.</p>
+    </div>
+    <div id="setupConnected" hidden>
+      <p class="note" style="font-size:16px;color:var(--ink)">This screen is connected and checks ClickUp every 30 seconds.</p>
+      <div class="row">
+        <button class="btn" id="refreshBtn" type="button">Check now</button>
+        <button class="btn" id="forgetBtn" type="button">Forget key on this device</button>
+        <button class="btn primary" id="closeBtn2" type="button">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" hidden></div>
+
+<script>
+(function(){
+"use strict";
+
+/* ---------- settings ---------- */
+var API = "https://api.clickup.com/api/v2";
+var VIEW_ID = "2kyq10u8-42095";           /* the Table view of the "Matchmaker Form" list */
+var EVERY_MS = 30000;
+var NEW_FOR_MS = 20 * 60000;              /* a card counts as new for 20 minutes */
+var KEY_K = "mm-clickup-key", SEEN_K = "mm-seen", SORT_K = "mm-oldest", HIDE_K = "mm-hide-seen";
+var DEMO = /(^|[?&])demo\b/.test(location.search);
+
+/* ---------- small helpers ---------- */
+function $(id){ return document.getElementById(id); }
+function lsGet(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
+function lsSet(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
+function lsDel(k){ try{ localStorage.removeItem(k); }catch(e){} }
+function el(tag, cls, text){
+  var n = document.createElement(tag);
+  if (cls) n.className = cls;
+  if (text != null) n.textContent = String(text);   /* text only: answers are never read as HTML */
+  return n;
+}
+function readSeen(){ try{ var o = JSON.parse(lsGet(SEEN_K) || "{}"); return (o && typeof o === "object") ? o : {}; }catch(e){ return {}; } }
+
+var key = DEMO ? "" : (lsGet(KEY_K) || "");
+var seen = readSeen();
+var items = [], known = {}, fresh = {}, openIds = {}, firstLoad = true, busy = false;
+var listId = null, useList = false, lastOk = null, lastErr = "";
+var filter = "all", query = "", oldestFirst = lsGet(SORT_K) === "1", hideSeen = lsGet(HIDE_K) === "1";
+
+/* ---------- which form question is which ---------- */
+/* Follow-up questions are matched first, so "If yes: where and when..." is not mistaken for "Has your film had its world premiere?". */
+var MATCH = [
+  ["premiereInfo", /where and when/i],
+  ["repInfo",      /representing/i],
+  ["restrInfo",    /describe the restriction/i],
+  ["title",        /film title/i],
+  ["genre",        /genre/i],
+  ["country",      /countr/i],
+  ["length",       /length/i],
+  ["synopsis",     /synopsis/i],
+  ["premiere",     /premiere/i],
+  ["festivals",    /festival/i],
+  ["rep",          /distributor|sales agent/i],
+  ["restr",        /restriction/i],
+  ["looking",      /looking for/i],
+  ["question",     /main question/i]
+];
+function keyFor(name){
+  for (var i = 0; i < MATCH.length; i++) if (MATCH[i][1].test(name || "")) return MATCH[i][0];
+  return null;
+}
+
+/* Turn one ClickUp custom field into plain text. */
+function fieldValue(f){
+  var v = f.value, opts = (f.type_config && f.type_config.options) || [];
+  if (v === undefined || v === null || v === "") return f.type === "labels" ? [] : "";
+  if (f.type === "drop_down"){
+    var o = null;
+    for (var i = 0; i < opts.length; i++){
+      if (opts[i].id === v || (String(v) !== "" && !isNaN(v) && Number(opts[i].orderindex) === Number(v))) { o = opts[i]; break; }
+    }
+    return o ? (o.name || o.label || "") : "";
+  }
+  if (f.type === "labels"){
+    var ids = Array.isArray(v) ? v : [v], out = [];
+    ids.forEach(function(id){
+      for (var j = 0; j < opts.length; j++) if (opts[j].id === id){ out.push(opts[j].label || opts[j].name || ""); return; }
+    });
+    return out.filter(Boolean);
+  }
+  if (typeof v === "string") return v.trim();
+  if (typeof v === "number") return String(v);
+  if (Array.isArray(v)) return v.map(function(x){ return (x && (x.name || x.label)) || String(x); }).join(", ");
+  return "";
+}
+
+function normalize(t){
+  var f = {}, other = [];
+  (t.custom_fields || []).forEach(function(cf){
+    var val = fieldValue(cf), k = keyFor(cf.name);
+    var empty = Array.isArray(val) ? val.length === 0 : !val;
+    if (k && !(k in f)) f[k] = val;
+    else if (!empty) other.push([cf.name, Array.isArray(val) ? val.join(", ") : val]);
+  });
+  var looking = Array.isArray(f.looking) ? f.looking : (f.looking ? [f.looking] : []);
+  var hay = [t.name, f.title, f.genre, f.country, f.question, f.synopsis, f.festivals, f.repInfo, looking.join(" ")].join(" ").toLowerCase();
+  return { id: String(t.id), name: (t.name || "").trim() || "(no name)", created: Number(t.date_created) || 0,
+           url: t.url || "", f: f, looking: looking, other: other, hay: hay };
+}
+
+/* ---------- reading ClickUp ---------- */
+function api(path){
+  return fetch(API + path, { headers: { "Authorization": key }, cache: "no-store" }).then(function(r){
+    if (r.status === 401 || r.status === 403) throw { kind: "auth" };
+    if (r.status === 429) throw { kind: "busy" };
+    if (!r.ok) throw { kind: "http", status: r.status };
+    return r.json();
+  }, function(){ throw { kind: "net" }; });
+}
+function loadAll(){
+  var all = [];
+  function page(p){
+    var path = useList
+      ? "/list/" + encodeURIComponent(listId) + "/task?include_closed=true&subtasks=true&page=" + p
+      : "/view/" + encodeURIComponent(VIEW_ID) + "/task?page=" + p;
+    return api(path).then(function(d){
+      var t = (d && d.tasks) || [];
+      /* If this view leaves out the answers, read the list itself instead. */
+      if (!useList && p === 0 && t.length && !("custom_fields" in t[0]) && t[0].list && t[0].list.id){
+        useList = true; listId = t[0].list.id; return page(0);
+      }
+      all = all.concat(t);
+      var done = d.last_page === true || t.length === 0 || (d.last_page === undefined && t.length < 100) || p >= 40;
+      return done ? all : page(p + 1);
+    });
+  }
+  return page(0);
+}
+
+/* ---------- made-up answers for the demo ---------- */
+var YN = [{id:"o-y",name:"Yes",orderindex:0},{id:"o-n",name:"No",orderindex:1}];
+var YNS = YN.concat([{id:"o-s",name:"Not sure",orderindex:2}]);
+var LB = [{id:"l1",label:"Film festivals or programmers"},{id:"l2",label:"Sales agents"},{id:"l3",label:"Distributors"},{id:"l4",label:"Festival strategy advice"},{id:"l5",label:"Other"}];
+function cf(name, type, value, opts){ return { id: name, name: name, type: type, value: value, type_config: opts ? { options: opts } : {} }; }
+function demoTask(id, minsAgo, name, d){
+  return { id: id, name: name, date_created: String(Date.now() - minsAgo * 60000), url: "", custom_fields: [
+    cf("Film title","short_text",d.t), cf("Genre or documentary style","short_text",d.g),
+    cf("Country or countries of production or co-production","short_text",d.c), cf("Film length (minutes)","number",d.l),
+    cf("Short synopsis","text",d.s), cf("Has your film had its world premiere?","drop_down",d.p,YN),
+    cf("If yes: where and when did your film premiere?","text",d.pi),
+    cf("Which festivals have selected or rejected your film so far?","text",d.f),
+    cf("Do you already have a distributor or sales agent?","drop_down",d.r,YN),
+    cf("If yes: who is representing your film, and for which territories and rights?","text",d.ri),
+    cf("Are there any rights, territory or distribution restrictions?","drop_down",d.x,YNS),
+    cf("If yes: please describe the restrictions. If not sure: please explain what you are unsure about.","text",d.xi),
+    cf("What are you looking for? Select all that apply.","labels",d.k,LB),
+    cf("What is your main question for the matchmaker?","text",d.q)
+  ]};
+}
+var demoRaw = [
+  demoTask("d1", 3, "Demo Filmmaker One", {t:"Salt Roads",g:"Observational",c:"Netherlands, Belgium",l:"84",
+    s:"Three generations of salt harvesters follow the tides along a coast that is slowly disappearing.",p:0,
+    pi:"Made-up festival, September 2026",f:"Selected: two made-up festivals. Rejected: one.",r:1,ri:"",x:"o-s",
+    xi:"A co-producer may hold TV rights for Belgium; I am not sure if that blocks a sales deal.",k:["l2","l4"],
+    q:"Which kind of sales agent fits an 84-minute observational film, and should I sign before my next festival?"}),
+  demoTask("d2", 26, "Demo Filmmaker Two", {t:"The Quiet Harbour",g:"Personal, experimental",c:"Portugal",l:"62",
+    s:"A daughter returns to her father's empty fishing boat and films one winter on board.",p:1,pi:"",
+    f:"None yet.",r:0,ri:"Made-up Distribution, Benelux theatrical only.",x:1,xi:"",k:["l1","l4"],
+    q:"Is it too late to plan a world premiere in spring, and which festivals should I aim for first?"}),
+  demoTask("d3", 95, "Demo Filmmaker Three", {t:"",g:"",c:"Kenya",l:"",s:"",p:null,pi:"",f:"",r:null,ri:"",x:null,xi:"",
+    k:["l5"],q:"I only have a rough cut. Is it worth talking to anyone yet?"})
+];
+var demoLater = demoTask("d4", 0, "Demo Filmmaker Four", {t:"Night Shift Choir",g:"Musical documentary",c:"Germany",l:"91",
+  s:"Hospital night workers form a choir and prepare one concert.",p:0,pi:"Made-up festival, June 2026",
+  f:"Selected at one made-up festival.",r:0,ri:"Made-up Sales, worldwide excluding Germany.",x:0,
+  xi:"German TV rights are already sold.",k:["l3"],q:"Which territories should we still try to sell ourselves?"});
+var demoRound = 0;
+function loadDemo(){
+  demoRound++;
+  var list = demoRaw.slice();
+  if (demoRound > 1){ demoLater.date_created = demoLater.date_created || String(Date.now()); list.push(demoLater); }
+  return Promise.resolve(list);
+}
+
+/* ---------- status line ---------- */
+function clock(d){ return d.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit", second: "2-digit" }); }
+function setStatus(state, text){
+  var dot = $("dot");
+  dot.className = "dot" + (state ? " " + state : "");
+  $("status").textContent = text;
+}
+function showStatus(){
+  if (busy) return setStatus("load", "Checking…");
+  if (lastErr) return setStatus("err", lastErr + (lastOk ? " · last update " + clock(lastOk) : ""));
+  if (lastOk) return setStatus("ok", "Live · updated " + clock(lastOk));
+  setStatus("", DEMO ? "Demo" : "Not connected");
+}
+
+/* ---------- drawing the cards ---------- */
+function whenText(ms){
+  if (!ms) return "";
+  var d = new Date(ms), now = new Date(), mins = Math.round((now - d) / 60000);
+  var sameDay = d.toDateString() === now.toDateString();
+  var t = d.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" });
+  var day = sameDay ? "Today" : d.toLocaleDateString("en-GB", { weekday: "short", day: "numeric", month: "short" });
+  var ago = mins < 1 ? "just now" : mins < 60 ? mins + " min ago" : mins < 600 ? Math.floor(mins / 60) + " h " + (mins % 60) + " min ago" : "";
+  return day + ", " + t + (ago ? " · " + ago : "");
+}
+function matchesFilter(it){
+  if (filter === "all") return true;
+  var s = it.looking.join(" | ").toLowerCase();
+  if (filter === "festivals") return /festivals or programmers|programmer/.test(s);
+  if (filter === "sales") return /sales/.test(s);
+  if (filter === "distributors") return /distributor/.test(s);
+  if (filter === "strategy") return /strategy/.test(s);
+  if (filter === "other") return /other/.test(s);
+  return true;
+}
+function fact(label, value){
+  var v = value || "–";
+  var cls = "fact" + (/^yes$/i.test(v) ? " yes" : /not sure/i.test(v) ? " unsure" : "");
+  var n = el("div", cls, label);
+  n.appendChild(el("strong", null, v));
+  return n;
+}
+function detail(dl, label, value){
+  if (!value) return;
+  dl.appendChild(el("dt", null, label));
+  dl.appendChild(el("dd", null, value));
+}
+function card(it){
+  var f = it.f, isNew = !!fresh[it.id] || (Date.now() - it.created < NEW_FOR_MS);
+  var c = el("article", "card" + (fresh[it.id] && !seen[it.id] ? " fresh" : "") + (seen[it.id] ? " seen" : ""));
+
+  var when = el("div", "when");
+  if (isNew && !seen[it.id]) when.appendChild(el("span", "new", "NEW"));
+  when.appendChild(el("span", null, whenText(it.created)));
+  c.appendChild(when);
+
+  c.appendChild(el("h2", "name", it.name));
+  c.appendChild(el("p", "film" + (f.title ? "" : " none"), f.title || "No film title given"));
+  var meta = [f.genre, f.country, f.length ? f.length + " min" : ""].filter(Boolean).join("  ·  ");
+  if (meta) c.appendChild(el("div", "meta", meta));
+
+  if (f.question){
+    var q = el("div", "q");
+    q.appendChild(el("b", null, "Main question"));
+    q.appendChild(el("p", null, f.question));
+    c.appendChild(q);
+  }
+
+  if (it.looking.length){
+    var lk = el("div");
+    lk.appendChild(el("div", "label", "Looking for"));
+    var tags = el("div", "tags");
+    it.looking.forEach(function(x){ tags.appendChild(el("span", "tag", x)); });
+    lk.appendChild(tags);
+    c.appendChild(lk);
+  }
+
+  var facts = el("div", "facts");
+  facts.appendChild(fact("World premiere", f.premiere));
+  facts.appendChild(fact("Distributor or sales agent", f.rep));
+  facts.appendChild(fact("Rights restrictions", f.restr));
+  c.appendChild(facts);
+
+  var dl = el("dl");
+  detail(dl, "Synopsis", f.synopsis);
+  detail(dl, "World premiere: where and when", f.premiereInfo);
+  detail(dl, "Festivals so far (selected or rejected)", f.festivals);
+  detail(dl, "Who represents the film, territories and rights", f.repInfo);
+  detail(dl, "Restrictions, or what they are unsure about", f.restrInfo);
+  it.other.forEach(function(o){ detail(dl, o[0], o[1]); });
+  if (dl.childNodes.length){
+    var det = el("details");
+    det.open = !!openIds[it.id];   /* stays open when the list refreshes */
+    det.addEventListener("toggle", function(){ if (det.open) openIds[it.id] = 1; else delete openIds[it.id]; });
+    det.appendChild(el("summary", null, "Full answers"));
+    det.appendChild(dl);
+    c.appendChild(det);
+  }
+
+  var act = el("div", "actions");
+  var b = el("button", "btn" + (seen[it.id] ? " quiet" : ""), seen[it.id] ? "Seen ✓  (undo)" : "Mark as seen");
+  b.type = "button";
+  b.addEventListener("click", function(){
+    if (seen[it.id]) delete seen[it.id]; else { seen[it.id] = 1; delete fresh[it.id]; }
+    lsSet(SEEN_K, JSON.stringify(seen));
+    render();
+  });
+  act.appendChild(b);
+  if (it.url && /^https:\/\/app\.clickup\.com\//.test(it.url)){
+    var a = el("a", "open", "Open in ClickUp ↗");
+    a.href = it.url; a.target = "_blank"; a.rel = "noopener noreferrer";
+    act.appendChild(a);
+  }
+  c.appendChild(act);
+  return c;
+}
+function render(){
+  var grid = $("grid");
+  var shown = items.filter(function(it){
+    if (hideSeen && seen[it.id]) return false;
+    if (query && it.hay.indexOf(query) === -1) return false;
+    return matchesFilter(it);
+  }).sort(function(a, b){ return oldestFirst ? a.created - b.created : b.created - a.created; });
+
+  var nSeen = items.filter(function(it){ return seen[it.id]; }).length;
+  $("count").textContent = items.length
+    ? items.length + (items.length === 1 ? " filmmaker" : " filmmakers") + " · " + (items.length - nSeen) + " not seen yet" + (shown.length !== items.length ? " · showing " + shown.length : "")
+    : "";
+
+  grid.textContent = "";
+  if (!items.length){
+    grid.appendChild(el("div", "empty", key || DEMO
+      ? (lastOk ? "No answers yet. New answers appear here by themselves." : "Loading answers…")
+      : "Not connected yet. Tap Settings to connect this screen to ClickUp."));
+    return;
+  }
+  if (!shown.length){ grid.appendChild(el("div", "empty", "Nothing matches this search or filter.")); return; }
+  shown.forEach(function(it){ grid.appendChild(card(it)); });
+}
+
+/* ---------- checking for new answers ---------- */
+var toastTimer = null;
+function toast(text){
+  var t = $("toast"); t.textContent = text; t.hidden = false;
+  clearTimeout(toastTimer); toastTimer = setTimeout(function(){ t.hidden = true; }, 6000);
+}
+function refresh(){
+  if (busy || (!key && !DEMO)) return Promise.resolve();
+  busy = true; showStatus();
+  return (DEMO ? loadDemo() : loadAll()).then(function(raw){
+    var next = raw.map(normalize);
+    var arrivals = firstLoad ? [] : next.filter(function(it){ return !known[it.id]; });
+    arrivals.forEach(function(it){ fresh[it.id] = 1; });
+    next.forEach(function(it){ known[it.id] = 1; });
+    if (arrivals.length) toast(arrivals.length === 1 ? "New answer: " + arrivals[0].name : arrivals.length + " new answers");
+    firstLoad = false; items = next; lastOk = new Date(); lastErr = "";
+  }, function(e){
+    if (e && e.kind === "auth"){ lastErr = "ClickUp refused the key"; openSetup("ClickUp refused this key. Copy it again from ClickUp and paste it here."); }
+    else if (e && e.kind === "busy") lastErr = "ClickUp asked us to slow down, trying again in 30 s";
+    else if (e && e.kind === "net") lastErr = "Can’t reach ClickUp, trying again in 30 s";
+    else lastErr = "ClickUp error " + ((e && e.status) || "") + ", trying again in 30 s";
+  }).then(function(){ busy = false; showStatus(); render(); });
+}
+
+/* ---------- setup sheet ---------- */
+function openSetup(msg){
+  var connected = !!key && !msg;
+  $("setupConnect").hidden = connected;
+  $("setupConnected").hidden = !connected;
+  $("closeBtn1").hidden = !key;
+  $("setupMsg").textContent = msg || "";
+  $("setup").hidden = false;
+  if (!connected) setTimeout(function(){ $("keyInput").focus(); }, 50);
+}
+function closeSetup(){ $("setup").hidden = true; $("keyInput").value = ""; $("setupMsg").textContent = ""; }
+
+$("connectBtn").addEventListener("click", function(){
+  var k = $("keyInput").value.trim();
+  if (!k){ $("setupMsg").textContent = "Paste the key first."; return; }
+  var old = key; key = k;
+  $("setupMsg").textContent = "Checking the key…";
+  useList = false; listId = null;
+  api("/view/" + encodeURIComponent(VIEW_ID) + "/task?page=0").then(function(){
+    lsSet(KEY_K, k); closeSetup(); firstLoad = true; known = {}; refresh();
+  }, function(e){
+    key = old;
+    $("setupMsg").textContent = e && e.kind === "auth" ? "ClickUp refused this key. Check that you copied all of it."
+      : e && e.kind === "net" ? "Can’t reach ClickUp from this device. Check the internet connection."
+      : "ClickUp answered with an error (" + ((e && e.status) || "?") + "). This key may not have access to the Matchmaker Form list.";
+  });
+});
+$("keyInput").addEventListener("keydown", function(e){ if (e.key === "Enter") $("connectBtn").click(); });
+$("demoBtn").addEventListener("click", function(){ location.search = "?demo"; });
+$("closeBtn1").addEventListener("click", closeSetup);
+$("closeBtn2").addEventListener("click", closeSetup);
+$("refreshBtn").addEventListener("click", function(){ closeSetup(); refresh(); });
+$("forgetBtn").addEventListener("click", function(){
+  lsDel(KEY_K); key = ""; items = []; known = {}; fresh = {}; lastOk = null; lastErr = "";
+  closeSetup(); showStatus(); render(); openSetup();
+});
+$("settingsBtn").addEventListener("click", function(){
+  if (DEMO){ location.search = ""; return; }
+  openSetup();
+});
+
+/* ---------- search, filters, sorting ---------- */
+$("search").addEventListener("input", function(){ query = this.value.trim().toLowerCase(); render(); });
+Array.prototype.forEach.call(document.querySelectorAll("#filters .chip"), function(b){
+  b.addEventListener("click", function(){
+    filter = b.getAttribute("data-f");
+    Array.prototype.forEach.call(document.querySelectorAll("#filters .chip"), function(x){ x.setAttribute("aria-pressed", String(x === b)); });
+    render();
+  });
+});
+function syncToggles(){
+  $("sortBtn").setAttribute("aria-pressed", String(oldestFirst));
+  $("hideSeenBtn").setAttribute("aria-pressed", String(hideSeen));
+}
+$("sortBtn").addEventListener("click", function(){ oldestFirst = !oldestFirst; lsSet(SORT_K, oldestFirst ? "1" : "0"); syncToggles(); render(); });
+$("hideSeenBtn").addEventListener("click", function(){ hideSeen = !hideSeen; lsSet(HIDE_K, hideSeen ? "1" : "0"); syncToggles(); render(); });
+
+/* ---------- start ---------- */
+syncToggles();
+if (DEMO){ $("demoBanner").hidden = false; $("settingsBtn").textContent = "Leave demo"; }
+showStatus(); render();
+if (key || DEMO) refresh(); else openSetup();
+setInterval(function(){ if (!document.hidden) refresh(); }, DEMO ? 10000 : EVERY_MS);
+document.addEventListener("visibilitychange", function(){ if (!document.hidden) refresh(); });
+})();
+</script>
+</body>
+</html>
