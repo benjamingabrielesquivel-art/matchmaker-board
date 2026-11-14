@@ -11,7 +11,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Matchmaking">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src https://api.clickup.com; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://api.clickup.com; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; base-uri 'none'; form-action 'none'">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="icon" type="image/png" href="icon-192.png">
@@ -25,10 +25,11 @@
 [hidden]{display:none!important}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
-button{font:inherit}
+button,input,textarea{font:inherit}
 .demo{background:var(--yellow);color:var(--ink);text-align:center;font-size:14px;font-weight:600;padding:8px 16px}
 header.top{position:sticky;top:0;z-index:5;background:#fff;border-bottom:4px solid var(--blue);
-  padding:calc(12px + env(safe-area-inset-top)) 20px 12px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px}
+  padding:calc(12px + env(safe-area-inset-top)) 20px 0;}
+.toprow{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;padding-bottom:10px}
 .logo{height:64px;width:auto;display:block}
 .ttl h1{margin:0;font-size:28px;line-height:1.05;letter-spacing:-.02em;color:var(--blue)}
 .ttl p{margin:4px 0 0;font-size:14px;color:var(--muted)}
@@ -39,12 +40,16 @@ header.top{position:sticky;top:0;z-index:5;background:#fff;border-bottom:4px sol
 .dot.err{background:var(--err)}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(23,138,72,.45)}70%{box-shadow:0 0 0 9px rgba(23,138,72,0)}100%{box-shadow:0 0 0 0 rgba(23,138,72,0)}}
 .iconbtn{border:1.5px solid var(--line);background:#fff;border-radius:12px;height:42px;padding:0 14px;font-size:15px;font-weight:600;color:var(--blue);cursor:pointer}
+.tabs{display:flex;gap:6px;margin:0 -4px}
+.tab{background:none;border:0;border-bottom:4px solid transparent;margin-bottom:-4px;padding:10px 14px 12px;font-size:17px;font-weight:700;color:var(--muted);cursor:pointer}
+.tab[aria-selected="true"]{color:var(--blue);border-bottom-color:var(--yellow)}
+.tab small{font-size:13px;font-weight:600;color:var(--muted);margin-left:4px}
 .wrap{max-width:1280px;margin:0 auto;padding:0 20px}
 .bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding-top:16px}
 .search{flex:1 1 280px;min-width:0;font-size:17px;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;background:#fff;color:var(--ink)}
 .search:focus{outline:none;border-color:var(--blue)}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{font-size:14px;font-weight:600;padding:9px 14px;border-radius:999px;border:1.5px solid var(--blue);background:#fff;color:var(--blue);cursor:pointer}
+.chip{font-size:14px;font-weight:600;padding:9px 14px;border-radius:999px;border:1.5px solid var(--blue);background:#fff;color:var(--blue);cursor:pointer;line-height:1.2}
 .chip[aria-pressed="true"]{background:var(--blue);color:#fff}
 .sub{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;padding:12px 0 4px;font-size:15px;color:var(--muted)}
 .sub .chip{font-size:13px;padding:7px 12px}
@@ -71,6 +76,14 @@ main.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,43
 .fact.yes strong{color:var(--blue)}
 .fact.unsure{background:#fdf6dc;border-color:#f3e3a3}
 .fact.unsure strong{color:#7a5a00}
+.notes{background:#f6f8fd;border-left:4px solid var(--blue);border-radius:0 12px 12px 0;padding:10px 12px}
+.notes-text{margin:0;font-size:15px;line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere}
+.notes-empty{margin:0;font-size:14px;color:var(--muted)}
+.notes textarea{width:100%;min-height:96px;font-size:16px;line-height:1.45;padding:10px 12px;border:1.5px solid var(--line);border-radius:10px;resize:vertical;margin-top:4px;color:var(--ink);background:#fff}
+.notes textarea:focus,.notes input:focus{outline:none;border-color:var(--blue)}
+.notes .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px}
+.notes input.initials{width:96px;font-size:15px;padding:8px 10px;border:1.5px solid var(--line);border-radius:10px;background:#fff;color:var(--ink)}
+.btn.small{font-size:14px;padding:7px 12px;border-radius:10px}
 details{border-top:1px solid var(--line);padding-top:10px}
 summary{cursor:pointer;font-weight:700;color:var(--blue);font-size:15px;list-style:none;padding:4px 0}
 summary::-webkit-details-marker{display:none}
@@ -83,8 +96,28 @@ dd{margin:4px 0 0;font-size:16px;line-height:1.5;white-space:pre-wrap;overflow-w
 .btn{font-size:15px;font-weight:600;padding:10px 16px;border-radius:12px;border:1.5px solid var(--blue);background:#fff;color:var(--blue);cursor:pointer}
 .btn.primary{background:var(--blue);color:#fff}
 .btn.quiet{border-color:var(--line);color:var(--muted)}
+.btn[disabled]{opacity:.5;cursor:default}
 a.open{font-size:14px;color:var(--blue)}
 .empty{grid-column:1/-1;text-align:center;padding:64px 20px;color:var(--muted);font-size:18px;line-height:1.5}
+/* industry events */
+.evhead{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;align-items:baseline;padding-top:16px;font-size:15px;color:var(--muted)}
+.daychips{padding-top:12px}
+.chip.day{display:flex;flex-direction:column;align-items:flex-start;gap:2px;border-radius:14px;padding:8px 14px}
+.chip.day small{font-size:12px;font-weight:600;opacity:.8}
+.evlist{display:flex;flex-direction:column;gap:8px;padding:12px 0 24px}
+.ev{display:grid;grid-template-columns:76px minmax(0,1fr) auto;gap:14px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 16px;text-decoration:none;color:var(--ink)}
+.ev:hover{border-color:var(--blue)}
+.ev.past{opacity:.45}
+.evtime{font-weight:700;font-size:18px;color:var(--blue);font-variant-numeric:tabular-nums;line-height:1.2}
+.evtime span{display:block;font-weight:500;font-size:13px;color:var(--muted)}
+.evtitle{font-weight:700;font-size:16px;line-height:1.3;overflow-wrap:anywhere}
+.evmeta{font-size:14px;color:var(--muted);margin-top:3px;line-height:1.35}
+.st{font-size:13px;font-weight:700;padding:6px 11px;border-radius:999px;white-space:nowrap}
+.st-sold{background:#fde2e0;color:#a3251a}
+.st-low{background:#fdf0cf;color:#7a5200}
+.st-high{background:#ddf3e5;color:#13703b}
+.st-none{background:#eef1f6;color:var(--muted)}
+.evnote{font-size:14px;color:var(--muted);line-height:1.5;margin:0 0 40px}
 .overlay{position:fixed;inset:0;z-index:20;background:rgba(10,42,107,.55);display:flex;align-items:center;justify-content:center;padding:16px}
 .sheet{background:#fff;border-radius:20px;max-width:540px;width:100%;padding:26px;max-height:92vh;overflow:auto}
 .sheet h2{margin:0 0 6px;font-size:24px;color:var(--blue)}
@@ -93,38 +126,49 @@ a.open{font-size:14px;color:var(--blue)}
 .sheet input{width:100%;font-size:17px;padding:13px 14px;border:1.5px solid var(--line);border-radius:12px;margin:6px 0 12px}
 .sheet input:focus{outline:none;border-color:var(--blue)}
 .sheet .row{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.sheet .help{background:#fdf6dc;border-radius:12px;padding:12px 14px;margin:14px 0 0;font-size:15px;line-height:1.5;color:var(--ink)}
 .msg{font-size:15px;font-weight:600;color:var(--err);min-height:1.2em;margin:4px 0}
 .toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:30;background:var(--blue);color:#fff;
-  padding:13px 20px;border-radius:14px;font-weight:700;font-size:16px;box-shadow:0 8px 24px rgba(10,42,107,.3)}
+  padding:13px 20px;border-radius:14px;font-weight:700;font-size:16px;box-shadow:0 8px 24px rgba(10,42,107,.3);max-width:calc(100% - 32px)}
 footer{text-align:center;font-size:13px;color:var(--muted);padding:0 20px calc(28px + env(safe-area-inset-bottom));line-height:1.5}
 @media (max-width:640px){
   header.top{padding-left:16px;padding-right:16px}
   .wrap{padding:0 16px}
   .logo{height:50px}
   .ttl h1{font-size:22px}
-  .live{margin-left:0;width:100%;justify-content:space-between}
+  .live{margin-left:0;width:100%}
+  .live .iconbtn{margin-left:auto}
   .name{font-size:22px}
+  .tab{font-size:16px;padding:10px 10px 12px}
+  .ev{grid-template-columns:58px minmax(0,1fr);gap:4px 12px}
+  .ev .st{grid-column:2;justify-self:start}
 }
 </style>
 </head>
 <body>
-<div class="demo" id="demoBanner" hidden>Demo: these answers are made up. Open the page without “?demo” to see the real ones.</div>
+<div class="demo" id="demoBanner" hidden>Demo: the intake answers are made up. Open the page without “?demo” to see the real ones.</div>
 <header class="top">
-  <img class="logo" src="logo.png" alt="IDFA Industry Docs for Sale">
-  <div class="ttl">
-    <h1>Matchmaking intake</h1>
-    <p>Docs for Sale 2026 · answers from the intake form</p>
+  <div class="toprow">
+    <img class="logo" src="logo.png" alt="IDFA Industry Docs for Sale">
+    <div class="ttl">
+      <h1>Matchmaking intake</h1>
+      <p>Docs for Sale 2026 · answers from the intake form</p>
+    </div>
+    <div class="live">
+      <span class="dot" id="dot"></span>
+      <span id="status">Not connected</span>
+      <button class="iconbtn" id="settingsBtn" type="button">Settings</button>
+    </div>
   </div>
-  <div class="live">
-    <span class="dot" id="dot"></span>
-    <span id="status">Not connected</span>
-    <button class="iconbtn" id="settingsBtn" type="button">Settings</button>
-  </div>
+  <nav class="tabs" role="tablist" aria-label="Views">
+    <button class="tab" type="button" role="tab" data-tab="intake" aria-selected="true">Intake answers<small id="tabCountIntake"></small></button>
+    <button class="tab" type="button" role="tab" data-tab="events" aria-selected="false">Industry events<small id="tabCountEvents"></small></button>
+  </nav>
 </header>
 
-<div class="wrap">
+<section id="intakeView" class="wrap">
   <div class="bar">
-    <input class="search" id="search" type="search" placeholder="Search name, film, country, question…" autocomplete="off" enterkeyhint="search">
+    <input class="search" id="search" type="search" placeholder="Search name, film, country, question, notes…" autocomplete="off" enterkeyhint="search">
     <div class="chips" id="filters" role="group" aria-label="Looking for">
       <button class="chip" type="button" data-f="all" aria-pressed="true">All</button>
       <button class="chip" type="button" data-f="festivals" aria-pressed="false">Festivals</button>
@@ -142,11 +186,35 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:0 20px calc(2
     </span>
   </div>
   <main class="grid" id="grid" aria-live="polite"></main>
-</div>
+</section>
 
-<footer>
-  This page keeps no answers. It reads them from the ClickUp “Matchmaker Form” list on this device, every 30 seconds.<br>
-  “Seen” marks stay on this device only.
+<section id="eventsView" class="wrap" hidden>
+  <div class="evhead"><span id="evUpdated">Loading the industry events…</span></div>
+  <div class="chips daychips" id="dayChips" role="group" aria-label="Day"></div>
+  <div class="bar">
+    <input class="search" id="evSearch" type="search" placeholder="Search event, place, who it is for…" autocomplete="off" enterkeyhint="search">
+    <div class="chips" id="evFilters" role="group" aria-label="Ticket status">
+      <button class="chip" type="button" data-s="all" aria-pressed="true">All</button>
+      <button class="chip" type="button" data-s="sold" aria-pressed="false">Sold out</button>
+      <button class="chip" type="button" data-s="low" aria-pressed="false">Almost sold out</button>
+      <button class="chip" type="button" data-s="high" aria-pressed="false">Tickets available</button>
+      <button class="chip" type="button" data-s="none" aria-pressed="false">No ticket sale</button>
+    </div>
+  </div>
+  <div class="sub">
+    <span id="evCount"></span>
+    <span class="chips">
+      <button class="chip" type="button" id="dfsBtn" aria-pressed="false">Docs for Sale only</button>
+      <button class="chip" type="button" id="hidePastBtn" aria-pressed="false">Hide finished</button>
+    </span>
+  </div>
+  <div class="evlist" id="evList"></div>
+  <p class="evnote">Industry events and ticket status come from IDFA’s festival site and were checked at the time shown above. Tickets can sell out in the meantime: tap an event to see its live status on IDFA’s site.</p>
+</section>
+
+<footer id="footer">
+  The intake answers are read from the ClickUp “Matchmaker Form” list on this device, every 30 seconds; this website keeps none of them.<br>
+  Notes are saved in ClickUp. “Seen” marks stay on this device only.
 </footer>
 
 <div class="overlay" id="setup" hidden>
@@ -174,6 +242,9 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:0 20px calc(2
         <button class="btn" id="forgetBtn" type="button">Forget key on this device</button>
         <button class="btn primary" id="closeBtn2" type="button">Close</button>
       </div>
+      <div class="help" id="notesHelp" hidden>
+        <b>Notes need one field in ClickUp.</b> In the Matchmaker Form list, open the <b>Table</b> view, click <b>+</b> at the end of the columns, choose <b>Text area</b> (long text) and name it exactly <b>Matchmaker notes</b>. Leave it off the form and off the public link. The notes boxes appear here within 30 seconds.
+      </div>
     </div>
   </div>
 </div>
@@ -188,8 +259,12 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:0 20px calc(2
 var API = "https://api.clickup.com/api/v2";
 var VIEW_ID = "2kyq10u8-42095";           /* the Table view of the "Matchmaker Form" list */
 var EVERY_MS = 30000;
+var EVENTS_EVERY_MS = 120000;
 var NEW_FOR_MS = 20 * 60000;              /* a card counts as new for 20 minutes */
-var KEY_K = "mm-clickup-key", SEEN_K = "mm-seen", SORT_K = "mm-oldest", HIDE_K = "mm-hide-seen";
+var NOTES_NAME = /matchmaker notes/i;
+var TZ = "Europe/Amsterdam";
+var KEY_K = "mm-clickup-key", SEEN_K = "mm-seen", SORT_K = "mm-oldest", HIDE_K = "mm-hide-seen",
+    TAB_K = "mm-tab", INIT_K = "mm-initials", PAST_K = "mm-hide-past", DFS_K = "mm-dfs-only";
 var DEMO = /(^|[?&])demo\b/.test(location.search);
 
 /* ---------- small helpers ---------- */
@@ -203,17 +278,23 @@ function el(tag, cls, text){
   if (text != null) n.textContent = String(text);   /* text only: answers are never read as HTML */
   return n;
 }
+function button(cls, text, onClick){
+  var b = el("button", cls, text); b.type = "button"; b.addEventListener("click", onClick); return b;
+}
 function readSeen(){ try{ var o = JSON.parse(lsGet(SEEN_K) || "{}"); return (o && typeof o === "object") ? o : {}; }catch(e){ return {}; } }
 
 var key = DEMO ? "" : (lsGet(KEY_K) || "");
 var seen = readSeen();
-var items = [], known = {}, fresh = {}, openIds = {}, firstLoad = true, busy = false;
+var items = [], known = {}, fresh = {}, openIds = {}, drafts = {}, saving = {}, firstLoad = true, busy = false;
 var listId = null, useList = false, lastOk = null, lastErr = "";
+var notesFieldId = null, lastFieldCheck = 0, pendingRender = false;
 var filter = "all", query = "", oldestFirst = lsGet(SORT_K) === "1", hideSeen = lsGet(HIDE_K) === "1";
+var tab = (location.hash === "#events" || location.hash === "#intake") ? location.hash.slice(1) : (lsGet(TAB_K) || "intake");
 
 /* ---------- which form question is which ---------- */
 /* Follow-up questions are matched first, so "If yes: where and when..." is not mistaken for "Has your film had its world premiere?". */
 var MATCH = [
+  ["notes",        NOTES_NAME],
   ["premiereInfo", /where and when/i],
   ["repInfo",      /representing/i],
   ["restrInfo",    /describe the restriction/i],
@@ -258,27 +339,32 @@ function fieldValue(f){
   return "";
 }
 
+function haystack(t, f, looking){
+  return [t, f.title, f.genre, f.country, f.question, f.synopsis, f.festivals, f.repInfo, f.notes, looking.join(" ")].join(" ").toLowerCase();
+}
 function normalize(t){
   var f = {}, other = [];
   (t.custom_fields || []).forEach(function(cf){
     var val = fieldValue(cf), k = keyFor(cf.name);
     var empty = Array.isArray(val) ? val.length === 0 : !val;
+    if (k === "notes" && cf.id) notesFieldId = String(cf.id);
     if (k && !(k in f)) f[k] = val;
     else if (!empty) other.push([cf.name, Array.isArray(val) ? val.join(", ") : val]);
   });
   var looking = Array.isArray(f.looking) ? f.looking : (f.looking ? [f.looking] : []);
-  var hay = [t.name, f.title, f.genre, f.country, f.question, f.synopsis, f.festivals, f.repInfo, looking.join(" ")].join(" ").toLowerCase();
   return { id: String(t.id), name: (t.name || "").trim() || "(no name)", created: Number(t.date_created) || 0,
-           url: t.url || "", f: f, looking: looking, other: other, hay: hay };
+           url: t.url || "", f: f, looking: looking, other: other, hay: haystack(t.name, f, looking) };
 }
 
-/* ---------- reading ClickUp ---------- */
-function api(path){
-  return fetch(API + path, { headers: { "Authorization": key }, cache: "no-store" }).then(function(r){
+/* ---------- reading and writing ClickUp ---------- */
+function api(path, method, body){
+  var opts = { method: method || "GET", headers: { "Authorization": key }, cache: "no-store" };
+  if (body !== undefined){ opts.headers["Content-Type"] = "application/json"; opts.body = JSON.stringify(body); }
+  return fetch(API + path, opts).then(function(r){
     if (r.status === 401 || r.status === 403) throw { kind: "auth" };
     if (r.status === 429) throw { kind: "busy" };
     if (!r.ok) throw { kind: "http", status: r.status };
-    return r.json();
+    return r.status === 204 ? {} : r.json().catch(function(){ return {}; });
   }, function(){ throw { kind: "net" }; });
 }
 function loadAll(){
@@ -289,16 +375,119 @@ function loadAll(){
       : "/view/" + encodeURIComponent(VIEW_ID) + "/task?page=" + p;
     return api(path).then(function(d){
       var t = (d && d.tasks) || [];
+      if (p === 0 && t.length && t[0].list && t[0].list.id) listId = t[0].list.id;
       /* If this view leaves out the answers, read the list itself instead. */
-      if (!useList && p === 0 && t.length && !("custom_fields" in t[0]) && t[0].list && t[0].list.id){
-        useList = true; listId = t[0].list.id; return page(0);
-      }
+      if (!useList && p === 0 && t.length && !("custom_fields" in t[0]) && listId){ useList = true; return page(0); }
       all = all.concat(t);
       var done = d.last_page === true || t.length === 0 || (d.last_page === undefined && t.length < 100) || p >= 40;
       return done ? all : page(p + 1);
     });
   }
   return page(0);
+}
+/* If no answer carried the notes field yet, ask the list which fields it has (at most every 5 minutes). */
+function findNotesField(){
+  if (notesFieldId || !listId || Date.now() - lastFieldCheck < 300000) return Promise.resolve();
+  lastFieldCheck = Date.now();
+  return api("/list/" + encodeURIComponent(listId) + "/field").then(function(d){
+    (d.fields || []).some(function(f){ if (NOTES_NAME.test(f.name || "")){ notesFieldId = String(f.id); return true; } return false; });
+  }, function(){});
+}
+
+/* ---------- notes ---------- */
+function stamp(initials){
+  var d = new Date();
+  var s = d.toLocaleDateString("en-GB", { weekday: "short", day: "numeric", month: "short", timeZone: TZ }) + " " +
+          d.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit", timeZone: TZ });
+  return "[" + s + (initials ? " · " + initials : "") + "]";
+}
+function joinNote(current, initials, text){
+  return (current ? current.replace(/\s+$/, "") + "\n\n" : "") + stamp(initials) + " " + text;
+}
+function currentNotes(task){
+  var v = "";
+  (task.custom_fields || []).forEach(function(cf){ if (String(cf.id) === notesFieldId || NOTES_NAME.test(cf.name || "")) v = typeof cf.value === "string" ? cf.value : ""; });
+  return v;
+}
+function writeNotes(it, d, initials){
+  var text = (d.text || "").trim();
+  if (DEMO){
+    var raw = demoRaw.concat([demoLater]).filter(function(t){ return t.id === it.id; })[0];
+    var cf = raw && raw.custom_fields.filter(function(c){ return NOTES_NAME.test(c.name); })[0];
+    var nv = d.mode === "add" ? joinNote(cf ? cf.value || "" : "", initials, text) : text;
+    if (cf) cf.value = nv;
+    return Promise.resolve(nv);
+  }
+  if (!notesFieldId) return Promise.reject({ kind: "nofield" });
+  var path = "/task/" + encodeURIComponent(it.id) + "/field/" + encodeURIComponent(notesFieldId);
+  if (d.mode === "add"){
+    /* Read the latest notes first, so a note written on another device is kept. */
+    return api("/task/" + encodeURIComponent(it.id)).then(function(task){
+      var nv = joinNote(currentNotes(task), initials, text);
+      return api(path, "POST", { value: nv }).then(function(){ return nv; });
+    });
+  }
+  return (text ? api(path, "POST", { value: text }) : api(path, "DELETE")).then(function(){ return text; });
+}
+function saveNote(it){
+  var d = drafts[it.id];
+  if (!d || saving[it.id]) return;
+  if (d.mode === "add" && !(d.text || "").trim()) { toast("Write the note first."); return; }
+  var initials = (lsGet(INIT_K) || "").trim();
+  saving[it.id] = true; render(true);
+  writeNotes(it, d, initials).then(function(nv){
+    [it, current(it)].forEach(function(x){ x.f.notes = nv; x.hay = haystack(x.name, x.f, x.looking); });
+    delete drafts[it.id];
+    toast("Note saved");
+  }, function(e){
+    toast(e && e.kind === "nofield" ? "Notes need a “Matchmaker notes” field in ClickUp (see Settings)."
+      : e && e.kind === "auth" ? "ClickUp refused the key. The note was not saved."
+      : "Could not save the note. Check the connection and try again.");
+  }).then(function(){ delete saving[it.id]; render(true); });
+}
+/* The newest copy of a project: a card on screen can be older than the last check of ClickUp. */
+function current(it){ return items.filter(function(x){ return x.id === it.id; })[0] || it; }
+function startNote(it, mode){
+  drafts[it.id] = { mode: mode, text: mode === "edit" ? (current(it).f.notes || "") : "" };
+  render(true);
+  var ta = document.querySelector('textarea[data-note="' + it.id + '"]');
+  if (ta){ ta.focus(); try{ ta.setSelectionRange(ta.value.length, ta.value.length); }catch(e){} }
+}
+function notesBlock(it){
+  var box = el("div", "notes"), d = drafts[it.id], busyNow = !!saving[it.id];
+  box.appendChild(el("div", "label", "Matchmaker notes"));
+  var canWrite = DEMO || !!notesFieldId;
+  if (d){
+    var ta = el("textarea");
+    ta.setAttribute("data-note", it.id);
+    ta.placeholder = d.mode === "add" ? "Write a note about this project…" : "Edit all notes for this project…";
+    ta.value = d.text;
+    ta.addEventListener("input", function(){ d.text = ta.value; });
+    box.appendChild(ta);
+    var row = el("div", "row");
+    if (d.mode === "add"){
+      var ini = el("input", "initials");
+      ini.placeholder = "Initials"; ini.maxLength = 6; ini.value = lsGet(INIT_K) || "";
+      ini.setAttribute("aria-label", "Your initials, shown with the note");
+      ini.addEventListener("input", function(){ lsSet(INIT_K, ini.value.trim()); });
+      row.appendChild(ini);
+    }
+    var save = button("btn small primary", busyNow ? "Saving…" : "Save note", function(){ saveNote(it); });
+    save.disabled = busyNow;
+    row.appendChild(save);
+    row.appendChild(button("btn small quiet", "Cancel", function(){ delete drafts[it.id]; render(true); }));
+    box.appendChild(row);
+    return box;
+  }
+  if (it.f.notes) box.appendChild(el("p", "notes-text", it.f.notes));
+  else box.appendChild(el("p", "notes-empty", canWrite ? "No notes yet." : "To keep notes here, add a “Matchmaker notes” field in ClickUp. Settings shows how."));
+  if (canWrite){
+    var r = el("div", "row");
+    r.appendChild(button("btn small", "Add note", function(){ startNote(it, "add"); }));
+    if (it.f.notes) r.appendChild(button("btn small quiet", "Edit notes", function(){ startNote(it, "edit"); }));
+    box.appendChild(r);
+  }
+  return box;
 }
 
 /* ---------- made-up answers for the demo ---------- */
@@ -318,7 +507,8 @@ function demoTask(id, minsAgo, name, d){
     cf("Are there any rights, territory or distribution restrictions?","drop_down",d.x,YNS),
     cf("If yes: please describe the restrictions. If not sure: please explain what you are unsure about.","text",d.xi),
     cf("What are you looking for? Select all that apply.","labels",d.k,LB),
-    cf("What is your main question for the matchmaker?","text",d.q)
+    cf("What is your main question for the matchmaker?","text",d.q),
+    cf("Matchmaker notes","text",d.n || null)
   ]};
 }
 var demoRaw = [
@@ -326,7 +516,8 @@ var demoRaw = [
     s:"Three generations of salt harvesters follow the tides along a coast that is slowly disappearing.",p:0,
     pi:"Made-up festival, September 2026",f:"Selected: two made-up festivals. Rejected: one.",r:1,ri:"",x:"o-s",
     xi:"A co-producer may hold TV rights for Belgium; I am not sure if that blocks a sales deal.",k:["l2","l4"],
-    q:"Which kind of sales agent fits an 84-minute observational film, and should I sign before my next festival?"}),
+    q:"Which kind of sales agent fits an 84-minute observational film, and should I sign before my next festival?",
+    n:"[Sat 14 Nov 09:20 · XX] Made-up note: check the Belgian TV rights before suggesting sales agents."}),
   demoTask("d2", 26, "Demo Filmmaker Two", {t:"The Quiet Harbour",g:"Personal, experimental",c:"Portugal",l:"62",
     s:"A daughter returns to her father's empty fishing boat and films one winter on board.",p:1,pi:"",
     f:"None yet.",r:0,ri:"Made-up Distribution, Benelux theatrical only.",x:1,xi:"",k:["l1","l4"],
@@ -342,15 +533,14 @@ var demoRound = 0;
 function loadDemo(){
   demoRound++;
   var list = demoRaw.slice();
-  if (demoRound > 1){ demoLater.date_created = demoLater.date_created || String(Date.now()); list.push(demoLater); }
+  if (demoRound > 1) list.push(demoLater);
   return Promise.resolve(list);
 }
 
 /* ---------- status line ---------- */
 function clock(d){ return d.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit", second: "2-digit" }); }
 function setStatus(state, text){
-  var dot = $("dot");
-  dot.className = "dot" + (state ? " " + state : "");
+  $("dot").className = "dot" + (state ? " " + state : "");
   $("status").textContent = text;
 }
 function showStatus(){
@@ -360,7 +550,7 @@ function showStatus(){
   setStatus("", DEMO ? "Demo" : "Not connected");
 }
 
-/* ---------- drawing the cards ---------- */
+/* ---------- drawing the intake cards ---------- */
 function whenText(ms){
   if (!ms) return "";
   var d = new Date(ms), now = new Date(), mins = Math.round((now - d) / 60000);
@@ -382,8 +572,7 @@ function matchesFilter(it){
 }
 function fact(label, value){
   var v = value || "–";
-  var cls = "fact" + (/^yes$/i.test(v) ? " yes" : /not sure/i.test(v) ? " unsure" : "");
-  var n = el("div", cls, label);
+  var n = el("div", "fact" + (/^yes$/i.test(v) ? " yes" : /not sure/i.test(v) ? " unsure" : ""), label);
   n.appendChild(el("strong", null, v));
   return n;
 }
@@ -428,6 +617,8 @@ function card(it){
   facts.appendChild(fact("Rights restrictions", f.restr));
   c.appendChild(facts);
 
+  c.appendChild(notesBlock(it));
+
   var dl = el("dl");
   detail(dl, "Synopsis", f.synopsis);
   detail(dl, "World premiere: where and when", f.premiereInfo);
@@ -445,14 +636,11 @@ function card(it){
   }
 
   var act = el("div", "actions");
-  var b = el("button", "btn" + (seen[it.id] ? " quiet" : ""), seen[it.id] ? "Seen ✓  (undo)" : "Mark as seen");
-  b.type = "button";
-  b.addEventListener("click", function(){
+  act.appendChild(button("btn" + (seen[it.id] ? " quiet" : ""), seen[it.id] ? "Seen ✓  (undo)" : "Mark as seen", function(){
     if (seen[it.id]) delete seen[it.id]; else { seen[it.id] = 1; delete fresh[it.id]; }
     lsSet(SEEN_K, JSON.stringify(seen));
-    render();
-  });
-  act.appendChild(b);
+    render(true);
+  }));
   if (it.url && /^https:\/\/app\.clickup\.com\//.test(it.url)){
     var a = el("a", "open", "Open in ClickUp ↗");
     a.href = it.url; a.target = "_blank"; a.rel = "noopener noreferrer";
@@ -461,7 +649,14 @@ function card(it){
   c.appendChild(act);
   return c;
 }
-function render(){
+function typingInGrid(){
+  var a = document.activeElement;
+  return !!(a && (a.tagName === "TEXTAREA" || a.tagName === "INPUT") && $("grid").contains(a));
+}
+function render(force){
+  /* Never redraw under someone who is typing a note; redraw once they leave the box. */
+  if (!force && typingInGrid()){ pendingRender = true; return; }
+  pendingRender = false;
   var grid = $("grid");
   var shown = items.filter(function(it){
     if (hideSeen && seen[it.id]) return false;
@@ -473,6 +668,7 @@ function render(){
   $("count").textContent = items.length
     ? items.length + (items.length === 1 ? " filmmaker" : " filmmakers") + " · " + (items.length - nSeen) + " not seen yet" + (shown.length !== items.length ? " · showing " + shown.length : "")
     : "";
+  $("tabCountIntake").textContent = items.length ? " " + items.length : "";
 
   grid.textContent = "";
   if (!items.length){
@@ -484,6 +680,9 @@ function render(){
   if (!shown.length){ grid.appendChild(el("div", "empty", "Nothing matches this search or filter.")); return; }
   shown.forEach(function(it){ grid.appendChild(card(it)); });
 }
+$("grid").addEventListener("focusout", function(){
+  setTimeout(function(){ if (pendingRender && !typingInGrid()) render(); }, 0);
+});
 
 /* ---------- checking for new answers ---------- */
 var toastTimer = null;
@@ -494,7 +693,7 @@ function toast(text){
 function refresh(){
   if (busy || (!key && !DEMO)) return Promise.resolve();
   busy = true; showStatus();
-  return (DEMO ? loadDemo() : loadAll()).then(function(raw){
+  return (DEMO ? loadDemo() : loadAll().then(function(raw){ return findNotesField().then(function(){ return raw; }); })).then(function(raw){
     var next = raw.map(normalize);
     var arrivals = firstLoad ? [] : next.filter(function(it){ return !known[it.id]; });
     arrivals.forEach(function(it){ fresh[it.id] = 1; });
@@ -509,11 +708,120 @@ function refresh(){
   }).then(function(){ busy = false; showStatus(); render(); });
 }
 
+/* ---------- industry events ---------- */
+var events = null, evDay = null, evStatus = "all", evQuery = "", dfsOnly = lsGet(DFS_K) === "1", hidePast = lsGet(PAST_K) === "1";
+var STATUS = {
+  SOLD_OUT: ["Sold out", "st-sold", "sold"],
+  LOW_AVAILABILITY: ["Almost sold out", "st-low", "low"],
+  HIGH_AVAILABILITY: ["Tickets available", "st-high", "high"],
+  NO_SALE: ["No ticket sale", "st-none", "none"],
+  EXTERNAL: ["Tickets elsewhere", "st-none", "none"],
+  UNKNOWN: ["Status unknown", "st-none", "none"]
+};
+function statusOf(e){ return STATUS[e.status] || STATUS.UNKNOWN; }
+function ams(iso, opts){ return new Date(iso).toLocaleString("en-GB", Object.assign({ timeZone: TZ }, opts)); }
+function hm(iso){ return iso ? ams(iso, { hour: "2-digit", minute: "2-digit" }) : ""; }
+function todayAms(){ return new Date().toLocaleDateString("en-CA", { timeZone: TZ }); }
+function dayLabel(date){
+  var d = new Date(date + "T12:00:00Z");
+  return date === todayAms() ? "Today" : d.toLocaleDateString("en-GB", { weekday: "short", day: "numeric", month: "short", timeZone: "UTC" });
+}
+function isDfs(e){ return /docs for sale/i.test([e.title, e.audience, e.location].join(" ")); }
+function loadEvents(){
+  return fetch("events.json?t=" + Date.now(), { cache: "no-store" }).then(function(r){
+    if (!r.ok) throw new Error("http"); return r.json();
+  }).then(function(d){
+    if (!d || !Array.isArray(d.days)) throw new Error("shape");
+    events = d;
+    if (!evDay || !d.days.some(function(x){ return x.date === evDay; })){
+      var t = todayAms();
+      var pick = d.days.filter(function(x){ return x.date === t; })[0] || d.days.filter(function(x){ return x.date > t; })[0] || d.days[0];
+      evDay = pick && pick.date;
+    }
+    renderEvents();
+  }, function(){
+    if (!events) $("evUpdated").textContent = "Could not load the industry events. Trying again in 2 minutes.";
+  });
+}
+function renderEvents(){
+  if (!events) return;
+  var total = 0, sold = 0;
+  events.days.forEach(function(x){ total += x.events.length; x.events.forEach(function(e){ if (e.status === "SOLD_OUT") sold++; }); });
+  $("tabCountEvents").textContent = " " + total;
+  $("evUpdated").textContent = "Ticket status checked " + ams(events.updated, { weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" }) +
+    " · " + total + " industry events, " + sold + " sold out";
+
+  var chips = $("dayChips"); chips.textContent = "";
+  events.days.forEach(function(x){
+    var n = x.events.filter(function(e){ return !dfsOnly || isDfs(e); });
+    var s = n.filter(function(e){ return e.status === "SOLD_OUT"; }).length;
+    var b = button("chip day", null, function(){ evDay = x.date; renderEvents(); });
+    b.setAttribute("aria-pressed", String(x.date === evDay));
+    b.appendChild(el("span", null, dayLabel(x.date)));
+    b.appendChild(el("small", null, n.length + (n.length === 1 ? " event" : " events") + (s ? " · " + s + " sold out" : "")));
+    chips.appendChild(b);
+  });
+
+  var day = events.days.filter(function(x){ return x.date === evDay; })[0] || { events: [] };
+  var now = Date.now();
+  var shown = day.events.filter(function(e){
+    if (dfsOnly && !isDfs(e)) return false;
+    if (hidePast && e.end && Date.parse(e.end) < now) return false;
+    if (evStatus !== "all" && statusOf(e)[2] !== evStatus) return false;
+    if (evQuery && [e.title, e.location, e.audience].join(" ").toLowerCase().indexOf(evQuery) === -1) return false;
+    return true;
+  });
+  $("evCount").textContent = shown.length + (shown.length === 1 ? " event" : " events") + " on " + dayLabel(day.date || evDay);
+
+  var list = $("evList"); list.textContent = "";
+  if (!shown.length){ list.appendChild(el("div", "empty", "No industry events match this day and filter.")); return; }
+  shown.forEach(function(e){
+    var st = statusOf(e);
+    var safe = typeof e.link === "string" && /^https:\/\/festival\.idfa\.nl\//.test(e.link);
+    var row = el(safe ? "a" : "div", "ev" + (e.end && Date.parse(e.end) < now ? " past" : ""));
+    if (safe){ row.href = e.link; row.target = "_blank"; row.rel = "noopener noreferrer"; }
+    var t = el("div", "evtime", hm(e.start));
+    if (e.end) t.appendChild(el("span", null, "– " + hm(e.end)));
+    row.appendChild(t);
+    var main = el("div");
+    main.appendChild(el("div", "evtitle", e.title || "Untitled event"));
+    main.appendChild(el("div", "evmeta", [e.location, e.audience && e.audience !== "-" ? e.audience : ""].filter(Boolean).join("  ·  ")));
+    row.appendChild(main);
+    row.appendChild(el("span", "st " + st[1], st[0]));
+    list.appendChild(row);
+  });
+}
+$("evSearch").addEventListener("input", function(){ evQuery = this.value.trim().toLowerCase(); renderEvents(); });
+Array.prototype.forEach.call(document.querySelectorAll("#evFilters .chip"), function(b){
+  b.addEventListener("click", function(){
+    evStatus = b.getAttribute("data-s");
+    Array.prototype.forEach.call(document.querySelectorAll("#evFilters .chip"), function(x){ x.setAttribute("aria-pressed", String(x === b)); });
+    renderEvents();
+  });
+});
+$("dfsBtn").addEventListener("click", function(){ dfsOnly = !dfsOnly; lsSet(DFS_K, dfsOnly ? "1" : "0"); syncToggles(); renderEvents(); });
+$("hidePastBtn").addEventListener("click", function(){ hidePast = !hidePast; lsSet(PAST_K, hidePast ? "1" : "0"); syncToggles(); renderEvents(); });
+
+/* ---------- tabs ---------- */
+function showTab(name){
+  tab = name === "events" ? "events" : "intake";
+  lsSet(TAB_K, tab);
+  Array.prototype.forEach.call(document.querySelectorAll(".tab"), function(b){ b.setAttribute("aria-selected", String(b.getAttribute("data-tab") === tab)); });
+  $("intakeView").hidden = tab !== "intake";
+  $("eventsView").hidden = tab !== "events";
+  if (history.replaceState) history.replaceState(null, "", location.pathname + location.search + "#" + tab);
+  if (tab === "events") loadEvents();
+}
+Array.prototype.forEach.call(document.querySelectorAll(".tab"), function(b){
+  b.addEventListener("click", function(){ showTab(b.getAttribute("data-tab")); window.scrollTo(0, 0); });
+});
+
 /* ---------- setup sheet ---------- */
 function openSetup(msg){
   var connected = !!key && !msg;
   $("setupConnect").hidden = connected;
   $("setupConnected").hidden = !connected;
+  $("notesHelp").hidden = !(connected && lastOk && !notesFieldId);
   $("closeBtn1").hidden = !key;
   $("setupMsg").textContent = msg || "";
   $("setup").hidden = false;
@@ -526,7 +834,7 @@ $("connectBtn").addEventListener("click", function(){
   if (!k){ $("setupMsg").textContent = "Paste the key first."; return; }
   var old = key; key = k;
   $("setupMsg").textContent = "Checking the key…";
-  useList = false; listId = null;
+  useList = false; listId = null; notesFieldId = null; lastFieldCheck = 0;
   api("/view/" + encodeURIComponent(VIEW_ID) + "/task?page=0").then(function(){
     lsSet(KEY_K, k); closeSetup(); firstLoad = true; known = {}; refresh();
   }, function(e){
@@ -540,10 +848,10 @@ $("keyInput").addEventListener("keydown", function(e){ if (e.key === "Enter") $(
 $("demoBtn").addEventListener("click", function(){ location.search = "?demo"; });
 $("closeBtn1").addEventListener("click", closeSetup);
 $("closeBtn2").addEventListener("click", closeSetup);
-$("refreshBtn").addEventListener("click", function(){ closeSetup(); refresh(); });
+$("refreshBtn").addEventListener("click", function(){ closeSetup(); refresh(); loadEvents(); });
 $("forgetBtn").addEventListener("click", function(){
-  lsDel(KEY_K); key = ""; items = []; known = {}; fresh = {}; lastOk = null; lastErr = "";
-  closeSetup(); showStatus(); render(); openSetup();
+  lsDel(KEY_K); key = ""; items = []; known = {}; fresh = {}; drafts = {}; lastOk = null; lastErr = ""; notesFieldId = null;
+  closeSetup(); showStatus(); render(true); openSetup();
 });
 $("settingsBtn").addEventListener("click", function(){
   if (DEMO){ location.search = ""; return; }
@@ -562,6 +870,8 @@ Array.prototype.forEach.call(document.querySelectorAll("#filters .chip"), functi
 function syncToggles(){
   $("sortBtn").setAttribute("aria-pressed", String(oldestFirst));
   $("hideSeenBtn").setAttribute("aria-pressed", String(hideSeen));
+  $("dfsBtn").setAttribute("aria-pressed", String(dfsOnly));
+  $("hidePastBtn").setAttribute("aria-pressed", String(hidePast));
 }
 $("sortBtn").addEventListener("click", function(){ oldestFirst = !oldestFirst; lsSet(SORT_K, oldestFirst ? "1" : "0"); syncToggles(); render(); });
 $("hideSeenBtn").addEventListener("click", function(){ hideSeen = !hideSeen; lsSet(HIDE_K, hideSeen ? "1" : "0"); syncToggles(); render(); });
@@ -569,10 +879,13 @@ $("hideSeenBtn").addEventListener("click", function(){ hideSeen = !hideSeen; lsS
 /* ---------- start ---------- */
 syncToggles();
 if (DEMO){ $("demoBanner").hidden = false; $("settingsBtn").textContent = "Leave demo"; }
-showStatus(); render();
+showStatus(); render(true);
+showTab(tab);
+if (tab !== "events") loadEvents();
 if (key || DEMO) refresh(); else openSetup();
 setInterval(function(){ if (!document.hidden) refresh(); }, DEMO ? 10000 : EVERY_MS);
-document.addEventListener("visibilitychange", function(){ if (!document.hidden) refresh(); });
+setInterval(function(){ if (!document.hidden) loadEvents(); }, EVENTS_EVERY_MS);
+document.addEventListener("visibilitychange", function(){ if (!document.hidden){ refresh(); loadEvents(); } });
 })();
 </script>
 </body>

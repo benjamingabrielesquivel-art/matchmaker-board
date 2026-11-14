@@ -1,0 +1,2461 @@
+{
+ "updated": "2026-11-14T09:18:57Z",
+ "source": "https://festival.idfa.nl/en/collectie/",
+ "days": [
+  {
+   "date": "2026-11-12",
+   "events": [
+    {
+     "id": "c7c33cac-31cd-414c-9d02-edb5fc050445",
+     "title": "IDFAcademy Opening Talk: Mehran Tamadon",
+     "start": "2026-11-12T09:00:00.000Z",
+     "end": "2026-11-12T11:00:00.000Z",
+     "location": "De Balie: Grote Zaal",
+     "audience": "IDFAcademy Passholders & Invitees",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/39a8b12d-5d47-439c-81b5-8bd3c9896bf8/idfacademy-opening-talk:-mehran-tamadon/"
+    },
+    {
+     "id": "60da1aac-639d-43ae-99ef-de7ba190dfa3",
+     "title": "IDFAcademy: Participants meet-up",
+     "start": "2026-11-12T12:00:00.000Z",
+     "end": "2026-11-12T15:30:00.000Z",
+     "location": "De Balie: Grote Zaal",
+     "audience": "IDFAcademy Passholders",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/85232371-52ba-44ac-9b6b-c55f827b2e4a/idfacademy:-participants-meet-up/"
+    },
+    {
+     "id": "00f4d455-a7cd-4e39-8e82-836cfeb51c31",
+     "title": "IDFAcademy: Opening Drinks",
+     "start": "2026-11-12T15:30:00.000Z",
+     "end": "2026-11-12T17:00:00.000Z",
+     "location": "De Balie: Bovenfoyer",
+     "audience": "IDFAcademy Passholders & Invitees",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/88ea1e21-93d5-40b8-ae14-b60f78e19b78/idfacademy:-opening-drinks/"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-13",
+   "events": [
+    {
+     "id": "8a4561ec-00cc-4937-912a-92a6d36c90eb",
+     "title": "IDFAcademy Talk: Meet the Family",
+     "start": "2026-11-13T09:00:00.000Z",
+     "end": "2026-11-13T11:00:00.000Z",
+     "location": "De Balie: Grote Zaal",
+     "audience": "IDFAcademy Passholders & Invitees",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/a0e0ebb7-44eb-49ec-9b86-38afbfff63c8/idfacademy-talk:-meet-the-family/"
+    },
+    {
+     "id": "e1e81234-54fd-4c20-9d3a-5d6ff2e37957",
+     "title": "IDFAcademy Talk: Creative Producing - To Hold a Film",
+     "start": "2026-11-13T12:00:00.000Z",
+     "end": "2026-11-13T13:30:00.000Z",
+     "location": "De Balie: Salon",
+     "audience": "IDFAcademy Passholders & Invitees",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/545404fc-af3d-4998-a6a5-b95ea3d268ec/idfacademy-talk:-creative-producing---to-hold-a-film/"
+    },
+    {
+     "id": "927d2017-4460-4f45-9fee-4c131efcf68d",
+     "title": "IDFAcademy Talk: How to Collaborate in a (co-)production",
+     "start": "2026-11-13T12:00:00.000Z",
+     "end": "2026-11-13T13:30:00.000Z",
+     "location": "De Balie: Grote Zaal",
+     "audience": "IDFAcademy Passholders & Invitees",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/eed71e0d-c610-4e45-bdfd-4a0accef2165/idfacademy-talk:-how-to-collaborate-in-a-(co-)production/"
+    },
+    {
+     "id": "bae5b321-c574-40da-8f4e-57d700824113",
+     "title": "IDFAcademy: The Quiet Room",
+     "start": "2026-11-13T12:00:00.000Z",
+     "end": "2026-11-13T17:00:00.000Z",
+     "location": "De Balie: Filmzaal",
+     "audience": "IDFAcademy Passholders",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/f4201b02-ab1c-46c7-a022-73f5cc56b80e/idfacademy:-the-quiet-room/"
+    },
+    {
+     "id": "56ecfac8-a123-4032-82f4-85ed61ea1bb2",
+     "title": "Meeting Space IDFAcademy",
+     "start": "2026-11-13T12:00:00.000Z",
+     "end": "2026-11-13T15:00:00.000Z",
+     "location": "De Balie: Bovenfoyer",
+     "audience": "IDFAcademy Passholders",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/b3ec030e-dc40-4854-b0e1-abbd11edd024/meeting-space-idfacademy/"
+    },
+    {
+     "id": "cb155f11-0753-44b5-98e7-c0abbc773bf0",
+     "title": "IDFAcademy Session: Debunking the Myths",
+     "start": "2026-11-13T14:30:00.000Z",
+     "end": "2026-11-13T16:30:00.000Z",
+     "location": "De Balie: Grote Zaal",
+     "audience": "IDFAcademy Passholders",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/01708486-36fb-42f2-8f57-054560487212/idfacademy-session:-debunking-the-myths/"
+    },
+    {
+     "id": "d18ea8ca-2358-4a77-b85b-95f19d3b4687",
+     "title": "Lounge & Drinks",
+     "start": "2026-11-13T19:00:00.000Z",
+     "end": "2026-11-13T21:00:00.000Z",
+     "location": "Het Documentaire Paviljoen: Foyer",
+     "audience": "-",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/e10f3b5b-f9ca-4c04-b52c-462cca12a77a/lounge-&-drinks/"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-14",
+   "events": [
+    {
+     "id": "bf37a831-973a-42ff-bf40-6b1591553a94",
+     "title": "Docs for Sale: Meeting Space",
+     "start": "2026-11-14T08:00:00.000Z",
+     "end": "2026-11-14T16:00:00.000Z",
+     "location": "Het Documentaire Paviljoen: Het Podium",
+     "audience": "Docs for Sale Passholders",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/91a79345-77ec-4047-89c3-a3e59c8d9729/docs-for-sale:-meeting-space/"
+    },
+    {
+     "id": "a3ca2981-df12-4f69-a49f-81d2f15467ac",
+     "title": "Docs for Sale: Viewing Booths",
+     "start": "2026-11-14T08:00:00.000Z",
+     "end": "2026-11-14T17:00:00.000Z",
+     "location": "Het Documentaire Paviljoen: De Salon",
+     "audience": "Docs for Sale Acquisition Passholders",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/e9fbc4ab-2c7f-46cf-a1e4-fecccd964bb4/docs-for-sale:-viewing-booths/"
+    },
+    {
+     "id": "cb92cc99-4f81-44ab-95f1-d4046856682b",
+     "title": "Market Screening: 58th",
+     "start": "2026-11-14T08:00:00.000Z",
+     "end": "2026-11-14T09:28:00.000Z",
+     "location": "Tuschinski 3",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/99c6a44c-61bd-4c6c-8151-4420022fb4a7/market-screening:-58th/"
+    },
+    {
+     "id": "edcc41b9-4061-449e-9812-94a62656e83c",
+     "title": "Work Lounge",
+     "start": "2026-11-14T08:00:00.000Z",
+     "end": "2026-11-14T17:00:00.000Z",
+     "location": "Het Documentaire Paviljoen: De Huiskamer",
+     "audience": "Public",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/58750c4b-74fd-4b78-9849-9fed89ce50cc/work-lounge/"
+    },
+    {
+     "id": "0286eefc-ca8c-4ad4-afaf-e21a8bc99785",
+     "title": "Networking & Meeting Space",
+     "start": "2026-11-14T08:45:00.000Z",
+     "end": "2026-11-14T17:00:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Gijsbrecht bordes",
+     "audience": "Passholders only",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/53c2867d-45e0-4620-aae6-c596addd4f95/networking-&-meeting-space/"
+    },
+    {
+     "id": "dd57a7d3-802a-41e0-b4ea-919e76b51993",
+     "title": "Delegation Showcase: K-DOCS Pitch at IDFA",
+     "start": "2026-11-14T09:00:00.000Z",
+     "end": "2026-11-14T11:00:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Nieuwe Foyer",
+     "audience": "Passholders only",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/5cf2e5ba-ca3b-45fd-99e8-ee9daeaaf4ae/delegation-showcase:-k-docs-pitch-at-idfa/"
+    },
+    {
+     "id": "f507379f-b613-4143-b684-fb4095d14835",
+     "title": "IDFA Consultancy - Tribeca Film Festival",
+     "start": "2026-11-14T09:00:00.000Z",
+     "end": "2026-11-14T10:00:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Pleinfoyer",
+     "audience": "Passholders only",
+     "status": "SOLD_OUT",
+     "link": "https://festival.idfa.nl/en/composition/04e5fbf4-91d4-4520-ae17-33a58a2805e1/idfa-consultancy---tribeca-film-festival/"
+    },
+    {
+     "id": "ba467fbc-b270-40bf-9727-87fb984b7567",
+     "title": "IDFA Consultancy - United People",
+     "start": "2026-11-14T09:00:00.000Z",
+     "end": "2026-11-14T10:00:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Pleinfoyer",
+     "audience": "Passholders only",
+     "status": "LOW_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/composition/9c956442-0737-4485-88be-ce6d1470b1df/idfa-consultancy---united-people/"
+    },
+    {
+     "id": "6a206296-d22b-4528-b70f-001df39634d9",
+     "title": "IDFAcademy Talk: Presenting your documentary",
+     "start": "2026-11-14T09:00:00.000Z",
+     "end": "2026-11-14T11:00:00.000Z",
+     "location": "De Balie: Grote Zaal",
+     "audience": "IDFAcademy Passholders & Invitees",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/2a01f706-59b4-48cf-9d12-a81fe8f6476d/idfacademy-talk:-presenting-your-documentary/"
+    },
+    {
+     "id": "9188c8ff-5ca6-488b-bb3a-1f06f9b199a7",
+     "title": "Industry Session: Who is your film for? – Exploring Jolt’s Audience Insight Modeler",
+     "start": "2026-11-14T09:00:00.000Z",
+     "end": "2026-11-14T10:00:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Koninklijke Foyer",
+     "audience": "Passholders only",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/665a14fa-4680-4c83-8e36-eee746fc8246/industry-session:-who-is-your-film-for?-–-exploring-jolt’s-audience-insight-modeler/"
+    },
+    {
+     "id": "66bc3fa4-e56e-4e7b-a867-ecacfe1fdd1d",
+     "title": "IDFA Consultancy - Hot Docs",
+     "start": "2026-11-14T10:15:00.000Z",
+     "end": "2026-11-14T11:15:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Pleinfoyer",
+     "audience": "Passholders only",
+     "status": "SOLD_OUT",
+     "link": "https://festival.idfa.nl/en/composition/cfabf987-b6fc-4aa2-9bd5-ab1c465cc08d/idfa-consultancy---hot-docs/"
+    },
+    {
+     "id": "b705d421-e73a-42fb-abc3-6d8a71782e89",
+     "title": "IDFA Consultancy - POV / American Documentary",
+     "start": "2026-11-14T10:15:00.000Z",
+     "end": "2026-11-14T11:15:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Pleinfoyer",
+     "audience": "Passholders only",
+     "status": "SOLD_OUT",
+     "link": "https://festival.idfa.nl/en/composition/3f4c67f6-13fe-4ade-b84f-60f8b9b27f4e/idfa-consultancy---pov-/-american-documentary/"
+    },
+    {
+     "id": "ae42f52a-65ea-4c64-9044-b991c3b2da10",
+     "title": "Market Screening: The Sound of Hope",
+     "start": "2026-11-14T10:45:00.000Z",
+     "end": "2026-11-14T11:05:00.000Z",
+     "location": "Pathé City 7",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/b0bacf38-aaaf-4e2a-b2a8-71f147cdaad6/market-screening:-the-sound-of-hope/"
+    },
+    {
+     "id": "9d4aace6-56f2-4465-b76d-b6adbbdf112b",
+     "title": "IDFA Consultancy - CPH:DOX",
+     "start": "2026-11-14T11:30:00.000Z",
+     "end": "2026-11-14T12:30:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Pleinfoyer",
+     "audience": "Passholders only",
+     "status": "SOLD_OUT",
+     "link": "https://festival.idfa.nl/en/composition/3f0b6113-8b30-4196-91f6-99fd9896cdc1/idfa-consultancy---cph:dox/"
+    },
+    {
+     "id": "273dac3b-b9de-4044-9050-8855d782af13",
+     "title": "IDFA Consultancy - Wendy Bernfeld",
+     "start": "2026-11-14T11:30:00.000Z",
+     "end": "2026-11-14T12:30:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Pleinfoyer",
+     "audience": "Passholders only",
+     "status": "SOLD_OUT",
+     "link": "https://festival.idfa.nl/en/composition/eb687041-6ac1-4b5d-995f-240ca58b5827/idfa-consultancy---wendy-bernfeld/"
+    },
+    {
+     "id": "e397a825-6cc4-4e18-b6fe-b6a36e6a6b54",
+     "title": "Industry Session: NCE Masterclass on editing of Two Mountains Weighing Down My Chest",
+     "start": "2026-11-14T11:30:00.000Z",
+     "end": "2026-11-14T12:30:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Koninklijke Foyer",
+     "audience": "Passholders only",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/b93a9e28-f5ff-415c-8757-227e3c5e2390/industry-session:-nce-masterclass-on-editing-of-two-mountains-weighing-down-my-chest/"
+    },
+    {
+     "id": "642d8e93-86e4-423f-b529-23ea5587a28d",
+     "title": "IDFAcademy Round tables: Finance & funding",
+     "start": "2026-11-14T12:00:00.000Z",
+     "end": "2026-11-14T14:00:00.000Z",
+     "location": "De Balie: Grote Zaal",
+     "audience": "IDFAcademy Passholders",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/41dc2fa5-573e-481d-8fb5-9f363651fbdf/idfacademy-round-tables:-finance-&-funding/"
+    },
+    {
+     "id": "764cc380-441e-4d8a-94a7-00510fc7d69d",
+     "title": "IDFAcademy Session: Behind the scenes with ARTE",
+     "start": "2026-11-14T12:00:00.000Z",
+     "end": "2026-11-14T14:00:00.000Z",
+     "location": "De Balie: Pleinzaal",
+     "audience": "IDFAcademy Passholders",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/69d908b1-1cec-461e-9b8e-8dfd394deae2/idfacademy-session:-behind-the-scenes-with-arte/"
+    },
+    {
+     "id": "8c62158d-64dd-415f-8f13-7bcd0f012870",
+     "title": "IDFAcademy Talk: Joshua Oppenheimer",
+     "start": "2026-11-14T12:00:00.000Z",
+     "end": "2026-11-14T14:00:00.000Z",
+     "location": "De Balie: Salon",
+     "audience": "IDFAcademy Passholders & Invitees",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/df099375-5611-4fea-bd07-c1c0085ced47/idfacademy-talk:-joshua-oppenheimer/"
+    },
+    {
+     "id": "fe0c7eb1-cac2-461d-9249-4b14bf74c782",
+     "title": "Market Screening: Time and Water",
+     "start": "2026-11-14T12:00:00.000Z",
+     "end": "2026-11-14T13:35:00.000Z",
+     "location": "Het Documentaire Paviljoen: De Spiegel",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/4be1a950-6d7d-410e-a993-a2cdfcade11d/market-screening:-time-and-water/"
+    },
+    {
+     "id": "ea60aebf-bbe1-4d1f-bf2b-bc043d56d8b7",
+     "title": "Meeting Space IDFAcademy",
+     "start": "2026-11-14T12:00:00.000Z",
+     "end": "2026-11-14T13:00:00.000Z",
+     "location": "De Balie: Bovenfoyer",
+     "audience": "IDFAcademy Passholders",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/b3ec030e-dc40-4854-b0e1-abbd11edd024/meeting-space-idfacademy/"
+    },
+    {
+     "id": "00e7bd4d-ac7d-4305-afdc-eac0a9762fd7",
+     "title": "Delegation Showcase: Arctic Film Norway",
+     "start": "2026-11-14T12:30:00.000Z",
+     "end": "2026-11-14T13:30:00.000Z",
+     "location": "Pathé City 6",
+     "audience": "Passholders only",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/bfbb018b-6c0b-4e23-a303-95fcf9d3a579/delegation-showcase:-arctic-film-norway/"
+    },
+    {
+     "id": "7afb74e5-56b2-4c7a-9438-e3d0a861ea3e",
+     "title": "IDFA Consultancy - Film Harbour",
+     "start": "2026-11-14T12:30:00.000Z",
+     "end": "2026-11-14T13:30:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Pleinfoyer",
+     "audience": "Passholders only",
+     "status": "SOLD_OUT",
+     "link": "https://festival.idfa.nl/en/composition/46132c52-ee81-44aa-a8b0-ed653cf13d69/idfa-consultancy---film-harbour/"
+    },
+    {
+     "id": "209a8d20-1fcc-46bd-bee8-a50b1f1cc199",
+     "title": "IDFA Consultancy - Film in Mind",
+     "start": "2026-11-14T12:45:00.000Z",
+     "end": "2026-11-14T13:45:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Pleinfoyer",
+     "audience": "Passholders only",
+     "status": "LOW_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/composition/3056bd45-a79e-4007-a9fa-97dd5a86b8bd/idfa-consultancy---film-in-mind/"
+    },
+    {
+     "id": "e10072b2-26b5-4995-a3d2-6e4af809a964",
+     "title": "Delegation Showcase: Canadian and Indigenous",
+     "start": "2026-11-14T14:00:00.000Z",
+     "end": "2026-11-14T15:45:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Nieuwe Foyer",
+     "audience": "Passholders only",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/6b8cd8f9-f534-47b8-89eb-58a7447c617a/delegation-showcase:-canadian-and-indigenous/"
+    },
+    {
+     "id": "af4ae464-de11-4cb3-81dd-afe68ba75d14",
+     "title": "IDFA Consultancy - Sheffield DocFest",
+     "start": "2026-11-14T14:00:00.000Z",
+     "end": "2026-11-14T15:00:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Pleinfoyer",
+     "audience": "Passholders only",
+     "status": "SOLD_OUT",
+     "link": "https://festival.idfa.nl/en/composition/b69f4f9d-aa19-4e9f-b5a1-9960267722ee/idfa-consultancy---sheffield-docfest/"
+    },
+    {
+     "id": "30130a35-ca8d-444c-a338-c50e89b760dc",
+     "title": "IDFAcademy Session: Me & the Filmmaker",
+     "start": "2026-11-14T14:30:00.000Z",
+     "end": "2026-11-14T16:30:00.000Z",
+     "location": "De Balie: Filmzaal",
+     "audience": "IDFAcademy Passholders",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/dcbcc89b-73aa-4ab6-b0ed-0f14e1bb64dc/idfacademy-session:-me-&-the-filmmaker/"
+    },
+    {
+     "id": "5344f60b-47ba-43f8-b497-9fc6bb839674",
+     "title": "IDFAcademy: Round Tables",
+     "start": "2026-11-14T14:30:00.000Z",
+     "end": "2026-11-14T16:30:00.000Z",
+     "location": "De Balie: Grote Zaal",
+     "audience": "IDFAcademy Passholders",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/badcc7ad-c681-42ec-8278-baea22ca8bca/idfacademy:-round-tables/"
+    },
+    {
+     "id": "7089fe54-99c6-4b59-b237-0cf162b39c75",
+     "title": "IDFAcademy: Round Tables",
+     "start": "2026-11-14T14:30:00.000Z",
+     "end": "2026-11-14T16:30:00.000Z",
+     "location": "De Balie: Salon",
+     "audience": "IDFAcademy Passholders",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/badcc7ad-c681-42ec-8278-baea22ca8bca/idfacademy:-round-tables/"
+    },
+    {
+     "id": "4a41d802-8272-4fa4-8546-1cf16c18d0ca",
+     "title": "Industry Talk: Fighting back – Cinema as an act of resistance?",
+     "start": "2026-11-14T14:30:00.000Z",
+     "end": "2026-11-14T16:00:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Koninklijke Foyer",
+     "audience": "Passholders only",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/d74110c5-bb51-4e0f-a368-47f000b7a988/industry-talk:-fighting-back-–-cinema-as-an-act-of-resistance?/"
+    },
+    {
+     "id": "ce09a3d6-e656-4771-976d-10a6453fa50b",
+     "title": "Market Screening: Everest: The Other Side",
+     "start": "2026-11-14T14:30:00.000Z",
+     "end": "2026-11-14T16:28:00.000Z",
+     "location": "Het Documentaire Paviljoen: De Spiegel",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/b8d802ae-f76e-4ce0-8818-5fe974e63914/market-screening:-everest:-the-other-side/"
+    },
+    {
+     "id": "3d7c4440-0471-4864-9853-e3026522e4f8",
+     "title": "Meeting Space IDFAcademy",
+     "start": "2026-11-14T14:30:00.000Z",
+     "end": "2026-11-14T16:30:00.000Z",
+     "location": "De Balie: Bovenfoyer",
+     "audience": "IDFAcademy Passholders",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/b3ec030e-dc40-4854-b0e1-abbd11edd024/meeting-space-idfacademy/"
+    },
+    {
+     "id": "9241377b-1d04-4132-99cb-67401fd599c2",
+     "title": "Bonfire Circles: Collaborating with ARTE – Between France and Germany",
+     "start": "2026-11-14T15:30:00.000Z",
+     "end": "2026-11-14T16:30:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Pleinfoyer",
+     "audience": "Passholders only",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/9b2b9dc9-0559-4626-bac3-7eb76da56ec2/bonfire-circles:-collaborating-with-arte-–-between-france-and-germany/"
+    },
+    {
+     "id": "e6bd0c2c-d1c4-4ffb-ae4a-38b1f7c129c3",
+     "title": "Docs for Sale: Happy Hour",
+     "start": "2026-11-14T16:00:00.000Z",
+     "end": "2026-11-14T17:00:00.000Z",
+     "location": "Het Documentaire Paviljoen: Het Podium",
+     "audience": "Docs for Sale & IDFA Forum Passholders",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/9f7d4a6a-f456-41bf-98ef-e7a5c13162f7/docs-for-sale:-happy-hour/"
+    },
+    {
+     "id": "6a331ee9-d9f0-4bb2-b30a-23aee91c50be",
+     "title": "Market Screening: Heathens",
+     "start": "2026-11-14T17:15:00.000Z",
+     "end": "2026-11-14T19:00:00.000Z",
+     "location": "Het Documentaire Paviljoen: De Spiegel",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/9997bc67-1330-4c19-a2b2-701ba281b5b5/market-screening:-heathens/"
+    },
+    {
+     "id": "92bdb33a-eb21-4cee-8ee0-c7aab8ea6baf",
+     "title": "Guests Meet Guests - Saturday",
+     "start": "2026-11-14T17:30:00.000Z",
+     "end": "2026-11-14T19:00:00.000Z",
+     "location": "Het Documentaire Paviljoen: Het Podium",
+     "audience": "Passholders only",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/30a4102c-9758-47ae-bb99-76497ad06509/guests-meet-guests---saturday/"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-15",
+   "events": [
+    {
+     "id": "7abf213f-6f9e-41ae-bcf5-9d257edbfe57",
+     "title": "Docs for Sale: Meeting Space",
+     "start": "2026-11-15T08:00:00.000Z",
+     "end": "2026-11-15T16:00:00.000Z",
+     "location": "Het Documentaire Paviljoen: Het Podium",
+     "audience": "Docs for Sale Passholders",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/91a79345-77ec-4047-89c3-a3e59c8d9729/docs-for-sale:-meeting-space/"
+    },
+    {
+     "id": "df4531fd-0d74-4b55-94dd-f2f449985cd8",
+     "title": "Docs for Sale: Viewing Booths",
+     "start": "2026-11-15T08:00:00.000Z",
+     "end": "2026-11-15T17:00:00.000Z",
+     "location": "Het Documentaire Paviljoen: De Salon",
+     "audience": "Docs for Sale Acquisition Passholders",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/e9fbc4ab-2c7f-46cf-a1e4-fecccd964bb4/docs-for-sale:-viewing-booths/"
+    },
+    {
+     "id": "c063486c-4f58-4b15-93f9-75312ed900de",
+     "title": "Work Lounge",
+     "start": "2026-11-15T08:00:00.000Z",
+     "end": "2026-11-15T17:00:00.000Z",
+     "location": "Het Documentaire Paviljoen: De Huiskamer",
+     "audience": "Public",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/58750c4b-74fd-4b78-9849-9fed89ce50cc/work-lounge/"
+    },
+    {
+     "id": "d12d3a1a-c945-42e6-9441-6e8117df61b2",
+     "title": "Press & Industry Screening: Crack in the Head, Crack in the Sky",
+     "start": "2026-11-15T08:30:00.000Z",
+     "end": "2026-11-15T10:34:00.000Z",
+     "location": "Pathé City 3",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/24745cad-0e67-4e7e-b50a-bc02db9a9298/crack-in-the-head,-crack-in-the-sky/"
+    },
+    {
+     "id": "a67ef15f-fc4a-4751-9933-3d2e76c7109d",
+     "title": "Networking & Meeting Space",
+     "start": "2026-11-15T08:45:00.000Z",
+     "end": "2026-11-15T17:00:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Gijsbrecht bordes",
+     "audience": "Passholders only",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/53c2867d-45e0-4620-aae6-c596addd4f95/networking-&-meeting-space/"
+    },
+    {
+     "id": "33c95d53-da6d-4a31-acf3-38ea9e3b47f3",
+     "title": "Delegation Showcase: Ukraine",
+     "start": "2026-11-15T09:00:00.000Z",
+     "end": "2026-11-15T10:45:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Nieuwe Foyer",
+     "audience": "Passholders only",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/4d7c4de8-372e-4c4f-bca4-9c630145a754/delegation-showcase:-ukraine/"
+    },
+    {
+     "id": "23c670cf-a553-4a4a-bbe6-0530da1300b4",
+     "title": "DocLab R&D Summit",
+     "start": "2026-11-15T09:00:00.000Z",
+     "end": "2026-11-15T12:00:00.000Z",
+     "location": "Tobacco Theater",
+     "audience": "By invitation",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/dac8827a-0cb3-4163-84c0-dcda30cc669b/doclab-r&d-summit/"
+    },
+    {
+     "id": "050943ec-771d-40b6-aac6-071adde3a638",
+     "title": "IBF & IDFA Talent Presentations",
+     "start": "2026-11-15T09:00:00.000Z",
+     "end": "2026-11-15T12:00:00.000Z",
+     "location": "De Balie: Grote Zaal",
+     "audience": "Invitees, IDFAcademy passholders & Forum passholders",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/efc59dea-1c5d-4c64-b911-52b0a362ceac/ibf-&-idfa-talent-presentations/"
+    },
+    {
+     "id": "aa4075a1-f6f3-42f5-931b-eceaa1ae2ed8",
+     "title": "IDFAcademy: Participants meet-up",
+     "start": "2026-11-15T09:00:00.000Z",
+     "end": "2026-11-15T11:00:00.000Z",
+     "location": "De Balie: Pleinzaal",
+     "audience": "IDFAcademy Passholders",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/85232371-52ba-44ac-9b6b-c55f827b2e4a/idfacademy:-participants-meet-up/"
+    },
+    {
+     "id": "35c9bf3b-6c32-4055-8799-1bae61c776b8",
+     "title": "Industry Session: The Identity – What does it mean to be a documentary film director?",
+     "start": "2026-11-15T09:00:00.000Z",
+     "end": "2026-11-15T10:30:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Koninklijke Foyer",
+     "audience": "Passholders only",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/d8aa9264-a090-4ae3-94a8-378d5f4cc209/industry-session:-the-identity-–-what-does-it-mean-to-be-a-documentary-film-director?/"
+    },
+    {
+     "id": "4778ec81-b4e2-4bfe-8ab0-4a2da1cac0dc",
+     "title": "Press & Industry Screening: Tonight Is Forever",
+     "start": "2026-11-15T09:00:00.000Z",
+     "end": "2026-11-15T10:37:00.000Z",
+     "location": "Pathé City 7",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/fbfd4677-b7c8-4714-9c1c-07ddbd89bd4d/tonight-is-forever/"
+    },
+    {
+     "id": "239c5acb-3111-4dd9-8a4d-8f7a3c026c69",
+     "title": "Press & Industry Screening: Ragazzi al fiume",
+     "start": "2026-11-15T10:30:00.000Z",
+     "end": "2026-11-15T11:49:00.000Z",
+     "location": "Pathé City 4",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/82f8669e-4dca-4310-9b0f-596213ba741c/ragazzi-al-fiume/"
+    },
+    {
+     "id": "ccee15f8-f371-4add-8ca2-a51400ec83b7",
+     "title": "IDFA Consultancy - DAE",
+     "start": "2026-11-15T11:30:00.000Z",
+     "end": "2026-11-15T12:30:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Pleinfoyer",
+     "audience": "Passholders only",
+     "status": "SOLD_OUT",
+     "link": "https://festival.idfa.nl/en/composition/0ee89833-fc47-4399-973a-deb53b989fa3/idfa-consultancy---dae/"
+    },
+    {
+     "id": "cdd3a715-1413-4483-990c-0175276c332b",
+     "title": "IDFA Consultancy - Eurimages",
+     "start": "2026-11-15T11:30:00.000Z",
+     "end": "2026-11-15T12:30:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Pleinfoyer",
+     "audience": "Passholders only",
+     "status": "LOW_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/composition/b3e51565-5d8d-44e5-968e-ef30eff214d5/idfa-consultancy---eurimages/"
+    },
+    {
+     "id": "3c262440-6a81-4eda-9460-7a51fc4d6a83",
+     "title": "IDFA Forum: Rough Cut Presentations",
+     "start": "2026-11-15T11:30:00.000Z",
+     "end": "2026-11-15T12:47:00.000Z",
+     "location": "Pathé City 6",
+     "audience": "By invitation",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/219fe827-3ed4-4c28-ba49-048301b88e0a/idfa-forum:-rough-cut-presentations/"
+    },
+    {
+     "id": "d9a0a1a0-3036-47d0-8ea4-440e0eef03e0",
+     "title": "Press & Industry Screening: Lyrical Vengeance",
+     "start": "2026-11-15T11:45:00.000Z",
+     "end": "2026-11-15T13:42:00.000Z",
+     "location": "Pathé City 3",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/36ced708-4234-42b8-92d6-6e988882f4f2/lyrical-vengeance/"
+    },
+    {
+     "id": "6c47a2c3-7386-43cf-a417-052e4dde5358",
+     "title": "Press & Industry Screening: We Had a Plan",
+     "start": "2026-11-15T11:45:00.000Z",
+     "end": "2026-11-15T13:25:00.000Z",
+     "location": "Pathé City 7",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/0273fbf4-e31f-40f1-9ccc-5cd49acf6c16/we-had-a-plan/"
+    },
+    {
+     "id": "af8d05bd-e2f7-46c7-b3ed-16c7ddb90d04",
+     "title": "DocLab R&D Summit: Round Tables & Sessions",
+     "start": "2026-11-15T12:00:00.000Z",
+     "end": "2026-11-15T16:00:00.000Z",
+     "location": "Tobacco Theater",
+     "audience": "By invitation",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/268006c1-be6d-4217-b9d9-1a0a6fbe29ea/doclab-r&d-summit:-round-tables-&-sessions/"
+    },
+    {
+     "id": "c5ffcf79-2164-46b2-ba6a-4143a05734a0",
+     "title": "IDFAcademy Session: Producing with Impact",
+     "start": "2026-11-15T12:00:00.000Z",
+     "end": "2026-11-15T13:30:00.000Z",
+     "location": "De Balie: Pleinzaal",
+     "audience": "IDFAcademy Passholders",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/545529a7-c751-43ae-8c91-6e21f3042e82/idfacademy-session:-producing-with-impact/"
+    },
+    {
+     "id": "639ea884-d420-40ff-8821-6bcb4149d675",
+     "title": "IDFAcademy Talk: Releasing your Story",
+     "start": "2026-11-15T12:00:00.000Z",
+     "end": "2026-11-15T13:30:00.000Z",
+     "location": "De Balie: Salon",
+     "audience": "IDFAcademy Passholders",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/10ee7492-f739-4932-9c37-37db46b4e38c/idfacademy-talk:-releasing-your-story/"
+    },
+    {
+     "id": "74f920a2-0e43-4a20-bed1-97f92f86c4e0",
+     "title": "Industry Session: Creative distribution – Strategies for a disrupted world",
+     "start": "2026-11-15T12:00:00.000Z",
+     "end": "2026-11-15T13:00:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Nieuwe Foyer",
+     "audience": "Passholders only",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/3ae0b75c-d06b-4d32-a7e6-6086781bf6bd/industry-session:-creative-distribution-–-strategies-for-a-disrupted-world/"
+    },
+    {
+     "id": "3b3b3cad-8e67-4e83-8c16-fd3b243880ce",
+     "title": "Press & Industry Screening: Hazara Town",
+     "start": "2026-11-15T12:30:00.000Z",
+     "end": "2026-11-15T14:17:00.000Z",
+     "location": "Pathé City 4",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/f0aca695-b371-461d-9e98-a3fd8b462eb4/hazara-town/"
+    },
+    {
+     "id": "37a8bd55-852d-425d-ae59-56e9783a73ac",
+     "title": "IDFA Consultancy - Elizabeth Klinck",
+     "start": "2026-11-15T12:45:00.000Z",
+     "end": "2026-11-15T13:45:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Pleinfoyer",
+     "audience": "Passholders only",
+     "status": "SOLD_OUT",
+     "link": "https://festival.idfa.nl/en/composition/fab46c9c-146e-46be-b662-e0e957897faf/idfa-consultancy---elizabeth-klinck/"
+    },
+    {
+     "id": "081775e8-d994-4d9b-974f-c23311bea7db",
+     "title": "IDFA Consultancy - FIFDH",
+     "start": "2026-11-15T12:45:00.000Z",
+     "end": "2026-11-15T13:45:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Pleinfoyer",
+     "audience": "Passholders only",
+     "status": "SOLD_OUT",
+     "link": "https://festival.idfa.nl/en/composition/f0012b8b-ddee-4a04-97c7-36d8631baed8/idfa-consultancy---fifdh/"
+    },
+    {
+     "id": "c2a7d562-b7cd-4c27-a285-45551028f513",
+     "title": "Market Screening: The Tuners",
+     "start": "2026-11-15T12:45:00.000Z",
+     "end": "2026-11-15T13:10:00.000Z",
+     "location": "Pathé City 1",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/95b8b788-a067-4460-b09a-f66c037332b5/market-screening:-the-tuners/"
+    },
+    {
+     "id": "b41515c4-4419-414b-b13f-d0324708b967",
+     "title": "Guest of Honor Talk: Tatiana Huezo",
+     "start": "2026-11-15T13:00:00.000Z",
+     "end": "2026-11-15T14:30:00.000Z",
+     "location": "Tuschinski 1",
+     "audience": "Public",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/composition/a9cd50c5-eb84-40c3-8088-75cb6193e1ae/guest-of-honor-talk:-tatiana-huezo/"
+    },
+    {
+     "id": "cfa0f8e8-744d-4f32-8452-23f4a486f5f7",
+     "title": "IBF & IDFA Talent Meetings",
+     "start": "2026-11-15T13:00:00.000Z",
+     "end": "2026-11-15T14:00:00.000Z",
+     "location": "De Balie: Grote Zaal",
+     "audience": "By invitation",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/6704a0bd-9655-4c1d-840e-35a511c70bd8/ibf-&-idfa-talent-meetings/"
+    },
+    {
+     "id": "71382321-e5bb-4a0a-8b09-8326851446ed",
+     "title": "Meeting Space IDFAcademy",
+     "start": "2026-11-15T13:30:00.000Z",
+     "end": "2026-11-15T16:30:00.000Z",
+     "location": "De Balie: Bovenfoyer",
+     "audience": "IDFAcademy Passholders",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/b3ec030e-dc40-4854-b0e1-abbd11edd024/meeting-space-idfacademy/"
+    },
+    {
+     "id": "0b11cc0c-7d53-459a-8e66-534d23caa5f1",
+     "title": "Market Screening: The Second Life of Freddie Nole",
+     "start": "2026-11-15T13:45:00.000Z",
+     "end": "2026-11-15T14:25:00.000Z",
+     "location": "Het Documentaire Paviljoen: De Spiegel",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/a7c81a78-ca13-48d0-8960-d6b5b3d37a29/market-screening:-the-second-life-of-freddie-nole/"
+    },
+    {
+     "id": "5aa84d12-cd9f-4257-b2d4-eb8cbdf675a3",
+     "title": "IDFA Consultancy - Céline Roustan / All About Shorts",
+     "start": "2026-11-15T14:00:00.000Z",
+     "end": "2026-11-15T15:00:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Pleinfoyer",
+     "audience": "Passholders only",
+     "status": "SOLD_OUT",
+     "link": "https://festival.idfa.nl/en/composition/7dbcd9b9-9440-487f-bf94-61ce063bdfc2/idfa-consultancy---céline-roustan-/-all-about-shorts/"
+    },
+    {
+     "id": "36104e5a-3b78-4405-a098-7455c69ec772",
+     "title": "IDFA Consultancy - Rediance",
+     "start": "2026-11-15T14:00:00.000Z",
+     "end": "2026-11-15T15:00:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Pleinfoyer",
+     "audience": "Passholders only",
+     "status": "SOLD_OUT",
+     "link": "https://festival.idfa.nl/en/composition/49cf949c-0646-493c-8921-8a7cd14c0e45/idfa-consultancy---rediance/"
+    },
+    {
+     "id": "e6d3bd2c-2ac6-4f0f-a75d-0737044330f4",
+     "title": "Press & Industry Screening: Memories of Lightning",
+     "start": "2026-11-15T14:15:00.000Z",
+     "end": "2026-11-15T15:32:00.000Z",
+     "location": "Pathé City 7",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/b659be17-07c6-40a6-9c8f-10fbb92c72c4/memories-of-lightning/"
+    },
+    {
+     "id": "c3a6bb2c-c133-46d3-adfb-b213d9d1688c",
+     "title": "IDFAcademy Session: Me & the Filmmaker",
+     "start": "2026-11-15T14:30:00.000Z",
+     "end": "2026-11-15T16:00:00.000Z",
+     "location": "De Balie: Filmzaal",
+     "audience": "IDFAcademy Passholders",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/dcbcc89b-73aa-4ab6-b0ed-0f14e1bb64dc/idfacademy-session:-me-&-the-filmmaker/"
+    },
+    {
+     "id": "26ff7f5b-c87a-4ea9-8cf8-4554d5d08689",
+     "title": "IDFAcademy: Round Tables",
+     "start": "2026-11-15T14:30:00.000Z",
+     "end": "2026-11-15T16:00:00.000Z",
+     "location": "De Balie: Grote Zaal",
+     "audience": "IDFAcademy Passholders",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/badcc7ad-c681-42ec-8278-baea22ca8bca/idfacademy:-round-tables/"
+    },
+    {
+     "id": "b500374f-0b4d-4d50-b388-6373301e39a5",
+     "title": "IDFAcademy: Round Tables",
+     "start": "2026-11-15T14:30:00.000Z",
+     "end": "2026-11-15T16:00:00.000Z",
+     "location": "De Balie: Pleinzaal",
+     "audience": "IDFAcademy Passholders",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/badcc7ad-c681-42ec-8278-baea22ca8bca/idfacademy:-round-tables/"
+    },
+    {
+     "id": "239414df-2c99-4225-9142-eef5204b58b0",
+     "title": "Industry Talk: Value-based co-productions – Practical tools for equitable partnerships",
+     "start": "2026-11-15T14:45:00.000Z",
+     "end": "2026-11-15T16:15:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Nieuwe Foyer",
+     "audience": "Passholders only",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/604ed070-1d8a-43de-9a23-77ae5b67f071/industry-talk:-value-based-co-productions-–-practical-tools-for-equitable-partnerships/"
+    },
+    {
+     "id": "530c4355-033f-4ac4-954e-ae3468ddcfd2",
+     "title": "IDFA Delegation Drinks",
+     "start": "2026-11-15T15:00:00.000Z",
+     "end": "2026-11-15T16:30:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Koninklijke Foyer",
+     "audience": "By invitation",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/ef983aa2-f483-4353-8021-c6e4d0c9778d/idfa-delegations-drinks/"
+    },
+    {
+     "id": "5f8bbafa-4400-4bee-9492-fbd287d4cb2d",
+     "title": "Bonfire Circles: Collaborating Across Southern Europe",
+     "start": "2026-11-15T15:30:00.000Z",
+     "end": "2026-11-15T16:30:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Pleinfoyer",
+     "audience": "Passholders only",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/91033366-d483-40a7-bb46-f9f06a19f24e/bonfire-circles:-collaborating-across-southern-europe/"
+    },
+    {
+     "id": "aa69744d-5b91-4b01-98fb-bd8ee51f7057",
+     "title": "Delegation Showcase: Palestine Film Institute",
+     "start": "2026-11-15T16:00:00.000Z",
+     "end": "2026-11-15T17:00:00.000Z",
+     "location": "Pathé City 6",
+     "audience": "Passholders only",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/91be67ba-2b21-4e77-8b04-8fff43601617/delegation-showcase:-palestine-film-institute/"
+    },
+    {
+     "id": "136edd54-2204-4d94-a46f-adc93cf2d616",
+     "title": "DocLab R&D Summit: Closing Drinks",
+     "start": "2026-11-15T16:00:00.000Z",
+     "end": "2026-11-15T17:00:00.000Z",
+     "location": "de Brakke Grond",
+     "audience": "By invitation",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/7bfd8eda-9372-4498-bbd1-f0fe6cf1a72d/doclab-r&d-summit:-closing-drinks/"
+    },
+    {
+     "id": "9139c14d-f0e2-44b2-af82-b9ed3fbc1bcc",
+     "title": "Docs for Sale: Happy Hour",
+     "start": "2026-11-15T16:00:00.000Z",
+     "end": "2026-11-15T17:00:00.000Z",
+     "location": "Het Documentaire Paviljoen: Het Podium",
+     "audience": "Docs for Sale & IDFA Forum Passholders",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/9f7d4a6a-f456-41bf-98ef-e7a5c13162f7/docs-for-sale:-happy-hour/"
+    },
+    {
+     "id": "ced7b570-e40a-4d9a-ab59-f3f604db3455",
+     "title": "IDFAcademy: Closing Drinks",
+     "start": "2026-11-15T16:00:00.000Z",
+     "end": "2026-11-15T17:00:00.000Z",
+     "location": "De Balie: Bovenfoyer",
+     "audience": "IDFAcademy Passholders",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/402bc32d-481f-498a-bd6d-1f896c15ebcf/idfacademy:-closing-drinks/"
+    },
+    {
+     "id": "17f657d6-a3f9-4bbc-9dfd-cd15bb88ed4c",
+     "title": "Guests Meet Guests - hosted by Polish Docs PRO & Wajda Film Centre",
+     "start": "2026-11-15T17:30:00.000Z",
+     "end": "2026-11-15T19:00:00.000Z",
+     "location": "De Duif",
+     "audience": "Passholders only",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/0bb9ea2b-85c4-46ba-b794-d5e90eeb7c6c/guests-meet-guests---hosted-by-polish-docs-pro-&-wajda-film-centre/"
+    },
+    {
+     "id": "d7f589b3-d87e-4b4f-bf37-39f16454059f",
+     "title": "Market Screening: Bernstein's Wall",
+     "start": "2026-11-15T18:00:00.000Z",
+     "end": "2026-11-15T20:03:00.000Z",
+     "location": "Het Documentaire Paviljoen: De Spiegel",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/c00f7e14-d4ed-4e0e-9284-9a8b54585ab6/market-screening:-bernstein's-wall/"
+    },
+    {
+     "id": "bf2c3016-e32d-4838-a3e6-c6335b3324b0",
+     "title": "IDFA Club Night",
+     "start": "2026-11-15T20:00:00.000Z",
+     "end": "2026-11-16T00:00:00.000Z",
+     "location": "Volkshotel Doka",
+     "audience": "Passholders only",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/2847c63e-4e9a-458e-b0f4-11bd8372e266/idfa-club-night/"
+    },
+    {
+     "id": "c1af23be-c9f5-4be5-98dd-2d9429e1ccc8",
+     "title": "IDFA Markets Opening Drinks - hosted by DocIT",
+     "start": "2026-11-15T20:00:00.000Z",
+     "end": "2026-11-15T22:00:00.000Z",
+     "location": "Het Documentaire Paviljoen: Het Podium",
+     "audience": "Docs for Sale & IDFA Forum Passholders",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/7f464593-3829-4869-8beb-93fd38511eb9/idfa-markets-opening-drinks---hosted-by-italian-trade-agency-and-doc/it/"
+    },
+    {
+     "id": "4e92f702-8737-4c99-a2ea-5806d0bb5dfb",
+     "title": "Lounge & Drinks",
+     "start": "2026-11-15T22:00:00.000Z",
+     "end": "2026-11-15T23:30:00.000Z",
+     "location": "Het Documentaire Paviljoen: Foyer",
+     "audience": "-",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/e10f3b5b-f9ca-4c04-b52c-462cca12a77a/lounge-&-drinks/"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-16",
+   "events": [
+    {
+     "id": "128b639a-270e-489a-a01f-4c8d30cf1e96",
+     "title": "IDFA Forum: Producers Breakfast – hosted by Chiledoc & Chilean Film Commission",
+     "start": "2026-11-16T07:00:00.000Z",
+     "end": "2026-11-16T08:00:00.000Z",
+     "location": "DeLaMar: Spieghel Foyer",
+     "audience": "By invitation",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/397a1095-7ccb-456d-8d24-38659d548cc5/idfa-forum:-producers-breakfast-–-hosted-by-chiledoc-&-film-commission-chile/"
+    },
+    {
+     "id": "990e06f2-46e2-4a25-9f90-6cf098502f04",
+     "title": "Docs for Sale: Meeting Space",
+     "start": "2026-11-16T08:00:00.000Z",
+     "end": "2026-11-16T16:00:00.000Z",
+     "location": "Het Documentaire Paviljoen: Het Podium",
+     "audience": "Docs for Sale Passholders",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/91a79345-77ec-4047-89c3-a3e59c8d9729/docs-for-sale:-meeting-space/"
+    },
+    {
+     "id": "44c4b7a0-0147-417a-bed9-0d32edab7995",
+     "title": "Docs for Sale: Viewing Booths",
+     "start": "2026-11-16T08:00:00.000Z",
+     "end": "2026-11-16T17:00:00.000Z",
+     "location": "Het Documentaire Paviljoen: De Salon",
+     "audience": "Docs for Sale Acquisition Passholders",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/e9fbc4ab-2c7f-46cf-a1e4-fecccd964bb4/docs-for-sale:-viewing-booths/"
+    },
+    {
+     "id": "4bd098c2-00e5-4984-ad03-abbd312e4835",
+     "title": "IDFA Forum: Pitches Presentations - Day 1",
+     "start": "2026-11-16T08:00:00.000Z",
+     "end": "2026-11-16T10:55:00.000Z",
+     "location": "DeLaMar: Mary Dresselhuys Zaal",
+     "audience": "IDFA Forum Passholders",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/ec8fd412-d03a-4ebe-91bf-a4c2f55e4fe6/idfa-forum:-pitches-presentations---day-1/"
+    },
+    {
+     "id": "cc7de327-32ea-44ef-802c-cb58c4120f5f",
+     "title": "Industry Meetup: The Shared Cup",
+     "start": "2026-11-16T08:00:00.000Z",
+     "end": "2026-11-16T09:00:00.000Z",
+     "location": "De Balie: Filmzaal",
+     "audience": "Passholders only",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/95c7187c-4fd8-4634-ab1e-576c9bef0912/industry-meetup:-the-shared-cup/"
+    },
+    {
+     "id": "feda4c58-ea70-4a5b-94eb-ce40ffc13936",
+     "title": "Networking & Meeting Space",
+     "start": "2026-11-16T08:00:00.000Z",
+     "end": "2026-11-16T17:00:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Gijsbrecht bordes",
+     "audience": "Passholders only",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/53c2867d-45e0-4620-aae6-c596addd4f95/networking-&-meeting-space/"
+    },
+    {
+     "id": "9c33ac95-5095-4c51-83eb-dc7aafc68e13",
+     "title": "Press & Industry Screening: Women and War",
+     "start": "2026-11-16T08:00:00.000Z",
+     "end": "2026-11-16T09:47:00.000Z",
+     "location": "Pathé City 7",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/861f4ffb-abca-4740-a369-4de4cb19b00c/women-and-war/"
+    },
+    {
+     "id": "49104b23-5e5f-45e1-a356-c21a19748e39",
+     "title": "Work Lounge",
+     "start": "2026-11-16T08:00:00.000Z",
+     "end": "2026-11-16T17:00:00.000Z",
+     "location": "Het Documentaire Paviljoen: De Huiskamer",
+     "audience": "Public",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/58750c4b-74fd-4b78-9849-9fed89ce50cc/work-lounge/"
+    },
+    {
+     "id": "5b67eef4-063c-4176-858b-2a278a7a8b87",
+     "title": "Market Screening: Naza",
+     "start": "2026-11-16T08:15:00.000Z",
+     "end": "2026-11-16T09:38:00.000Z",
+     "location": "Pathé City 4",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/834adfcd-a044-4625-8017-0f1d6c1f4c94/market-screening:-naza/"
+    },
+    {
+     "id": "0564810f-8fd5-4d55-8cb4-0a3ef784e6cd",
+     "title": "Market Screening: André is an Idiot",
+     "start": "2026-11-16T08:30:00.000Z",
+     "end": "2026-11-16T10:16:00.000Z",
+     "location": "The Pulse 3",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/d44fa12c-e2d6-4130-8a7c-6d58844ee7c9/market-screening:-andré-is-an-idiot/"
+    },
+    {
+     "id": "35984845-b670-4cc1-8971-3b937f20c121",
+     "title": "Market Screening: Nuns vs. The Vatican",
+     "start": "2026-11-16T08:30:00.000Z",
+     "end": "2026-11-16T10:05:00.000Z",
+     "location": "Tuschinski 5",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/11ce639c-819d-468f-a992-89ac4f459670/market-screening:-nuns-vs.-the-vatican/"
+    },
+    {
+     "id": "4259e9a0-bc8f-42d3-b9d6-e4a9e08d7e55",
+     "title": "Press & Industry Screening: A Modern Roma Fairytale",
+     "start": "2026-11-16T08:30:00.000Z",
+     "end": "2026-11-16T09:54:00.000Z",
+     "location": "Pathé City 6",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/150ed3b9-28e5-4e01-9371-31362e3e9784/a-modern-roma-fairytale/"
+    },
+    {
+     "id": "05e798e0-3f6e-4bd5-9039-3ae6ff50e52e",
+     "title": "Press & Industry Screening: Agaar",
+     "start": "2026-11-16T08:30:00.000Z",
+     "end": "2026-11-16T10:32:00.000Z",
+     "location": "Pathé City 1",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/3a3ccca4-34e0-4b5c-85c9-d5c7773db03b/agaar/"
+    },
+    {
+     "id": "9b8c65b8-721b-4695-b0e3-8bb78c896f01",
+     "title": "IDFA Consultancy - Lightdox",
+     "start": "2026-11-16T09:00:00.000Z",
+     "end": "2026-11-16T10:00:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Pleinfoyer",
+     "audience": "Passholders only",
+     "status": "SOLD_OUT",
+     "link": "https://festival.idfa.nl/en/composition/0d8d06d9-7c72-40fe-8318-712c8ad132a3/idfa-consultancy---lightdox/"
+    },
+    {
+     "id": "dcd4be83-118f-4290-ac92-d0ee3aca873c",
+     "title": "IDFA Consultancy - Square Eyes",
+     "start": "2026-11-16T09:00:00.000Z",
+     "end": "2026-11-16T10:00:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Pleinfoyer",
+     "audience": "Passholders only",
+     "status": "SOLD_OUT",
+     "link": "https://festival.idfa.nl/en/composition/6edfb6f4-acbe-4602-81a6-41e1a32cc68f/idfa-consultancy---square-eyes/"
+    },
+    {
+     "id": "a640027d-ce42-4bf4-8b52-e7ddfcca381f",
+     "title": "IDFA Consultancy - Tracie Holder",
+     "start": "2026-11-16T09:00:00.000Z",
+     "end": "2026-11-16T10:00:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Pleinfoyer",
+     "audience": "Passholders only",
+     "status": "SOLD_OUT",
+     "link": "https://festival.idfa.nl/en/composition/f2da672b-2e25-40b4-a3d4-fb5b2c505869/idfa-consultancy---tracie-holder/"
+    },
+    {
+     "id": "4d272628-f44c-4e47-a2fa-587bd43ed5ca",
+     "title": "Industry Talk: Preserving the future – Building new media to last",
+     "start": "2026-11-16T09:00:00.000Z",
+     "end": "2026-11-16T10:00:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Koninklijke Foyer",
+     "audience": "Passholders only",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/ed9660d6-5d33-41b8-b01c-87fc58efd56c/industry-talk:-preserving-the-future-–-building-new-media-to-last/"
+    },
+    {
+     "id": "fede29fc-119a-4b3d-8d87-610dfd540343",
+     "title": "Networking Café",
+     "start": "2026-11-16T09:00:00.000Z",
+     "end": "2026-11-16T16:00:00.000Z",
+     "location": "De Balie: Pleinzaal",
+     "audience": "Passholders only",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/2a3cb7e8-885a-4e3b-a022-113cc4e67f65/networking-café/"
+    },
+    {
+     "id": "e25f801d-6c14-47cd-9493-7eda657b98e5",
+     "title": "Press & Industry Screening: Memories",
+     "start": "2026-11-16T09:00:00.000Z",
+     "end": "2026-11-16T10:22:00.000Z",
+     "location": "Pathé City 3",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/e709b340-6659-47f7-8474-cc9c6ec09c2f/memories/"
+    },
+    {
+     "id": "2d8c9a83-361b-48a1-b678-e2fbdabe28ee",
+     "title": "Press & Industry Screening: Still Night, Burning House",
+     "start": "2026-11-16T09:00:00.000Z",
+     "end": "2026-11-16T10:20:00.000Z",
+     "location": "Pathé City 5",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/74ea5263-5c87-4a60-9150-3cbf69d438d0/still-night,-burning-house/"
+    },
+    {
+     "id": "c13bf22b-d2ca-4f4b-a5fb-dea6ab5893bf",
+     "title": "The Quiet Room",
+     "start": "2026-11-16T09:00:00.000Z",
+     "end": "2026-11-16T16:00:00.000Z",
+     "location": "De Balie: Filmzaal",
+     "audience": "Passholders only",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/d3c85e0e-aa22-4f85-b7e5-bd0c058f3edc/the-quiet-room/"
+    },
+    {
+     "id": "1039c426-6abb-4005-a672-5a695f270432",
+     "title": "Press & Industry Screening: Bardi",
+     "start": "2026-11-16T09:30:00.000Z",
+     "end": "2026-11-16T11:22:00.000Z",
+     "location": "Pathé City 2",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/c0e7fcda-e455-4214-b189-e07c3f0327dd/bardi/"
+    },
+    {
+     "id": "caa0030b-b0ca-43fa-b141-c5882729e3ca",
+     "title": "IDFA Consultancy - DokLeipzig",
+     "start": "2026-11-16T10:15:00.000Z",
+     "end": "2026-11-16T11:15:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Pleinfoyer",
+     "audience": "Passholders only",
+     "status": "SOLD_OUT",
+     "link": "https://festival.idfa.nl/en/composition/f9d812dd-e556-45af-a124-704d7f98d0d9/idfa-consultancy---dok-leipzig/"
+    },
+    {
+     "id": "b88258e2-9672-470a-8625-85e9c502b52f",
+     "title": "IDFA Consultancy - Storyboard Collective",
+     "start": "2026-11-16T10:15:00.000Z",
+     "end": "2026-11-16T11:15:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Pleinfoyer",
+     "audience": "Passholders only",
+     "status": "SOLD_OUT",
+     "link": "https://festival.idfa.nl/en/composition/f8810d3c-bb82-4f33-b29f-7f55b3346235/idfa-consultancy---storyboard-collective/"
+    },
+    {
+     "id": "db07258f-081b-485f-826e-81669fed2da3",
+     "title": "Press & Industry Screening: Regarding Memory and Neglect",
+     "start": "2026-11-16T10:30:00.000Z",
+     "end": "2026-11-16T12:00:00.000Z",
+     "location": "Pathé City 4",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/811bc06f-25dc-4ee6-a90c-0b25833c4434/regarding-memory-and-neglect/"
+    },
+    {
+     "id": "65543509-db42-4c8a-9999-9db1c5b42291",
+     "title": "Press & Industry Screening: The Year of the Ghost",
+     "start": "2026-11-16T10:45:00.000Z",
+     "end": "2026-11-16T12:24:00.000Z",
+     "location": "Pathé City 7",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/848f8250-8f3d-4242-842e-3d79f7de88ac/the-year-of-the-ghost/"
+    },
+    {
+     "id": "5c92d73a-95e9-4b0c-8f4b-4bd1957c9644",
+     "title": "EBU Session",
+     "start": "2026-11-16T10:55:00.000Z",
+     "end": "2026-11-16T11:30:00.000Z",
+     "location": "DeLaMar: Mary Dresselhuys Zaal",
+     "audience": "IDFA Forum Passholders",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/d4a31ba9-8d3f-4857-a1ea-a9e21795d4ac/switching-channels:-from-prime-time-to-any-time---what-works,-what-doesn’t,-and-why-it-depends-where-you-watch/"
+    },
+    {
+     "id": "903c0fac-9269-4434-b611-79bd2b806ebc",
+     "title": "Market Screening: Inside Gaza",
+     "start": "2026-11-16T11:00:00.000Z",
+     "end": "2026-11-16T12:30:00.000Z",
+     "location": "The Pulse 3",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/f86007cb-423b-49fb-9d58-a2e3852b135e/market-screening:-inside-gaza/"
+    },
+    {
+     "id": "5eea0ae8-16ed-4198-9bbe-644bfe1e586d",
+     "title": "Press & Industry Screening: Lonan Tché",
+     "start": "2026-11-16T11:00:00.000Z",
+     "end": "2026-11-16T12:39:00.000Z",
+     "location": "Pathé City 5",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/a93420da-1004-4ced-900e-371879fa5f27/lonan-tché/"
+    },
+    {
+     "id": "59315502-e532-470f-80da-240b8343c34f",
+     "title": "Press & Industry Screening: The Dome Sessions",
+     "start": "2026-11-16T11:00:00.000Z",
+     "end": "2026-11-16T12:05:00.000Z",
+     "location": "Pathé City 3",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/a9da19fe-e08b-4b8c-8a2c-8cc0b0f34203/the-dome-sessions/"
+    },
+    {
+     "id": "ec30aef3-cddb-401f-a3ce-838854b1f9ea",
+     "title": "IDFA Consultancy - Cannes Docs",
+     "start": "2026-11-16T11:30:00.000Z",
+     "end": "2026-11-16T12:30:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Pleinfoyer",
+     "audience": "Passholders only",
+     "status": "SOLD_OUT",
+     "link": "https://festival.idfa.nl/en/composition/61391bb2-03e4-4c25-9389-f171cf238227/idfa-consultancy---cannes-docs/"
+    },
+    {
+     "id": "d189ecfa-dc46-47ce-938c-1eb30a1b92ef",
+     "title": "IDFA Consultancy - Doc Society",
+     "start": "2026-11-16T11:30:00.000Z",
+     "end": "2026-11-16T12:30:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Pleinfoyer",
+     "audience": "Passholders only",
+     "status": "SOLD_OUT",
+     "link": "https://festival.idfa.nl/en/composition/fea6faac-90bd-4161-9f2c-31166bee0286/idfa-consultancy---doc-society/"
+    },
+    {
+     "id": "1e9c04ba-26e1-40e7-9954-2cd2a99e0d50",
+     "title": "IDFA Consultancy - Michael Gubbins",
+     "start": "2026-11-16T11:30:00.000Z",
+     "end": "2026-11-16T12:30:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Pleinfoyer",
+     "audience": "Passholders only",
+     "status": "LOW_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/composition/40b0610a-5168-4858-a6c2-1451bc53ec93/idfa-consultancy---michael-gubbins/"
+    },
+    {
+     "id": "bf583368-b4bd-42fb-9450-4f5f4e2645e1",
+     "title": "IDFA Forum: Lunch",
+     "start": "2026-11-16T11:30:00.000Z",
+     "end": "2026-11-16T13:00:00.000Z",
+     "location": "DeLaMar: Spieghel Foyer",
+     "audience": "IDFA Forum Passholders",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/555df329-a627-4b84-817b-d9d04874d612/idfa-forum:-lunch/"
+    },
+    {
+     "id": "3702fee5-3c52-4a66-b0e7-1e8060dbea09",
+     "title": "Industry Talk: Is AI stealing my documentary? – Issue of licensing to AI companies",
+     "start": "2026-11-16T11:30:00.000Z",
+     "end": "2026-11-16T12:30:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Koninklijke Foyer",
+     "audience": "Passholders only",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/e6095d22-b710-43da-838e-7381cdc89455/industry-talk:-is-ai-stealing-my-documentary?-–-issue-of-licensing-to-ai-companies/"
+    },
+    {
+     "id": "4d96741c-e98a-4737-bbe3-d111b9f4a789",
+     "title": "Delegation Showcase: ARTE Generation Africa 2.0",
+     "start": "2026-11-16T12:00:00.000Z",
+     "end": "2026-11-16T13:45:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Nieuwe Foyer",
+     "audience": "Passholders only",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/59a436b3-a7a7-42b2-a6cc-1d804a9e6eeb/delegation-showcase:-arte-generation-africa-2.0/"
+    },
+    {
+     "id": "67032d2a-8dca-4a4b-8072-936a716efabb",
+     "title": "IDFA DocLab Forum: Project Presentations",
+     "start": "2026-11-16T12:30:00.000Z",
+     "end": "2026-11-16T15:49:00.000Z",
+     "location": "De Balie: Salon",
+     "audience": "IDFA Forum Passholders",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/f702bbee-8f50-4ccc-b323-c4452f772a36/idfa-doclab-forum:-project-presentations/"
+    },
+    {
+     "id": "40f973e7-85ba-4281-93cc-cbbda2f9e5be",
+     "title": "IDFA Consultancy - Marcela Lizcano",
+     "start": "2026-11-16T12:45:00.000Z",
+     "end": "2026-11-16T13:45:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Pleinfoyer",
+     "audience": "Passholders only",
+     "status": "SOLD_OUT",
+     "link": "https://festival.idfa.nl/en/composition/46cd72dd-78bc-4ee7-ad3a-6436ed4981ee/idfa-consultancy---marcela-lizcano/"
+    },
+    {
+     "id": "f3321d31-b9bd-4891-8d03-553aba9fcb30",
+     "title": "Press & Industry Screening: Every Death Diminishes Me",
+     "start": "2026-11-16T12:45:00.000Z",
+     "end": "2026-11-16T14:09:00.000Z",
+     "location": "Pathé City 3",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/bd43a571-2f01-4dc7-acd2-0025eae67142/every-death-diminishes-me/"
+    },
+    {
+     "id": "51f142ba-f006-423f-9ec1-557e43d34b56",
+     "title": "IDFA Forum: Roundtable Presentations - Day 1",
+     "start": "2026-11-16T13:00:00.000Z",
+     "end": "2026-11-16T15:30:00.000Z",
+     "location": "De Balie: Grote Zaal",
+     "audience": "IDFA Forum Passholders",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/97a0ac1c-c4ab-4d53-a2ea-b0e4f33cfa42/idfa-forum:-roundtable-presentations---day-1/"
+    },
+    {
+     "id": "30132df5-bf56-46b2-a51c-da6f9dbd0158",
+     "title": "Market Screening: A Short Documentary About a Giant Pencil",
+     "start": "2026-11-16T13:00:00.000Z",
+     "end": "2026-11-16T13:41:00.000Z",
+     "location": "The Pulse 3",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/b0ae09c3-b2e0-4700-b031-50753bb5dc8d/market-screening:-a-short-documentary-about-a-giant-pencil/"
+    },
+    {
+     "id": "d2fdec03-29c5-47bd-b92a-c1455cdabd0f",
+     "title": "IDFA Consultancy - Chicken & Egg",
+     "start": "2026-11-16T14:00:00.000Z",
+     "end": "2026-11-16T15:00:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Pleinfoyer",
+     "audience": "Passholders only",
+     "status": "SOLD_OUT",
+     "link": "https://festival.idfa.nl/en/composition/c9ba6237-2095-49f7-a12b-9cb77eb7de57/idfa-consultancy---chicken-&-egg/"
+    },
+    {
+     "id": "25b00687-9ee1-478e-b5f6-5cb34e926dbc",
+     "title": "Industry Talk: Direct-to-community distribution? – Fresh approaches to audience engagement",
+     "start": "2026-11-16T14:15:00.000Z",
+     "end": "2026-11-16T15:45:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Koninklijke Foyer",
+     "audience": "Passholders only",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/ef68d7a5-244b-4db4-ac23-8bf83ec28600/industry-talk:-direct-to-community-distribution?-–-fresh-approaches-to-audience-engagement/"
+    },
+    {
+     "id": "dd859050-42c9-483d-9a97-a84718bc229e",
+     "title": "Market Screening: Bloodlines, Mississippi",
+     "start": "2026-11-16T14:30:00.000Z",
+     "end": "2026-11-16T15:08:00.000Z",
+     "location": "The Pulse 3",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/e1303a0a-95e0-481b-98b5-56c427d0aa41/market-screening:-bloodlines,-mississippi/"
+    },
+    {
+     "id": "6e592af1-027b-4da8-8a98-314669344d74",
+     "title": "Bonfire Circles: Collaborating Across Asia",
+     "start": "2026-11-16T15:30:00.000Z",
+     "end": "2026-11-16T16:30:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Pleinfoyer",
+     "audience": "Passholders only",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/9142c371-fce3-4b50-b397-a50fc4c8ba4d/bonfire-circles:-collaborating-across-asia/"
+    },
+    {
+     "id": "7c236661-1722-40d9-953a-d01199cc3007",
+     "title": "Filmmaker Talk: Barbara Kopple",
+     "start": "2026-11-16T15:30:00.000Z",
+     "end": "2026-11-16T17:00:00.000Z",
+     "location": "Het Documentaire Paviljoen: De Spiegel",
+     "audience": "Public",
+     "status": "LOW_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/composition/bf7f65ba-046b-42c2-ae4c-c1b174cbbe70/filmmaker-talk:-barbara-kopple/"
+    },
+    {
+     "id": "aa531bfa-98e0-45ee-8945-f58154605af9",
+     "title": "Delegation Showcase: POLISH DOCS PRO",
+     "start": "2026-11-16T16:00:00.000Z",
+     "end": "2026-11-16T17:45:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Nieuwe Foyer",
+     "audience": "Passholders only",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/88c37972-f675-4e38-bf6e-efddc704f092/delegation-showcase:-polish-docs-pro/"
+    },
+    {
+     "id": "5c83fcfa-859b-4462-bb4b-2710472ba4ec",
+     "title": "Docs for Sale: Happy Hour",
+     "start": "2026-11-16T16:00:00.000Z",
+     "end": "2026-11-16T17:00:00.000Z",
+     "location": "Het Documentaire Paviljoen: Het Podium",
+     "audience": "Docs for Sale & IDFA Forum Passholders",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/9f7d4a6a-f456-41bf-98ef-e7a5c13162f7/docs-for-sale:-happy-hour/"
+    },
+    {
+     "id": "eefcc893-58d8-476c-b6af-a5072914a428",
+     "title": "Industry Talk: How NAZA broke the mold and what it means for audiences and the market",
+     "start": "2026-11-16T16:00:00.000Z",
+     "end": "2026-11-16T17:15:00.000Z",
+     "location": "DeLaMar: Mary Dresselhuys Zaal",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/composition/6ac1c0ef-e232-4b20-a1b6-55026255fdd6/industry-talk:-how-naza-broke-the-mold-and-what-it-means-for-audiences-and-the-market/"
+    },
+    {
+     "id": "9b41e77f-5077-4f8c-b73f-9d7acfd28675",
+     "title": "Guests Meet Guests - hosted by ARTE",
+     "start": "2026-11-16T17:30:00.000Z",
+     "end": "2026-11-16T19:00:00.000Z",
+     "location": "De Duif",
+     "audience": "Passholders only",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/c29d07ad-3c6d-430c-a136-db0697c62e9c/guests-meet-guests---hosted-by-arte/"
+    },
+    {
+     "id": "e407fb19-bc5a-4a36-8d5d-6fb6d4a04fbb",
+     "title": "Market Screening: Some Kind of Refuge",
+     "start": "2026-11-16T17:30:00.000Z",
+     "end": "2026-11-16T18:06:00.000Z",
+     "location": "The Pulse 3",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/0e043a5e-2f93-48c6-8fc1-45fabb0f5f53/market-screening:-some-kind-of-refuge/"
+    },
+    {
+     "id": "29064876-4b1d-497f-a955-c37ab6c33c0e",
+     "title": "Market Screening: Linda Perry: Let It Die Here",
+     "start": "2026-11-16T17:45:00.000Z",
+     "end": "2026-11-16T19:36:00.000Z",
+     "location": "Het Documentaire Paviljoen: De Spiegel",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/1e36875b-91ce-4951-9cb7-de4792b6f5c8/market-screening:-linda-perry:-let-it-die-here/"
+    },
+    {
+     "id": "0b1fad6d-b301-4d54-92d6-da55869e6f5b",
+     "title": "Market Screening: The Cycle of Love",
+     "start": "2026-11-16T19:00:00.000Z",
+     "end": "2026-11-16T20:58:00.000Z",
+     "location": "The Pulse 3",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/fe5023c4-9b70-4339-90bb-d89bca894d74/market-screening:-the-cycle-of-love/"
+    },
+    {
+     "id": "f5a71c1b-3fb2-4ab0-a5f1-42a580e4e4d6",
+     "title": "Market Screening: The Bend in the River",
+     "start": "2026-11-16T20:30:00.000Z",
+     "end": "2026-11-16T22:13:00.000Z",
+     "location": "Het Documentaire Paviljoen: De Spiegel",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/7983d2a5-ddcb-4e65-9623-c3fe3a9b3cbb/market-screening:-the-bend-in-the-river/"
+    },
+    {
+     "id": "9a251532-2188-4818-9647-95173dabfe87",
+     "title": "Lounge & Drinks",
+     "start": "2026-11-16T21:00:00.000Z",
+     "end": "2026-11-16T23:30:00.000Z",
+     "location": "Het Documentaire Paviljoen: Foyer",
+     "audience": "-",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/e10f3b5b-f9ca-4c04-b52c-462cca12a77a/lounge-&-drinks/"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-17",
+   "events": [
+    {
+     "id": "22fbfaac-1f2c-4316-a819-13cd058415d1",
+     "title": "IDFA Forum: Producers Breakfast – hosted by Chiledoc & Chilean Film Commission",
+     "start": "2026-11-17T07:00:00.000Z",
+     "end": "2026-11-17T08:00:00.000Z",
+     "location": "DeLaMar: Spieghel Foyer",
+     "audience": "By invitation",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/397a1095-7ccb-456d-8d24-38659d548cc5/idfa-forum:-producers-breakfast-–-hosted-by-chiledoc-&-film-commission-chile/"
+    },
+    {
+     "id": "94f6265d-f87a-4e7e-ac9f-06084f444351",
+     "title": "Docs for Sale: Meeting Space",
+     "start": "2026-11-17T08:00:00.000Z",
+     "end": "2026-11-17T16:00:00.000Z",
+     "location": "Het Documentaire Paviljoen: Het Podium",
+     "audience": "Docs for Sale Passholders",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/91a79345-77ec-4047-89c3-a3e59c8d9729/docs-for-sale:-meeting-space/"
+    },
+    {
+     "id": "f51ffab6-6c9c-4d0c-b5bd-8879b6ff25ae",
+     "title": "Docs for Sale: Viewing Booths",
+     "start": "2026-11-17T08:00:00.000Z",
+     "end": "2026-11-17T17:00:00.000Z",
+     "location": "Het Documentaire Paviljoen: De Salon",
+     "audience": "Docs for Sale Acquisition Passholders",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/e9fbc4ab-2c7f-46cf-a1e4-fecccd964bb4/docs-for-sale:-viewing-booths/"
+    },
+    {
+     "id": "f43d913d-ce3a-4570-9a32-2f8c7e6a7c9e",
+     "title": "IDFA Forum: Pitches Presentations - Day 2",
+     "start": "2026-11-17T08:00:00.000Z",
+     "end": "2026-11-17T11:30:00.000Z",
+     "location": "DeLaMar: Mary Dresselhuys Zaal",
+     "audience": "IDFA Forum Passholders",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/fd3d197d-e634-4652-a6be-dfe14623d55c/idfa-forum:-pitches-presentations---day-2/"
+    },
+    {
+     "id": "69dc3aae-309a-4872-b268-959ce5f0578e",
+     "title": "Networking & Meeting Space",
+     "start": "2026-11-17T08:00:00.000Z",
+     "end": "2026-11-17T17:00:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Gijsbrecht bordes",
+     "audience": "Passholders only",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/53c2867d-45e0-4620-aae6-c596addd4f95/networking-&-meeting-space/"
+    },
+    {
+     "id": "f248e0a7-d3d4-47e1-9f26-68a9b415ba32",
+     "title": "Press & Industry Screening: Down the River",
+     "start": "2026-11-17T08:00:00.000Z",
+     "end": "2026-11-17T09:23:00.000Z",
+     "location": "Pathé City 4",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/5e70b544-846c-465b-8550-5fba960de360/down-the-river/"
+    },
+    {
+     "id": "25fe294c-653c-42eb-a6b4-40a8ba18f68a",
+     "title": "Press & Industry Screening: Up in the Air",
+     "start": "2026-11-17T08:00:00.000Z",
+     "end": "2026-11-17T09:37:00.000Z",
+     "location": "Pathé City 1",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/0c39fb44-e66a-4cd0-bca1-71b67e2d8323/up-in-the-air/"
+    },
+    {
+     "id": "189d6f15-b467-462e-b72a-a3f376524cdb",
+     "title": "Work Lounge",
+     "start": "2026-11-17T08:00:00.000Z",
+     "end": "2026-11-17T17:00:00.000Z",
+     "location": "Het Documentaire Paviljoen: De Huiskamer",
+     "audience": "Public",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/58750c4b-74fd-4b78-9849-9fed89ce50cc/work-lounge/"
+    },
+    {
+     "id": "5cce3aa0-0fd6-4f93-8a47-e061a7352ba3",
+     "title": "Press & Industry Screening: Here Where the Fire Burns",
+     "start": "2026-11-17T08:15:00.000Z",
+     "end": "2026-11-17T09:56:00.000Z",
+     "location": "Pathé City 6",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/d9775f19-1fcf-4cfa-a55e-8437aae84571/here-where-the-fire-burns/"
+    },
+    {
+     "id": "fb3697fc-c793-44e0-aa38-0e882e95639a",
+     "title": "Press & Industry Screening: Waves of Time",
+     "start": "2026-11-17T08:15:00.000Z",
+     "end": "2026-11-17T09:49:00.000Z",
+     "location": "Pathé City 3",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/1fa844cd-9774-4934-8108-63105264df07/waves-of-time/"
+    },
+    {
+     "id": "b5af44d2-1edd-4ed7-867a-8b6b7efd9b26",
+     "title": "Press & Industry Screening: Between Revolutions",
+     "start": "2026-11-17T08:30:00.000Z",
+     "end": "2026-11-17T09:52:00.000Z",
+     "location": "Pathé City 7",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/eed33a1c-f1c7-4984-8dd6-9aace30dc2b4/between-revolutions/"
+    },
+    {
+     "id": "f8c1adbd-d26d-4770-ab37-ee68d86865fd",
+     "title": "IDFA Consultancy - Icarus Films",
+     "start": "2026-11-17T09:00:00.000Z",
+     "end": "2026-11-17T10:00:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Pleinfoyer",
+     "audience": "Passholders only",
+     "status": "SOLD_OUT",
+     "link": "https://festival.idfa.nl/en/composition/d66a2f05-157d-40ee-9494-f95a9f2558a5/idfa-consultancy---icarus-films/"
+    },
+    {
+     "id": "ac6ac05f-c8e4-476f-a853-315e16bd91ff",
+     "title": "IDFA Consultancy - Swallow Wings Films",
+     "start": "2026-11-17T09:00:00.000Z",
+     "end": "2026-11-17T10:00:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Pleinfoyer",
+     "audience": "Passholders only",
+     "status": "SOLD_OUT",
+     "link": "https://festival.idfa.nl/en/composition/979b2140-f814-4b72-ab99-05fcc0c017a8/idfa-consultancy---swallow-wings-films/"
+    },
+    {
+     "id": "fe4f5b6c-6e2a-4542-9213-314623bec2cc",
+     "title": "Industry Session: Films we make together – Co-creating with young protagonists",
+     "start": "2026-11-17T09:00:00.000Z",
+     "end": "2026-11-17T10:00:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Koninklijke Foyer",
+     "audience": "Passholders only",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/6c27631e-efac-42a7-bc21-9a62a8433cd9/industry-session:-films-we-make-together-–-co-creating-with-young-protagonists/"
+    },
+    {
+     "id": "5fa40d3d-093a-4a0f-97cc-03d3f3f6c85d",
+     "title": "Networking Café",
+     "start": "2026-11-17T09:00:00.000Z",
+     "end": "2026-11-17T16:00:00.000Z",
+     "location": "De Balie: Pleinzaal",
+     "audience": "Passholders only",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/2a3cb7e8-885a-4e3b-a022-113cc4e67f65/networking-café/"
+    },
+    {
+     "id": "7049f60b-66cd-4bf5-96cd-b655294ea9cb",
+     "title": "Press & Industry Screening: Jenin & the Nakba Between Us",
+     "start": "2026-11-17T09:00:00.000Z",
+     "end": "2026-11-17T10:34:00.000Z",
+     "location": "Pathé City 2",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/a0f9d590-5c89-4627-ae49-80587b3efe49/jenin-&-the-nakba-between-us/"
+    },
+    {
+     "id": "7e5c55ab-ad58-44be-b15e-b35835deebd3",
+     "title": "Press & Industry Screening: Radiant Mountain",
+     "start": "2026-11-17T09:00:00.000Z",
+     "end": "2026-11-17T10:18:00.000Z",
+     "location": "Pathé City 5",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/33889966-d20a-4122-817f-8b56ee7407fe/radiant-mountain/"
+    },
+    {
+     "id": "056c9010-8562-4a39-9029-b5b0e833e61f",
+     "title": "The Quiet Room",
+     "start": "2026-11-17T09:00:00.000Z",
+     "end": "2026-11-17T16:00:00.000Z",
+     "location": "De Balie: Filmzaal",
+     "audience": "Passholders only",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/d3c85e0e-aa22-4f85-b7e5-bd0c058f3edc/the-quiet-room/"
+    },
+    {
+     "id": "604a7da5-ea17-4288-9210-5504d41a289a",
+     "title": "Press & Industry Screening: The Big Boom!",
+     "start": "2026-11-17T10:00:00.000Z",
+     "end": "2026-11-17T11:24:00.000Z",
+     "location": "Pathé City 4",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/017d6dcf-248d-494d-a778-ddc860293fdb/the-big-boom!/"
+    },
+    {
+     "id": "f1291086-28c5-4eb9-b7da-7e18aca3d4fb",
+     "title": "IDFA Consultancy - Alphapanda",
+     "start": "2026-11-17T10:15:00.000Z",
+     "end": "2026-11-17T11:15:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Pleinfoyer",
+     "audience": "Passholders only",
+     "status": "SOLD_OUT",
+     "link": "https://festival.idfa.nl/en/composition/c592c19e-9972-4bc6-963d-269087254fa1/idfa-consultancy---alphapanda/"
+    },
+    {
+     "id": "2dd5943a-99ac-4d8c-b5d8-b2dc1272c1c9",
+     "title": "IDFA Consultancy - Dogwoof",
+     "start": "2026-11-17T10:15:00.000Z",
+     "end": "2026-11-17T11:15:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Pleinfoyer",
+     "audience": "Passholders only",
+     "status": "SOLD_OUT",
+     "link": "https://festival.idfa.nl/en/composition/5226e92d-2f17-4ecc-8bd7-0217a4d122bf/idfa-consultancy---dogwoof/"
+    },
+    {
+     "id": "3ab3184b-58c0-44c5-b4dc-91ca2c00fbbb",
+     "title": "Press & Industry Screening: Hold Your Breath",
+     "start": "2026-11-17T10:30:00.000Z",
+     "end": "2026-11-17T11:49:00.000Z",
+     "location": "Pathé City 3",
+     "audience": "Passholders only",
+     "status": "UNKNOWN",
+     "link": "https://festival.idfa.nl/en/film/e94ce535-81ac-404a-ba59-bb4cae9c500e/hold-your-breath/"
+    },
+    {
+     "id": "a01d096e-fcd8-41fd-9278-09833a154b06",
+     "title": "Press & Industry Screening: My Own Personal Gulag",
+     "start": "2026-11-17T10:30:00.000Z",
+     "end": "2026-11-17T11:58:00.000Z",
+     "location": "Pathé City 7",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/a053611a-fc15-486e-bd38-78d8fb4c71ef/my-own-personal-gulag/"
+    },
+    {
+     "id": "7d360a7c-93ea-4916-a509-39840f2ccf11",
+     "title": "Press & Industry Screening: An Incomplete Day in the History of Georgia 10.06.93",
+     "start": "2026-11-17T11:00:00.000Z",
+     "end": "2026-11-17T12:44:00.000Z",
+     "location": "Pathé City 1",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/808488b9-bc02-4346-b3a2-c62957aba46f/an-incomplete-day-in-the-history-of-georgia-10.06.93/"
+    },
+    {
+     "id": "2d768a36-26ce-4ba4-a943-95a991236e93",
+     "title": "IDFA Consultancy -  Jaeger Creative",
+     "start": "2026-11-17T11:30:00.000Z",
+     "end": "2026-11-17T12:30:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Pleinfoyer",
+     "audience": "Passholders only",
+     "status": "SOLD_OUT",
+     "link": "https://festival.idfa.nl/en/composition/16c27852-e7bb-45a2-931b-824f62ac1b10/idfa-consultancy---jaeger-creative/"
+    },
+    {
+     "id": "385a85ba-6873-41fa-a370-1bd02195bfce",
+     "title": "IDFA Consultancy - Hubert Bals Fund",
+     "start": "2026-11-17T11:30:00.000Z",
+     "end": "2026-11-17T12:30:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Pleinfoyer",
+     "audience": "Passholders only",
+     "status": "SOLD_OUT",
+     "link": "https://festival.idfa.nl/en/composition/cfeb9120-1a2b-4764-9cf9-b07e61c70135/idfa-consultancy---hubert-bals-fund/"
+    },
+    {
+     "id": "e52fdbc7-54e3-4d3b-a519-ce449a5d021b",
+     "title": "IDFA Forum: Lunch - hosted by DocOrg , CMPA-BC & HotDocs",
+     "start": "2026-11-17T11:30:00.000Z",
+     "end": "2026-11-17T13:00:00.000Z",
+     "location": "DeLaMar: Spieghel Foyer",
+     "audience": "IDFA Forum Passholders",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/fde2c4bc-8ba7-4f1c-a57c-f8efb79813e0/idfa-forum-lunch---hosted-by-docorg,-cmpa-bc-&-hotdocs/"
+    },
+    {
+     "id": "3aa08c58-9185-4191-8661-f440fe915f51",
+     "title": "Industry Talk: The next chapter of impact – What have we built and what comes next?",
+     "start": "2026-11-17T11:30:00.000Z",
+     "end": "2026-11-17T12:30:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Koninklijke Foyer",
+     "audience": "Passholders only",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/8d0bf7c6-3f6d-4ef4-88b0-ae0181172f41/industry-talk:-the-next-chapter-of-impact-–-what-have-we-built-and-what-comes-next?/"
+    },
+    {
+     "id": "f61770da-e620-4297-bf69-94c865db9c07",
+     "title": "Press & Industry Screening: White Tiger Column",
+     "start": "2026-11-17T11:30:00.000Z",
+     "end": "2026-11-17T13:11:00.000Z",
+     "location": "Pathé City 2",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/99f4878d-139e-4eec-a7ce-373d92700e59/white-tiger-column/"
+    },
+    {
+     "id": "e813b206-a29c-4120-9f80-727a2f4d9045",
+     "title": "Delegation Showcase: Five Colombian documentaries, five ways of holding on to memory",
+     "start": "2026-11-17T12:00:00.000Z",
+     "end": "2026-11-17T13:45:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Nieuwe Foyer",
+     "audience": "Passholders only",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/70ea3454-3cab-4102-869d-f1deea83bf7b/delegation-showcase:-five-colombian-documentaries,-five-ways-of-holding-on-to-memory/"
+    },
+    {
+     "id": "ca89f114-060d-410f-9b00-24fee0a43e9e",
+     "title": "Press & Industry Screening: Bahía Honda",
+     "start": "2026-11-17T12:15:00.000Z",
+     "end": "2026-11-17T13:44:00.000Z",
+     "location": "Pathé City 4",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/8b6b203a-6aee-4e98-8720-9c2b7654493e/bahía-honda/"
+    },
+    {
+     "id": "491bb520-fceb-4669-a815-76598cce94f1",
+     "title": "IDFA Consultancy - IDFA Bertha Fund",
+     "start": "2026-11-17T12:45:00.000Z",
+     "end": "2026-11-17T13:45:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Pleinfoyer",
+     "audience": "Passholders only",
+     "status": "SOLD_OUT",
+     "link": "https://festival.idfa.nl/en/composition/2a04afb2-59c7-4624-849a-05a4621bdf8d/idfa-consultancy---idfa-bertha-fund/"
+    },
+    {
+     "id": "72e39f1f-bea9-4f29-bb7a-a910fd82510f",
+     "title": "IDFA Consultancy - The Arab Fund for Arts and Culture",
+     "start": "2026-11-17T12:45:00.000Z",
+     "end": "2026-11-17T13:45:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Pleinfoyer",
+     "audience": "Passholders only",
+     "status": "SOLD_OUT",
+     "link": "https://festival.idfa.nl/en/composition/c205fcd3-9b2a-44e2-877b-33fb812dd5f0/idfa-consultancy---the-arab-fund-for-arts-and-culture/"
+    },
+    {
+     "id": "878a8f76-5a75-4222-b87b-722f487b35f5",
+     "title": "Press & Industry Screening: She Was Not Alone",
+     "start": "2026-11-17T12:45:00.000Z",
+     "end": "2026-11-17T14:17:00.000Z",
+     "location": "Pathé City 7",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/bba0040b-ea5e-4993-9209-f165fb780f67/she-was-not-alone/"
+    },
+    {
+     "id": "37300847-5336-4188-ad64-10bab3456850",
+     "title": "IDFA Forum: Roundtable Presentations - Day 2",
+     "start": "2026-11-17T13:00:00.000Z",
+     "end": "2026-11-17T15:30:00.000Z",
+     "location": "De Balie: Grote Zaal",
+     "audience": "IDFA Forum Passholders",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/21f71f41-32fb-43a2-8d57-d011c0a9c1fe/idfa-forum:-roundtable-presentations---day-2/"
+    },
+    {
+     "id": "332d2206-ea9a-447f-b658-80665d6d14d7",
+     "title": "Press & Industry Screening: Drop! Cover! Hold On!",
+     "start": "2026-11-17T14:30:00.000Z",
+     "end": "2026-11-17T15:51:00.000Z",
+     "location": "Pathé City 4",
+     "audience": "Passholders only",
+     "status": "UNKNOWN",
+     "link": "https://festival.idfa.nl/en/film/82a6a7e0-96d3-4493-93a3-a1ef79cf110d/drop!-cover!-hold-on!/"
+    },
+    {
+     "id": "f01507c5-9c6d-40f7-ab46-3d033f2b2bfb",
+     "title": "Industry Talk: Mental resilience – Real stories for youth in a complex world",
+     "start": "2026-11-17T14:45:00.000Z",
+     "end": "2026-11-17T16:15:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Koninklijke Foyer",
+     "audience": "Passholders only",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/4894e991-1bf6-4835-aba4-555158d0e2de/industry-talk:-mental-resilience-–-real-stories-for-youth-in-a-complex-world/"
+    },
+    {
+     "id": "0cc12cf5-1348-4c58-b93c-957648c14afd",
+     "title": "Bonfire Circles: Collaborating with Canada",
+     "start": "2026-11-17T15:30:00.000Z",
+     "end": "2026-11-17T16:30:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Pleinfoyer",
+     "audience": "Passholders only",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/05abdc0d-3eb0-4d58-b912-a6074c3311ff/bonfire-circles:-collaborating-with-canada/"
+    },
+    {
+     "id": "9195047b-836f-4642-a578-cf7d14265ad5",
+     "title": "Docs for Sale: Happy Hour",
+     "start": "2026-11-17T16:00:00.000Z",
+     "end": "2026-11-17T17:00:00.000Z",
+     "location": "Het Documentaire Paviljoen: Het Podium",
+     "audience": "Docs for Sale & IDFA Forum Passholders",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/9f7d4a6a-f456-41bf-98ef-e7a5c13162f7/docs-for-sale:-happy-hour/"
+    },
+    {
+     "id": "924b1b6e-d6c8-47ad-9564-24cc039fa727",
+     "title": "Market Screening: I Got My Brother",
+     "start": "2026-11-17T16:15:00.000Z",
+     "end": "2026-11-17T16:49:00.000Z",
+     "location": "Het Documentaire Paviljoen: De Spiegel",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/5eddc642-fe48-4fc0-a426-5c8a438098b2/market-screening:-i-got-my-brother/"
+    },
+    {
+     "id": "01044953-2d78-48e4-9e9b-bc6d673f5635",
+     "title": "Guests Meet Guests - hosted by Catalan Films and Docs Barcelona",
+     "start": "2026-11-17T17:30:00.000Z",
+     "end": "2026-11-17T19:00:00.000Z",
+     "location": "De Duif",
+     "audience": "Passholders only",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/a958ca76-4cc1-40e7-bfb5-47e972129dba/guests-meet-guests---hosted-by-catalan-films-and-docs-barcelona/"
+    },
+    {
+     "id": "a33fc0c2-1bdc-4b1a-a992-2f8c4f0ce043",
+     "title": "Market Screening: Everest: The Other Side",
+     "start": "2026-11-17T17:30:00.000Z",
+     "end": "2026-11-17T19:28:00.000Z",
+     "location": "Het Documentaire Paviljoen: De Spiegel",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/b8d802ae-f76e-4ce0-8818-5fe974e63914/market-screening:-everest:-the-other-side/"
+    },
+    {
+     "id": "18180ec7-bd18-4dc2-a815-50249cfb5131",
+     "title": "Market Screening: Traces",
+     "start": "2026-11-17T20:15:00.000Z",
+     "end": "2026-11-17T21:43:00.000Z",
+     "location": "Het Documentaire Paviljoen: De Spiegel",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/4a85e988-b5c6-45d3-8565-bb82ea692ecc/market-screening:-traces/"
+    },
+    {
+     "id": "ee497fc4-5b86-4044-86da-4cb63fab93c3",
+     "title": "Latin Party - hosted by Chile",
+     "start": "2026-11-17T21:00:00.000Z",
+     "end": "2026-11-18T00:00:00.000Z",
+     "location": "Het Documentaire Paviljoen: Het Podium",
+     "audience": "Passholders only",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/5197895e-d381-48f3-8285-1448c09dbbea/latin-party---hosted-by-chile/"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-18",
+   "events": [
+    {
+     "id": "19ca2cc2-0035-4f8e-a22d-ef8f283dfbd0",
+     "title": "IDFA Forum: Producers Breakfast – hosted by Chiledoc & Film Commission Chile",
+     "start": "2026-11-18T07:00:00.000Z",
+     "end": "2026-11-18T08:00:00.000Z",
+     "location": "De Balie: Foyer",
+     "audience": "By invitation",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/397a1095-7ccb-456d-8d24-38659d548cc5/idfa-forum:-producers-breakfast-–-hosted-by-chiledoc-&-film-commission-chile/"
+    },
+    {
+     "id": "83be6b8f-d5ac-4189-8dd7-8bfe85800084",
+     "title": "Docs for Sale: Meeting Space",
+     "start": "2026-11-18T08:00:00.000Z",
+     "end": "2026-11-18T16:00:00.000Z",
+     "location": "Het Documentaire Paviljoen: Het Podium",
+     "audience": "Docs for Sale Passholders",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/91a79345-77ec-4047-89c3-a3e59c8d9729/docs-for-sale:-meeting-space/"
+    },
+    {
+     "id": "095eeb67-7518-4044-a653-5e838a5a9710",
+     "title": "Docs for Sale: Viewing Booths",
+     "start": "2026-11-18T08:00:00.000Z",
+     "end": "2026-11-18T17:00:00.000Z",
+     "location": "Het Documentaire Paviljoen: De Salon",
+     "audience": "Docs for Sale Acquisition Passholders",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/e9fbc4ab-2c7f-46cf-a1e4-fecccd964bb4/docs-for-sale:-viewing-booths/"
+    },
+    {
+     "id": "db0cbeee-8e22-4baf-bee1-9706735acf2f",
+     "title": "Networking & Meeting Space",
+     "start": "2026-11-18T08:00:00.000Z",
+     "end": "2026-11-18T17:00:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Gijsbrecht bordes",
+     "audience": "Passholders only",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/53c2867d-45e0-4620-aae6-c596addd4f95/networking-&-meeting-space/"
+    },
+    {
+     "id": "2471ad15-9a05-40b3-a6eb-c76c51cf06aa",
+     "title": "Press & Industry Screening: How Much Longer",
+     "start": "2026-11-18T08:00:00.000Z",
+     "end": "2026-11-18T09:28:00.000Z",
+     "location": "Pathé City 4",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/202d0d5b-1c64-4bc5-a317-fa4dec1d7e51/how-much-longer/"
+    },
+    {
+     "id": "78faab4e-985b-45fa-a881-b2f411e15182",
+     "title": "Work Lounge",
+     "start": "2026-11-18T08:00:00.000Z",
+     "end": "2026-11-18T17:00:00.000Z",
+     "location": "Het Documentaire Paviljoen: De Huiskamer",
+     "audience": "Public",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/58750c4b-74fd-4b78-9849-9fed89ce50cc/work-lounge/"
+    },
+    {
+     "id": "468fd13d-123e-4683-88a1-3f4f560ae65e",
+     "title": "Market Screening: Couture to the Max",
+     "start": "2026-11-18T08:15:00.000Z",
+     "end": "2026-11-18T09:07:00.000Z",
+     "location": "The Pulse 3",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/a6b85739-4bab-47ae-8a5f-194a2b29217b/market-screening:-couture-to-the-max/"
+    },
+    {
+     "id": "ef0d68e6-7e2c-4f15-8381-712871d58084",
+     "title": "Press & Industry Screening: Mangabangabaka",
+     "start": "2026-11-18T08:15:00.000Z",
+     "end": "2026-11-18T09:51:00.000Z",
+     "location": "Pathé City 5",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/87a68b66-b28a-4cf9-a8d2-834ef7a13fc6/mangabangabaka/"
+    },
+    {
+     "id": "fc58a244-34fe-44b4-afa7-62752df5f7ca",
+     "title": "Press & Industry Screening: The Black Box Is Orange",
+     "start": "2026-11-18T08:30:00.000Z",
+     "end": "2026-11-18T10:04:00.000Z",
+     "location": "Pathé City 7",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/17e62a6e-0384-427b-a5db-bf16fc8d5132/the-black-box-is-orange/"
+    },
+    {
+     "id": "bb3e56b0-ac89-4926-aeff-73a3fbd4a67e",
+     "title": "Press & Industry Screening: The Message",
+     "start": "2026-11-18T08:30:00.000Z",
+     "end": "2026-11-18T10:20:00.000Z",
+     "location": "Pathé City 1",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/8979094e-1b1a-4519-8760-43ba4be07962/the-message/"
+    },
+    {
+     "id": "f61d7127-040a-4e21-afda-200e8209589b",
+     "title": "Delegation Showcase: Docs from Spain",
+     "start": "2026-11-18T09:00:00.000Z",
+     "end": "2026-11-18T10:00:00.000Z",
+     "location": "Pathé City 6",
+     "audience": "Passholders only",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/5e88e7c5-59f7-4b94-8165-a6f04487a7e8/delegation-showcase:-docs-from-spain/"
+    },
+    {
+     "id": "cbc75afc-1864-483c-abbd-67983df4bdb0",
+     "title": "IDFA Consultancy - Andana Films",
+     "start": "2026-11-18T09:00:00.000Z",
+     "end": "2026-11-18T10:00:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Pleinfoyer",
+     "audience": "Passholders only",
+     "status": "SOLD_OUT",
+     "link": "https://festival.idfa.nl/en/composition/0dd30a2c-36d1-4d3c-8fe6-bbc34eee9236/idfa-consultancy---andana-films/"
+    },
+    {
+     "id": "0d00917a-85fe-4966-be87-67a7fba76467",
+     "title": "IDFA Consultancy - EURODOC",
+     "start": "2026-11-18T09:00:00.000Z",
+     "end": "2026-11-18T10:00:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Pleinfoyer",
+     "audience": "Passholders only",
+     "status": "SOLD_OUT",
+     "link": "https://festival.idfa.nl/en/composition/ee053f09-feb7-47c8-afdf-a1468d47dad5/idfa-consultancy---eurodoc/"
+    },
+    {
+     "id": "e10b36fb-9978-477e-8c2a-9de18b44855b",
+     "title": "Networking Café",
+     "start": "2026-11-18T09:00:00.000Z",
+     "end": "2026-11-18T16:00:00.000Z",
+     "location": "De Balie: Pleinzaal",
+     "audience": "Passholders only",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/2a3cb7e8-885a-4e3b-a022-113cc4e67f65/networking-café/"
+    },
+    {
+     "id": "3b1580fd-4b77-4f6b-93e9-aa4dc526fbe2",
+     "title": "Press & Industry Screening: Cuscú",
+     "start": "2026-11-18T09:00:00.000Z",
+     "end": "2026-11-18T10:27:00.000Z",
+     "location": "Pathé City 2",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/dd8a7949-1233-423a-b22a-1ef321ccc3c2/cuscú/"
+    },
+    {
+     "id": "e5bf9a8d-68db-4901-9efe-47c10bd0d58b",
+     "title": "The Quiet Room",
+     "start": "2026-11-18T09:00:00.000Z",
+     "end": "2026-11-18T16:00:00.000Z",
+     "location": "De Balie: Filmzaal",
+     "audience": "Passholders only",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/d3c85e0e-aa22-4f85-b7e5-bd0c058f3edc/the-quiet-room/"
+    },
+    {
+     "id": "0a274c6e-1a6d-405d-a3d1-9e9b1c52ada7",
+     "title": "Press & Industry Screening: Where the Sun is Born",
+     "start": "2026-11-18T09:30:00.000Z",
+     "end": "2026-11-18T10:48:00.000Z",
+     "location": "Pathé City 3",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/8e7651f8-50f2-405a-92d1-405f915e7c0c/where-the-sun-is-born/"
+    },
+    {
+     "id": "20af170d-9b81-4c33-b7fd-544bb79b0bad",
+     "title": "Market Screening: Ash and Crayons",
+     "start": "2026-11-18T10:00:00.000Z",
+     "end": "2026-11-18T11:59:00.000Z",
+     "location": "The Pulse 3",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/a16d1fbe-f156-40cd-9f8c-2cce25f5e9a1/market-screening:-ash-and-crayons/"
+    },
+    {
+     "id": "310705aa-366b-4567-b35e-5073e8b95485",
+     "title": "IDFA Consultancy - ARTE",
+     "start": "2026-11-18T10:15:00.000Z",
+     "end": "2026-11-18T11:15:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Pleinfoyer",
+     "audience": "Passholders only",
+     "status": "SOLD_OUT",
+     "link": "https://festival.idfa.nl/en/composition/18f02877-3193-4ac9-b912-3c0ea824f0f9/idfa-consultancy---arte/"
+    },
+    {
+     "id": "6703b11a-193d-461d-a281-6924e737a393",
+     "title": "IDFA Consultancy - Thessaloniki IFF Agora",
+     "start": "2026-11-18T10:15:00.000Z",
+     "end": "2026-11-18T11:15:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Pleinfoyer",
+     "audience": "Passholders only",
+     "status": "SOLD_OUT",
+     "link": "https://festival.idfa.nl/en/composition/e09954e8-9e0d-480f-8e69-c113a2a09f36/idfa-consultancy---thessaloniki-iff-agora/"
+    },
+    {
+     "id": "49a8b9eb-72dc-4b24-bbe3-441574912386",
+     "title": "Press & Industry Screening: The Blood of the Covenant",
+     "start": "2026-11-18T10:15:00.000Z",
+     "end": "2026-11-18T11:23:00.000Z",
+     "location": "Pathé City 4",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/c5f40d16-4545-44aa-87b7-c7f9565f0f90/the-blood-of-the-covenant/"
+    },
+    {
+     "id": "766ae4ca-b51a-4e1b-bdf3-2598d9e39c60",
+     "title": "Press & Industry Screening: Vertigo Garden",
+     "start": "2026-11-18T10:45:00.000Z",
+     "end": "2026-11-18T12:02:00.000Z",
+     "location": "Pathé City 7",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/ac698c79-7f8a-4f52-a491-5050525f0bff/vertigo-garden/"
+    },
+    {
+     "id": "2116cc87-9ed8-457c-8cf9-f4a938c3f3e9",
+     "title": "Press & Industry Screening: No Man's Air",
+     "start": "2026-11-18T11:00:00.000Z",
+     "end": "2026-11-18T11:46:00.000Z",
+     "location": "Pathé City 1",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/32b59f71-aa14-4629-835a-b453271ef33f/no-man's-air/"
+    },
+    {
+     "id": "69b16bc9-3681-4992-a970-8619659baa04",
+     "title": "Press & Industry Screening: Rivers of Memory",
+     "start": "2026-11-18T11:15:00.000Z",
+     "end": "2026-11-18T12:31:00.000Z",
+     "location": "Pathé City 2",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/610984e5-a3b8-42cf-a96d-ea6758b5f5d8/rivers-of-memory/"
+    },
+    {
+     "id": "5c7b8b68-559e-4103-a53e-682698a2f646",
+     "title": "IDFA Consultancy - Hasse van Nunen",
+     "start": "2026-11-18T11:30:00.000Z",
+     "end": "2026-11-18T12:30:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Pleinfoyer",
+     "audience": "Passholders only",
+     "status": "SOLD_OUT",
+     "link": "https://festival.idfa.nl/en/composition/b15b97fa-40a5-403e-a19c-e8a3e44d7326/idfa-consultancy---hasse-van-nunen/"
+    },
+    {
+     "id": "22c641a2-1946-40c8-9914-3e6ddb138ae1",
+     "title": "Industry Talk: End times – AI and documentary",
+     "start": "2026-11-18T11:30:00.000Z",
+     "end": "2026-11-18T13:00:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Koninklijke Foyer",
+     "audience": "Passholders only",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/8d3669d9-339a-4992-bcd8-028dcebd78af/industry-talk:-end-times-–-ai-and-documentary/"
+    },
+    {
+     "id": "b7c6cb5b-943b-4780-a301-80a8d62461da",
+     "title": "Press & Industry Screening: Small Expectations",
+     "start": "2026-11-18T11:30:00.000Z",
+     "end": "2026-11-18T13:33:00.000Z",
+     "location": "Pathé City 3",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/17073e12-28cc-4ba5-bbec-ff356638b519/small-expectations/"
+    },
+    {
+     "id": "c8edadeb-3a56-4c53-a98c-22beaf8b3dba",
+     "title": "IDFA Forum: Awards Ceremony & Lunch – hosted by FeverFilm & PostaVermaas",
+     "start": "2026-11-18T12:00:00.000Z",
+     "end": "2026-11-18T13:30:00.000Z",
+     "location": "De Balie: Grote Zaal",
+     "audience": "IDFA Forum Passholders",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/478c9503-bebc-4e82-9e1d-73ced6e90251/idfa-forum:-awards-ceremony-&-lunch-–-hosted-by-feverfilm-&-postavermaas/"
+    },
+    {
+     "id": "8ddad8e6-ec42-4f03-8bb7-9b8f9f975033",
+     "title": "Press & Industry Screening: Alter Ego",
+     "start": "2026-11-18T12:15:00.000Z",
+     "end": "2026-11-18T13:31:00.000Z",
+     "location": "Pathé City 4",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/fcc55513-6f7d-46ff-a23c-c5f769afe66e/alter-ego/"
+    },
+    {
+     "id": "65c0b4e8-7524-4309-8cd3-1be9a723a11f",
+     "title": "Press & Industry Screening: You Don’t Die Two Times",
+     "start": "2026-11-18T12:30:00.000Z",
+     "end": "2026-11-18T14:04:00.000Z",
+     "location": "Pathé City 1",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/63449d4f-9227-4cfc-98b9-a1897631900d/you-don’t-die-two-times/"
+    },
+    {
+     "id": "f5eeb8e5-50c9-4029-ad14-578185c6b566",
+     "title": "IDFA Consultancy - Kinema",
+     "start": "2026-11-18T12:45:00.000Z",
+     "end": "2026-11-18T13:45:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Pleinfoyer",
+     "audience": "Passholders only",
+     "status": "SOLD_OUT",
+     "link": "https://festival.idfa.nl/en/composition/d50587a8-7d02-4232-8c12-b6ed956df9ae/idfa-consultancy---kinema/"
+    },
+    {
+     "id": "aefc977b-f9cf-42b5-9440-64ea0701fa35",
+     "title": "Press & Industry Screening: Morro Grande",
+     "start": "2026-11-18T12:45:00.000Z",
+     "end": "2026-11-18T14:17:00.000Z",
+     "location": "Pathé City 7",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/2b5c6f38-d0b4-41d8-8d8b-dd2830d3003b/morro-grande/"
+    },
+    {
+     "id": "5e4976e5-08b5-490d-a662-31299234f43d",
+     "title": "Market Screening: The Righteous Road Trip",
+     "start": "2026-11-18T13:00:00.000Z",
+     "end": "2026-11-18T14:00:00.000Z",
+     "location": "The Pulse 3",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/5060f0c5-1d79-4d9f-b886-2630c0ce7790/market-screening:-the-righteous-road-trip/"
+    },
+    {
+     "id": "bf9ded30-82ba-4d6b-941b-90586a0b7546",
+     "title": "Audience Strategy Lab: New perspectives",
+     "start": "2026-11-18T13:30:00.000Z",
+     "end": "2026-11-18T16:30:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Studio 1",
+     "audience": "By invitation",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/b9525f45-7695-4799-9521-2e1ff8b2d958/audience-strategy-lab:-new-perspectives/"
+    },
+    {
+     "id": "9edf7e1c-e054-4f44-a735-436857083c20",
+     "title": "IDFA Consultancy - Dimitra Kouzi",
+     "start": "2026-11-18T14:00:00.000Z",
+     "end": "2026-11-18T15:00:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Pleinfoyer",
+     "audience": "Passholders only",
+     "status": "SOLD_OUT",
+     "link": "https://festival.idfa.nl/en/composition/512839fc-ee24-496b-896b-2ec0c77a6786/idfa-consultancy---dimitra-kouzi/"
+    },
+    {
+     "id": "656e1ce9-5adf-462b-bb7e-3429e82e40f0",
+     "title": "IDFA Consultancy - EFM DocSalon & Archive Market",
+     "start": "2026-11-18T14:00:00.000Z",
+     "end": "2026-11-18T15:00:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Pleinfoyer",
+     "audience": "Passholders only",
+     "status": "SOLD_OUT",
+     "link": "https://festival.idfa.nl/en/composition/7924b8fc-7b90-4ec5-9357-212c21f9dc9f/idfa-consultancy---efm-docsalon-&-archive-market/"
+    },
+    {
+     "id": "a4fcd66d-fb36-4c12-b6d7-cff12e23e54e",
+     "title": "Industry Talk: Ownership of the archive – Exposing erasure, reclaiming histories",
+     "start": "2026-11-18T14:45:00.000Z",
+     "end": "2026-11-18T16:15:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Koninklijke Foyer",
+     "audience": "Passholders only",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/129a5699-8a2d-4e14-9616-d238dbbb2653/industry-talk:-ownership-of-the-archive-–-exposing-erasure,-reclaiming-histories/"
+    },
+    {
+     "id": "b97248cc-fb3b-4967-9492-8a05e5221911",
+     "title": "Filmmaker Talk: Lei Lei",
+     "start": "2026-11-18T15:00:00.000Z",
+     "end": "2026-11-18T16:30:00.000Z",
+     "location": "Het Documentaire Paviljoen: De Spiegel",
+     "audience": "Public",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/composition/a711cc7b-224b-45b0-842e-53f2b647bd57/filmmaker-talk:-lei-lei/"
+    },
+    {
+     "id": "2e71d976-bcd2-4fe7-855b-bff018e0a889",
+     "title": "Press & Industry Screening: The Brush in Your Hand",
+     "start": "2026-11-18T15:00:00.000Z",
+     "end": "2026-11-18T15:55:00.000Z",
+     "location": "Pathé City 1",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/fc76b779-6075-46fe-9035-52ff1be557ea/the-brush-in-your-hand/"
+    },
+    {
+     "id": "6dafd69b-5a03-4e59-853b-87c36abbca9d",
+     "title": "Market Screening: One Last Order",
+     "start": "2026-11-18T15:15:00.000Z",
+     "end": "2026-11-18T15:52:00.000Z",
+     "location": "The Pulse 3",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/9887803a-241a-4040-9681-faa759d4db58/market-screening:-one-last-order/"
+    },
+    {
+     "id": "2591a90e-98b5-45b0-a883-42a6b3a9153b",
+     "title": "Press & Industry Screening: A Minute of Silence",
+     "start": "2026-11-18T15:15:00.000Z",
+     "end": "2026-11-18T16:46:00.000Z",
+     "location": "Pathé City 7",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/e093aa73-b4bf-49f9-af4c-8477d11cac46/a-minute-of-silence/"
+    },
+    {
+     "id": "1756222b-945f-420e-a96e-ef9297833be1",
+     "title": "Bonfire Circles: Collaborating Across East Africa",
+     "start": "2026-11-18T15:30:00.000Z",
+     "end": "2026-11-18T16:30:00.000Z",
+     "location": "Stadsschouwburg Amsterdam: Pleinfoyer",
+     "audience": "Passholders only",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/2cb51ab6-6490-4208-9075-33b8482a353a/bonfire-circles:-collaborating-across-east-africa/"
+    },
+    {
+     "id": "0c741f5c-e9a7-4ae8-aa0c-04cdfd420271",
+     "title": "Docs for Sale: Happy Hour",
+     "start": "2026-11-18T16:00:00.000Z",
+     "end": "2026-11-18T17:00:00.000Z",
+     "location": "Het Documentaire Paviljoen: Het Podium",
+     "audience": "Docs for Sale & IDFA Forum Passholders",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/9f7d4a6a-f456-41bf-98ef-e7a5c13162f7/docs-for-sale:-happy-hour/"
+    },
+    {
+     "id": "5276c048-2c1c-4df6-9fda-d001d8bfe4eb",
+     "title": "Market Screening: American Pachuco: The Legend of Luis Valdez",
+     "start": "2026-11-18T16:30:00.000Z",
+     "end": "2026-11-18T18:22:00.000Z",
+     "location": "The Pulse 3",
+     "audience": "Passholders only",
+     "status": "HIGH_AVAILABILITY",
+     "link": "https://festival.idfa.nl/en/film/a1513d29-d317-454e-a69a-261ea3a04b68/market-screening:-american-pachuco:-the-legend-of-luis-valdez/"
+    },
+    {
+     "id": "d1c5710e-5263-41ae-b236-ebf3fa220735",
+     "title": "Guests Meet Guests - Wednesday",
+     "start": "2026-11-18T17:30:00.000Z",
+     "end": "2026-11-18T19:00:00.000Z",
+     "location": "Het Documentaire Paviljoen: Het Podium",
+     "audience": "Passholders only",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/1bf42ea5-5945-43de-be14-126da3e15496/guests-meet-guests---wednesday/"
+    },
+    {
+     "id": "0b984a6d-da84-4481-96e4-0cd38c4f1669",
+     "title": "Lounge & Drinks",
+     "start": "2026-11-18T19:00:00.000Z",
+     "end": "2026-11-18T21:00:00.000Z",
+     "location": "Het Documentaire Paviljoen: Foyer",
+     "audience": "-",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/e10f3b5b-f9ca-4c04-b52c-462cca12a77a/lounge-&-drinks/"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-19",
+   "events": [
+    {
+     "id": "c376693c-02da-437f-8dfe-b583caaf3097",
+     "title": "Dutch Docs Day: Space to create – Who protects the filmmaker’s artistic freedom?",
+     "start": "2026-11-19T13:30:00.000Z",
+     "end": "2026-11-19T15:30:00.000Z",
+     "location": "De Balie: Grote Zaal",
+     "audience": "By invitation",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/bf134603-57c4-4b2c-8653-19a36cdac32b/dutch-docs-day:-space-to-create-–-who-protects-the-filmmaker’s-artistic-freedom?/"
+    },
+    {
+     "id": "30af379d-4cf5-49bd-b5d9-1aa768bf7c22",
+     "title": "Awards Ceremony",
+     "start": "2026-11-19T19:30:00.000Z",
+     "end": "2026-11-19T21:30:00.000Z",
+     "location": "Eye: Cinema 1",
+     "audience": "By invitation",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/2a5481ec-e75e-47f3-9930-9438b8c87822/awards-ceremony/"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-21",
+   "events": [
+    {
+     "id": "b5986ee0-701a-45ad-8a29-b8fea8bc4e51",
+     "title": "Industry Session: Camera – NSC conversation with Eva Kraljević and Jean Counet",
+     "start": "2026-11-21T09:00:00.000Z",
+     "end": "2026-11-21T11:00:00.000Z",
+     "location": "Het Documentaire Paviljoen: De Spiegel",
+     "audience": "Passholders only",
+     "status": "NO_SALE",
+     "link": "https://festival.idfa.nl/en/composition/41b11a99-ffb9-47b6-a0c7-f4ab2311bc8a/industry-session:-camera-–-nsc-conversation-with-eva-kraljević-and-jean-counet/"
+    }
+   ]
+  }
+ ]
+}
