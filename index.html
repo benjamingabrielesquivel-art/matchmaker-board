@@ -118,6 +118,41 @@ a.open{font-size:14px;color:var(--blue)}
 .st-high{background:#ddf3e5;color:#13703b}
 .st-none{background:#eef1f6;color:var(--muted)}
 .evnote{font-size:14px;color:var(--muted);line-height:1.5;margin:0 0 40px}
+/* guest list */
+.loadbox{background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px;margin:16px 0 40px;max-width:720px}
+.loadbox h2{margin:0 0 8px;color:var(--blue);font-size:22px}
+.loadbox ol{padding-left:22px;line-height:1.6;font-size:16px}
+.loadbox .note{font-size:14px;color:var(--muted);line-height:1.5}
+.filebtn{display:inline-block;position:relative;overflow:hidden}
+.filebtn input{position:absolute;inset:0;opacity:0;cursor:pointer;font-size:0}
+.glabel{font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin:14px 0 6px}
+.chips.small .chip{font-size:13px;padding:7px 12px}
+.chip small{font-weight:500;opacity:.75;margin-left:3px}
+.glist{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,430px),1fr));gap:14px;padding:12px 0 16px}
+.person{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:8px}
+.phead{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.pname{margin:0;font-size:19px;line-height:1.2;overflow-wrap:anywhere}
+.kind{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.kind.guest{color:var(--blue)}
+.pmeta{font-size:14px;color:var(--muted);line-height:1.4}
+.pchips{display:flex;flex-wrap:wrap;gap:6px}
+.pchip{font-size:12px;font-weight:600;padding:4px 9px;border-radius:999px;background:var(--soft);color:var(--blue)}
+.pchip.cat{background:var(--blue);color:#fff}
+.pchip.warn{background:#fde2e0;color:#a3251a}
+.pchip.ok{background:#ddf3e5;color:#13703b}
+.pfilms{display:flex;flex-direction:column;gap:6px;border-top:1px solid var(--line);padding-top:8px}
+.pfilms .none{font-size:13px;color:var(--muted)}
+.frow{font-size:14px;line-height:1.45}
+.frow.match{background:#fdf6dc;border-radius:8px;padding:5px 8px;margin:0 -8px}
+.frow .ft{font-weight:700;color:var(--ink)}
+.frow a.ft{color:var(--blue);text-decoration:none}
+.frow .rel,.frow .fm{color:var(--muted)}
+.ftags{display:inline-flex;flex-wrap:wrap;gap:4px;margin-left:4px;vertical-align:middle}
+.ftag{font-size:11px;font-weight:600;padding:2px 7px;border-radius:999px;background:#eef1f6;color:var(--muted)}
+.ftag.on{background:var(--yellow);color:var(--ink)}
+.flog{display:block;color:var(--muted);font-size:13px;margin-top:2px}
+.pmore summary{font-size:13px;font-weight:600;padding:2px 0}
+.more{display:block;margin:0 auto 40px}
 .overlay{position:fixed;inset:0;z-index:20;background:rgba(10,42,107,.55);display:flex;align-items:center;justify-content:center;padding:16px}
 .sheet{background:#fff;border-radius:20px;max-width:540px;width:100%;padding:26px;max-height:92vh;overflow:auto}
 .sheet h2{margin:0 0 6px;font-size:24px;color:var(--blue)}
@@ -163,6 +198,7 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:0 20px calc(2
   <nav class="tabs" role="tablist" aria-label="Views">
     <button class="tab" type="button" role="tab" data-tab="intake" aria-selected="true">Intake answers<small id="tabCountIntake"></small></button>
     <button class="tab" type="button" role="tab" data-tab="events" aria-selected="false">Industry events<small id="tabCountEvents"></small></button>
+    <button class="tab" type="button" role="tab" data-tab="guests" aria-selected="false">Guest list<small id="tabCountGuests"></small></button>
   </nav>
 </header>
 
@@ -212,9 +248,42 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:0 20px calc(2
   <p class="evnote">Industry events and ticket status come from IDFA’s festival site and were checked at the time shown above. Tickets can sell out in the meantime: tap an event to see its live status on IDFA’s site.</p>
 </section>
 
+<section id="guestsView" class="wrap" hidden>
+  <div class="loadbox" id="gLoad" hidden>
+    <h2>Load the guest list on this device</h2>
+    <p class="note">The guest list is not on this website. It holds other people’s details, so it travels as a file and stays only on the device you load it on.</p>
+    <ol>
+      <li>Send the file <b>dfs-guestlist-2026.json</b> to this device (AirDrop from the Mac, then save it to Files).</li>
+      <li>Tap <b>Choose the file</b> below and pick it.</li>
+    </ol>
+    <span class="btn primary filebtn">Choose the file<input id="gFile" type="file" accept=".json,application/json"></span>
+    <div class="msg" id="gMsg"></div>
+  </div>
+  <div id="gMain" hidden>
+    <div class="evhead"><span id="gInfo"></span><button class="btn small quiet" type="button" id="gRemove">Remove from this device</button></div>
+    <div class="bar">
+      <input class="search" id="gSearch" type="search" placeholder="Search a topic (nature, politics, music…), a name, company, country or film" autocomplete="off" enterkeyhint="search">
+    </div>
+    <div class="glabel">Topics of their films</div>
+    <div class="chips small" id="gTopics"></div>
+    <div class="glabel">Who</div>
+    <div class="chips small" id="gGroups"></div>
+    <div class="chips small" id="gCats" style="margin-top:8px"></div>
+    <div class="sub">
+      <span id="gCount"></span>
+      <span class="chips">
+        <button class="chip" type="button" id="gFilmsBtn" aria-pressed="false">With films only</button>
+        <button class="chip" type="button" id="gAmsBtn" aria-pressed="false">Badge picked up</button>
+      </span>
+    </div>
+    <div class="glist" id="gList"></div>
+    <button class="btn more" type="button" id="gMore" hidden>Show more</button>
+  </div>
+</section>
+
 <footer id="footer">
   The intake answers are read from the ClickUp “Matchmaker Form” list on this device, every 30 seconds; this website keeps none of them.<br>
-  Notes are saved in ClickUp. “Seen” marks stay on this device only.
+  Notes are saved in ClickUp. “Seen” marks and the guest list stay on this device only.
 </footer>
 
 <div class="overlay" id="setup" hidden>
@@ -289,7 +358,7 @@ var items = [], known = {}, fresh = {}, openIds = {}, drafts = {}, saving = {}, 
 var listId = null, useList = false, lastOk = null, lastErr = "";
 var notesFieldId = null, lastFieldCheck = 0, pendingRender = false;
 var filter = "all", query = "", oldestFirst = lsGet(SORT_K) === "1", hideSeen = lsGet(HIDE_K) === "1";
-var tab = (location.hash === "#events" || location.hash === "#intake") ? location.hash.slice(1) : (lsGet(TAB_K) || "intake");
+var tab = /^#(intake|events|guests)$/.test(location.hash) ? location.hash.slice(1) : (lsGet(TAB_K) || "intake");
 
 /* ---------- which form question is which ---------- */
 /* Follow-up questions are matched first, so "If yes: where and when..." is not mistaken for "Has your film had its world premiere?". */
@@ -802,15 +871,315 @@ Array.prototype.forEach.call(document.querySelectorAll("#evFilters .chip"), func
 $("dfsBtn").addEventListener("click", function(){ dfsOnly = !dfsOnly; lsSet(DFS_K, dfsOnly ? "1" : "0"); syncToggles(); renderEvents(); });
 $("hidePastBtn").addEventListener("click", function(){ hidePast = !hidePast; lsSet(PAST_K, hidePast ? "1" : "0"); syncToggles(); renderEvents(); });
 
+/* ---------- guest list ---------- */
+/* GUEST-CORE-START: plain functions, also tested outside the page */
+var TOPICS = {
+  nature: { tags: ["Nature", "Environment", "Climate"], words: ["nature", "forest", "forests", "jungle", "wildlife", "animal", "animals", "bird", "birds", "ocean", "oceans", "river", "rivers", "mountain", "mountains", "glacier", "glaciers", "trees", "desert", "arctic", "amazon", "ecosystem", "ecology", "biodiversity", "species", "whale", "whales", "bees", "coral", "reef"] },
+  environment: { tags: ["Environment", "Nature", "Climate"], words: ["environment", "environmental", "pollution", "plastic", "waste", "mining", "deforestation", "ecology", "ecological", "extinction", "biodiversity"] },
+  climate: { tags: ["Climate", "Environment"], words: ["climate", "warming", "drought", "flood", "floods", "wildfire", "wildfires", "emissions", "carbon", "fossil", "melting", "sea level"] },
+  politics: { tags: ["Politics"], words: ["politics", "political", "election", "elections", "democracy", "regime", "dictatorship", "government", "protest", "protests", "activist", "activists", "revolution", "authoritarian", "resistance", "propaganda"] },
+  war: { tags: [], words: ["war", "wars", "conflict", "soldier", "soldiers", "army", "military", "bomb", "bombs", "frontline", "occupation", "invasion", "genocide", "ceasefire", "militia", "weapons", "battle"] },
+  migration: { tags: [], words: ["migration", "migrant", "migrants", "refugee", "refugees", "asylum", "border", "borders", "exile", "diaspora", "deported", "deportation"] },
+  history: { tags: ["History"], words: ["history", "historical", "archive", "archives", "archival", "memory", "colonial", "colonialism", "empire", "holocaust"] },
+  music: { tags: ["Music"], words: ["music", "musician", "musicians", "band", "song", "songs", "singer", "concert", "choir", "dance", "dancer", "dancers", "opera", "jazz", "rap", "composer"] },
+  art: { tags: ["Art"], words: ["art", "artist", "artists", "painter", "painting", "sculpture", "museum", "photography", "photographer", "poet", "poetry", "theatre", "theater", "performance"] },
+  culture: { tags: ["Culture"], words: ["culture", "cultural", "tradition", "traditions", "heritage"] },
+  youth: { tags: ["Youth", "Children"], words: ["youth", "young", "teen", "teenager", "teenagers", "adolescent", "adolescence", "students", "generation"] },
+  children: { tags: ["Children", "Youth"], words: ["child", "children", "kids", "childhood", "boy", "boys", "girl", "girls", "school"] },
+  science: { tags: ["Science"], words: ["science", "scientist", "scientists", "research", "researcher", "researchers", "space", "astronaut", "physics", "biology", "laboratory"] },
+  technology: { tags: ["Technology"], words: ["technology", "tech", "ai", "artificial intelligence", "algorithm", "algorithms", "internet", "digital", "online", "social media", "robot", "robots", "surveillance", "virtual reality"] },
+  investigative: { tags: ["Investigative"], words: ["investigation", "investigative", "journalist", "journalists", "journalism", "reporter", "reporters", "leak", "leaks", "corruption", "cover-up"] },
+  family: { tags: [], words: ["family", "families", "mother", "father", "daughter", "son", "sister", "brother", "parents", "grandmother", "grandfather", "marriage"] },
+  personal: { tags: ["Author's Point of View"], words: ["personal", "diary", "autobiographical", "self-portrait", "first-person"] },
+  women: { tags: [], words: ["women", "woman", "feminist", "feminism", "female", "mothers", "sisterhood", "gender"] },
+  queer: { tags: [], words: ["queer", "gay", "lesbian", "trans", "transgender", "lgbt", "lgbtq", "lgbtqi", "nonbinary", "non-binary", "drag"] },
+  religion: { tags: [], words: ["religion", "religious", "faith", "church", "priest", "nun", "god", "islam", "muslim", "christian", "jewish", "buddhist", "spiritual", "ritual", "mosque", "temple", "prayer"] },
+  sport: { tags: [], words: ["sport", "sports", "football", "soccer", "boxing", "boxer", "athlete", "athletes", "olympic", "olympics", "wrestling", "marathon", "climbing", "surfing", "cycling", "basketball"] },
+  food: { tags: [], words: ["food", "cooking", "chef", "kitchen", "restaurant", "harvest", "farming", "farmer", "farmers", "agriculture", "fishing", "fishermen", "fisherman", "bread", "wine"] },
+  health: { tags: [], words: ["health", "illness", "disease", "cancer", "hospital", "doctor", "doctors", "nurse", "nurses", "mental health", "depression", "disability", "disabled", "blind", "deaf", "dementia", "elderly", "ageing", "aging"] },
+  death: { tags: [], words: ["death", "dying", "grief", "mourning", "funeral", "suicide"] },
+  indigenous: { tags: [], words: ["indigenous", "native", "tribe", "tribal", "ancestral", "ancestors", "first nations", "sami", "maori", "aboriginal"] },
+  crime: { tags: [], words: ["crime", "criminal", "murder", "mafia", "gang", "gangs", "drug", "drugs", "cartel", "prison", "prisoner", "prisoners", "police"] },
+  justice: { tags: ["Social Issues"], words: ["justice", "human rights", "court", "trial", "lawyer", "discrimination", "racism", "abuse", "inequality"] },
+  experimental: { tags: ["Experimental", "Hybrid"], words: ["experimental", "hybrid", "essay film", "found footage"] }
+};
+var SYN = { environmental: "environment", ecology: "environment", animals: "nature", animal: "nature", wildlife: "nature", forest: "nature",
+  ocean: "nature", sea: "nature", landscape: "nature", "climate change": "climate", political: "politics", conflict: "war", wars: "war",
+  refugees: "migration", refugee: "migration", migrants: "migration", borders: "migration", archive: "history", archives: "history",
+  historical: "history", dance: "music", artists: "art", artist: "art", kids: "children", child: "children", young: "youth",
+  teenagers: "youth", tech: "technology", ai: "technology", digital: "technology", journalism: "investigative", journalist: "investigative",
+  investigation: "investigative", mother: "family", father: "family", gender: "women", feminism: "women", lgbt: "queer", lgbtq: "queer",
+  gay: "queer", trans: "queer", faith: "religion", spirituality: "religion", football: "sport", sports: "sport", farming: "food",
+  agriculture: "food", illness: "health", "mental health": "health", grief: "death", native: "indigenous", prison: "crime",
+  "human rights": "justice", rights: "justice", hybrid: "experimental", "social issues": "justice" };
+function gEsc(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
+function gWords(words){ return words.length ? new RegExp("(^|[^a-z0-9])(" + words.map(gEsc).join("|") + ")(?=$|[^a-z0-9])", "i") : null; }
+function prepGuests(data){
+  var films = {}, tagPeople = {}, cats = {}, groups = { guest: 0, film: 0 };
+  (data.films || []).forEach(function(f){
+    f.tags = f.tags || [];
+    f.hay = [f.t, f.log, f.intro, f.tags.join(" "), f.cty, (f.sec || []).join(" "), f.dir, f.sales, f.cat].filter(Boolean).join(" ").toLowerCase();
+    films[f.id] = f;
+  });
+  var people = (data.people || []).filter(function(p){ return p && p.n; });
+  people.forEach(function(p){
+    p.links = (p.links || []).filter(function(l){ return films[l.f]; });
+    p.hay = [p.n, p.co, p.cty, p.prof, p.type, (p.pass || []).join(" "), p.prog, (p.roles || []).join(" "), p.cat].filter(Boolean).join(" ").toLowerCase();
+    var tags = {};
+    p.links.forEach(function(l){ films[l.f].tags.forEach(function(t){ tags[t] = 1; }); });
+    Object.keys(tags).forEach(function(t){ tagPeople[t] = (tagPeople[t] || 0) + 1; });
+    cats[p.cat] = (cats[p.cat] || 0) + 1;
+    groups[p.kind] = (groups[p.kind] || 0) + 1;
+  });
+  return { data: data, films: films, people: people, tagPeople: tagPeople, cats: cats, groups: groups };
+}
+function topicFor(q){
+  var key = TOPICS[q] ? q : SYN[q];
+  return key ? TOPICS[key] : null;
+}
+function searchGuests(G, query, o){
+  var q = (query || "").trim().toLowerCase();
+  var topic = q ? topicFor(q) : null, tagSet = {};
+  if (topic) topic.tags.forEach(function(t){ tagSet[t] = 1; });
+  Object.keys(G.tagPeople).forEach(function(t){ if (t.toLowerCase() === q) tagSet[t] = 1; });
+  var anyTag = Object.keys(tagSet).length > 0;
+  var filmRe = q ? gWords([q].concat(topic ? topic.words : [])) : null;
+  /* A topic word must be a whole word ("art" is not "Arte"); a name or place only needs to start a word. */
+  var personRe = q ? (topic || anyTag ? gWords([q]) : new RegExp("(^|[^a-z0-9])" + gEsc(q), "i")) : null;
+  var score = {};
+  function fscore(f){
+    if (score[f.id] === undefined) score[f.id] = f.tags.some(function(t){ return tagSet[t]; }) ? 3 : (filmRe && filmRe.test(f.hay)) ? 2 : 0;
+    return score[f.id];
+  }
+  var out = [];
+  G.people.forEach(function(p){
+    if (o.group !== "all" && p.kind !== o.group) return;
+    if (o.cat !== "all" && p.cat !== o.cat) return;
+    if (o.withFilms && !p.links.length) return;
+    if (o.inAms && !p.badge) return;
+    var s = 0, hits = [];
+    if (q){
+      if (personRe.test(p.hay)) s += 100;
+      p.links.forEach(function(l){ var fs = fscore(G.films[l.f]); if (fs){ s += fs; if (hits.indexOf(l.f) === -1) hits.push(l.f); } });
+      if (!s) return;
+    }
+    out.push({ p: p, score: s, hits: hits });
+  });
+  var order = { guest: 0, film: 1 };
+  out.sort(function(a, b){ return b.score - a.score || (order[a.p.kind] - order[b.p.kind]) || a.p.n.localeCompare(b.p.n); });
+  var filmsHit = Object.keys(score).filter(function(k){ return score[k] > 0; }).length;
+  return { list: out, filmsHit: filmsHit, topic: topic, tagSet: tagSet };
+}
+/* GUEST-CORE-END */
+
+var GUEST_KEY = "guestlist", G = null, gQuery = "", gGroup = "all", gCat = "all", gShown = 60;
+var gWithFilms = lsGet("mm-g-films") === "1", gInAms = lsGet("mm-g-ams") === "1";
+var GROUP_LABEL = { all: "Everyone", guest: "Guest list (acquisition passes)", film: "Film teams (Docs for Sale films)" };
+var CAT_ORDER = ["Producers & directors", "Sales agents", "Buyers & distributors", "Commissioning editors & broadcasters",
+                 "Festivals, markets & curators", "Funds & institutes", "Other professionals"];
+
+/* The guest list is kept in this device's own storage (IndexedDB), never on the website. */
+function idb(){
+  return new Promise(function(res, rej){
+    try{
+      var r = indexedDB.open("matchmaker", 1);
+      r.onupgradeneeded = function(){ r.result.createObjectStore("kv"); };
+      r.onsuccess = function(){ res(r.result); };
+      r.onerror = function(){ rej(r.error); };
+    }catch(e){ rej(e); }
+  });
+}
+function idbDo(mode, fn){
+  return idb().then(function(db){
+    return new Promise(function(res, rej){
+      var st = db.transaction("kv", mode).objectStore("kv"), rq = fn(st);
+      rq.onsuccess = function(){ res(rq.result); };
+      rq.onerror = function(){ rej(rq.error); };
+    });
+  });
+}
+function idbGet(k){ return idbDo("readonly", function(s){ return s.get(k); }); }
+function idbSet(k, v){ return idbDo("readwrite", function(s){ return s.put(v, k); }); }
+function idbDel(k){ return idbDo("readwrite", function(s){ return s.delete(k); }); }
+
+function useGuestText(text, save){
+  var data;
+  try{ data = JSON.parse(text); }catch(e){ throw new Error("This file is not the guest list (it is not readable)."); }
+  if (!data || data.v !== 1 || !Array.isArray(data.people) || !Array.isArray(data.films)) throw new Error("This file is not the guest list made for this board.");
+  G = prepGuests(data); gShown = 60;
+  renderGuests();
+  if (save) return idbSet(GUEST_KEY, text).then(function(){ return true; }, function(){ return false; });
+  return Promise.resolve(true);
+}
+$("gFile").addEventListener("change", function(){
+  var file = this.files && this.files[0], input = this;
+  if (!file) return;
+  $("gMsg").textContent = "Reading the file…";
+  var rd = new FileReader();
+  rd.onload = function(){
+    try{
+      useGuestText(String(rd.result), true).then(function(saved){
+        $("gMsg").textContent = "";
+        toast(saved ? "Guest list loaded and kept on this device" : "Guest list loaded, but this device would not keep it: load it again next time");
+      });
+    }catch(e){ $("gMsg").textContent = e.message; }
+    input.value = "";
+  };
+  rd.onerror = function(){ $("gMsg").textContent = "Could not read the file."; };
+  rd.readAsText(file);
+});
+$("gRemove").addEventListener("click", function(){
+  if (!confirmRemove()) return;
+  G = null;
+  idbDel(GUEST_KEY).then(function(){}, function(){});
+  renderGuests(); toast("Guest list removed from this device");
+});
+function confirmRemove(){
+  var b = $("gRemove");
+  if (b.getAttribute("data-sure") === "1"){ b.removeAttribute("data-sure"); b.textContent = "Remove from this device"; return true; }
+  b.setAttribute("data-sure", "1"); b.textContent = "Tap again to remove";
+  setTimeout(function(){ b.removeAttribute("data-sure"); b.textContent = "Remove from this device"; }, 4000);
+  return false;
+}
+$("gSearch").addEventListener("input", function(){ gQuery = this.value; gShown = 60; renderGuests(); });
+$("gFilmsBtn").addEventListener("click", function(){ gWithFilms = !gWithFilms; lsSet("mm-g-films", gWithFilms ? "1" : "0"); gShown = 60; renderGuests(); });
+$("gAmsBtn").addEventListener("click", function(){ gInAms = !gInAms; lsSet("mm-g-ams", gInAms ? "1" : "0"); gShown = 60; renderGuests(); });
+$("gMore").addEventListener("click", function(){ gShown += 60; renderGuests(); });
+
+function chip(label, count, on, onClick){
+  var b = button("chip", label, onClick);
+  if (count != null) b.appendChild(el("small", null, count));
+  b.setAttribute("aria-pressed", String(!!on));
+  return b;
+}
+function personCard(r, res){
+  var p = r.p, c = el("article", "person");
+  var head = el("div", "phead");
+  head.appendChild(el("h3", "pname", p.n));
+  head.appendChild(el("span", "kind" + (p.kind === "guest" ? " guest" : ""), p.kind === "guest" ? "Guest list" : "Film team"));
+  c.appendChild(head);
+  var meta = [p.co, p.cty, p.kind === "film" && p.roles && p.roles.length ? p.roles.join(", ") : (p.prof || "")].filter(Boolean);
+  if (meta.length) c.appendChild(el("div", "pmeta", meta.join("  ·  ")));
+  var chips = el("div", "pchips");
+  chips.appendChild(el("span", "pchip cat", p.cat));
+  (p.pass || []).forEach(function(x){ chips.appendChild(el("span", "pchip", x)); });
+  if (p.status && p.status !== "Approved") chips.appendChild(el("span", "pchip warn", p.status));
+  if (p.attends === false) chips.appendChild(el("span", "pchip warn", "Not attending"));
+  if (p.badge) chips.appendChild(el("span", "pchip ok", "Badge picked up"));
+  c.appendChild(chips);
+  if (p.prog) c.appendChild(el("div", "pmeta", "Meetings: " + p.prog));
+
+  var box = el("div", "pfilms");
+  if (!p.links.length){
+    box.appendChild(el("div", "none", p.kind === "guest" ? "No films linked to this guest yet." : "No films linked."));
+  } else {
+    var links = p.links.slice().sort(function(a, b){ return (r.hits.indexOf(b.f) !== -1) - (r.hits.indexOf(a.f) !== -1); });
+    var first = links.slice(0, 4), rest = links.slice(4);
+    first.forEach(function(l){ box.appendChild(filmRow(l, r, res)); });
+    if (rest.length){
+      var more = el("details", "pmore");
+      more.appendChild(el("summary", null, "+ " + rest.length + " more film" + (rest.length === 1 ? "" : "s")));
+      rest.forEach(function(l){ more.appendChild(filmRow(l, r, res)); });
+      box.appendChild(more);
+    }
+  }
+  c.appendChild(box);
+  return c;
+}
+function filmRow(l, r, res){
+  var f = G.films[l.f], hit = r.hits.indexOf(l.f) !== -1;
+  var row = el("div", "frow" + (hit ? " match" : ""));
+  var title;
+  if (f.link && /^https:\/\/festival\.idfa\.nl\//.test(f.link)){ title = el("a", "ft", f.t); title.href = f.link; title.target = "_blank"; title.rel = "noopener noreferrer"; }
+  else title = el("span", "ft", f.t);
+  row.appendChild(title);
+  row.appendChild(el("span", "rel", "  ·  " + l.r));
+  var fm = [f.cat, f.len ? f.len + " min" : "", f.cty].filter(Boolean).join(", ");
+  if (fm) row.appendChild(el("span", "fm", "  ·  " + fm));
+  if (f.tags.length){
+    var tg = el("span", "ftags");
+    f.tags.forEach(function(t){ tg.appendChild(el("span", "ftag" + (res.tagSet[t] ? " on" : ""), t)); });
+    row.appendChild(tg);
+  }
+  if (hit && (f.log || f.intro)) row.appendChild(el("span", "flog", f.log || (f.intro.length > 180 ? f.intro.slice(0, 177) + "…" : f.intro)));
+  return row;
+}
+function renderGuests(){
+  $("tabCountGuests").textContent = G ? " " + G.people.length : "";
+  $("gLoad").hidden = !!G; $("gMain").hidden = !G;
+  if (!G) return;
+  var d = G.data;
+  $("gInfo").textContent = (DEMO ? "Demo guest list, made up. " : "") + "Built " +
+    ams(d.built, { weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" }) +
+    " · " + (G.groups.guest || 0) + " guests, " + (G.groups.film || 0) + " film team members, " + Object.keys(G.films).length + " films";
+
+  var topics = $("gTopics"); topics.textContent = "";
+  var ql = gQuery.trim().toLowerCase();
+  (d.tags || []).forEach(function(t){
+    var n = G.tagPeople[t[0]] || 0;
+    if (!n) return;
+    topics.appendChild(chip(t[0], n, ql === t[0].toLowerCase(), function(){
+      gQuery = ql === t[0].toLowerCase() ? "" : t[0]; $("gSearch").value = gQuery; gShown = 60; renderGuests();
+    }));
+  });
+  var groups = $("gGroups"); groups.textContent = "";
+  ["all", "guest", "film"].forEach(function(k){
+    groups.appendChild(chip(GROUP_LABEL[k], k === "all" ? G.people.length : (G.groups[k] || 0), gGroup === k, function(){ gGroup = k; gShown = 60; renderGuests(); }));
+  });
+  var cats = $("gCats"); cats.textContent = "";
+  cats.appendChild(chip("All roles", null, gCat === "all", function(){ gCat = "all"; gShown = 60; renderGuests(); }));
+  CAT_ORDER.forEach(function(k){
+    if (!G.cats[k]) return;
+    cats.appendChild(chip(k, G.cats[k], gCat === k, function(){ gCat = gCat === k ? "all" : k; gShown = 60; renderGuests(); }));
+  });
+  $("gFilmsBtn").setAttribute("aria-pressed", String(gWithFilms));
+  $("gAmsBtn").setAttribute("aria-pressed", String(gInAms));
+
+  var res = searchGuests(G, gQuery, { group: gGroup, cat: gCat, withFilms: gWithFilms, inAms: gInAms });
+  var nGuests = res.list.filter(function(x){ return x.p.kind === "guest"; }).length;
+  $("gCount").textContent = res.list.length + (res.list.length === 1 ? " person" : " people") +
+    " (" + nGuests + " on the guest list, " + (res.list.length - nGuests) + " in film teams)" +
+    (ql ? " · " + res.filmsHit + " linked film" + (res.filmsHit === 1 ? "" : "s") + " match" : "");
+  var list = $("gList"); list.textContent = "";
+  if (!res.list.length){
+    list.appendChild(el("div", "empty", ql ? "Nobody matches “" + gQuery.trim() + "” with these filters." : "Nobody matches these filters."));
+  }
+  res.list.slice(0, gShown).forEach(function(r){ list.appendChild(personCard(r, res)); });
+  $("gMore").hidden = res.list.length <= gShown;
+  $("gMore").textContent = "Show more (" + (res.list.length - gShown) + " left)";
+}
+function loadGuests(){
+  if (DEMO){ G = prepGuests(DEMO_GUESTS); renderGuests(); return; }
+  idbGet(GUEST_KEY).then(function(text){
+    if (text){ try{ useGuestText(text, false); }catch(e){ G = null; } }
+    renderGuests();
+  }, function(){ renderGuests(); });
+}
+var DEMO_GUESTS = { v: 1, built: "2026-11-15T09:00:00Z", tags: [["Nature", 1], ["Climate", 1], ["Human Interest", 1], ["Music", 1]],
+  films: [
+    { id: "c1", t: "Salt Roads", src: ["dfs"], cat: "Feature", len: "84", cty: "Netherlands, Belgium", tags: ["Nature", "Climate", "Human Interest"], sales: "Demo Sales Co", dir: "Demo Director A", log: "Salt harvesters follow the tides along a shrinking coast." },
+    { id: "c2", t: "Night Shift Choir", src: ["dfs", "idfa"], cat: "Feature", len: "91", cty: "Germany", tags: ["Music"], sales: "Demo Sales Co", log: "Hospital night workers form a choir.", link: "https://festival.idfa.nl/en/collectie/" },
+    { id: "f3", t: "The Quiet Harbour", src: ["idfa"], len: "62", cty: "Portugal", tags: [], log: "A daughter spends one winter on her father's fishing boat at sea.", link: "https://festival.idfa.nl/en/collectie/" }
+  ],
+  people: [
+    { id: "g1", n: "Demo Sales Agent", kind: "guest", cat: "Sales agents", co: "Demo Sales Co", cty: "France", prof: "Sales Agent", pass: ["Docs for Sale Acquisition", "Forum & DocLab Forum"], prog: "Forum One on Ones", status: "Approved", attends: true, badge: true, links: [{ f: "c1", r: "Sales (their company)" }, { f: "c2", r: "Sales (their company)" }] },
+    { id: "g2", n: "Demo Commissioning Editor", kind: "guest", cat: "Commissioning editors & broadcasters", co: "Demo TV", cty: "Portugal", prof: "Commissioning Editor", pass: ["Docs for Sale Acquisition"], status: "Approved", attends: true, badge: false, links: [{ f: "f3", r: "TV channel (their company)" }] },
+    { id: "g3", n: "Demo Buyer", kind: "guest", cat: "Buyers & distributors", co: "Demo Distribution", cty: "Spain", prof: "Buyer", pass: ["Docs for Sale Acquisition"], status: "Requested", attends: true, badge: false, links: [] },
+    { id: "p4", n: "Demo Director A", kind: "film", cat: "Producers & directors", roles: ["Director"], links: [{ f: "c1", r: "Director" }] },
+    { id: "p5", n: "Demo Producer B", kind: "film", cat: "Producers & directors", co: "Demo Productions", roles: ["Producer"], links: [{ f: "c2", r: "Producer" }] }
+  ] };
+
 /* ---------- tabs ---------- */
 function showTab(name){
-  tab = name === "events" ? "events" : "intake";
+  tab = (name === "events" || name === "guests") ? name : "intake";
   lsSet(TAB_K, tab);
   Array.prototype.forEach.call(document.querySelectorAll(".tab"), function(b){ b.setAttribute("aria-selected", String(b.getAttribute("data-tab") === tab)); });
   $("intakeView").hidden = tab !== "intake";
   $("eventsView").hidden = tab !== "events";
+  $("guestsView").hidden = tab !== "guests";
   if (history.replaceState) history.replaceState(null, "", location.pathname + location.search + "#" + tab);
   if (tab === "events") loadEvents();
+  if (tab === "guests") renderGuests();
 }
 Array.prototype.forEach.call(document.querySelectorAll(".tab"), function(b){
   b.addEventListener("click", function(){ showTab(b.getAttribute("data-tab")); window.scrollTo(0, 0); });
@@ -880,6 +1249,7 @@ $("hideSeenBtn").addEventListener("click", function(){ hideSeen = !hideSeen; lsS
 syncToggles();
 if (DEMO){ $("demoBanner").hidden = false; $("settingsBtn").textContent = "Leave demo"; }
 showStatus(); render(true);
+loadGuests();
 showTab(tab);
 if (tab !== "events") loadEvents();
 if (key || DEMO) refresh(); else openSetup();
