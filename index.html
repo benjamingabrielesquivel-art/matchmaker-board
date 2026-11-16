@@ -172,6 +172,23 @@ a.open{font-size:14px;color:var(--blue)}
 .here.off{background:#eef1f6;color:var(--muted)}
 .fans{display:flex;flex-direction:column;gap:6px;margin:2px 0 6px 12px;padding-left:10px;border-left:3px solid var(--soft)}
 .person .flog{margin:0}
+.pphoto.blank{display:inline-flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;color:var(--blue)}
+.pphoto.sm.blank{font-size:12px}
+.ptap{cursor:zoom-in}
+.ptap:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.pbox{position:fixed;inset:0;z-index:40;background:rgba(10,42,107,.92);display:flex;align-items:center;justify-content:center;padding:16px}
+.pboxcard{background:#fff;border-radius:24px;width:100%;max-width:560px;max-height:96vh;overflow:auto;padding:22px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px}
+.pboxpic{width:min(100%,56vh,480px);aspect-ratio:1/1;flex:none;border-radius:20px;overflow:hidden;background:var(--soft);display:flex;align-items:center;justify-content:center;color:var(--blue);font-size:96px;font-weight:700}
+.pboxpic img{width:100%;height:100%;object-fit:cover;display:block}
+.pboxname{font-size:28px;font-weight:700;color:var(--ink);line-height:1.15;overflow-wrap:anywhere;margin-top:6px}
+.pboxsub{font-size:17px;color:var(--muted);line-height:1.4}
+.pbox .pchips{justify-content:center}
+.pbox .here{margin-left:0;font-size:12px;padding:4px 9px;vertical-align:0}
+.pboxctx{font-size:15px;font-weight:600;color:var(--ink);line-height:1.4}
+.pboxwhy{font-size:15px;color:var(--muted);line-height:1.45}
+.pboxwhy:not(:empty)::before{content:"Why: ";font-weight:700}
+.pboxnav{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;margin-top:6px}
+#pboxPos{font-size:14px;color:var(--muted)}
 .more{display:block;margin:0 auto 40px}
 .overlay{position:fixed;inset:0;z-index:20;background:rgba(10,42,107,.55);display:flex;align-items:center;justify-content:center;padding:16px}
 .sheet{background:#fff;border-radius:20px;max-width:540px;width:100%;padding:26px;max-height:92vh;overflow:auto}
@@ -362,6 +379,23 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:0 20px calc(2
 </div>
 
 <div class="toast" id="toast" hidden></div>
+
+<div class="pbox" id="pbox" hidden role="dialog" aria-modal="true" aria-labelledby="pboxName">
+  <div class="pboxcard">
+    <div class="pboxpic" id="pboxPic"></div>
+    <div class="pboxname" id="pboxName"></div>
+    <div class="pboxsub" id="pboxSub"></div>
+    <div class="pchips" id="pboxTags"></div>
+    <div class="pboxctx" id="pboxCtx"></div>
+    <div class="pboxwhy" id="pboxWhy"></div>
+    <div class="pboxnav" id="pboxNav">
+      <button class="btn" type="button" id="pboxPrev">‹ Previous</button>
+      <span id="pboxPos"></span>
+      <button class="btn" type="button" id="pboxNext">Next ›</button>
+    </div>
+    <button class="btn primary" type="button" id="pboxClose">Close</button>
+  </div>
+</div>
 
 <script>
 (function(){
@@ -1158,19 +1192,110 @@ function chip(label, count, on, onClick){
   return b;
 }
 /* A photo only from IDFA's own public guest list (my.idfa.nl); the demo uses this site's icon instead of a real face. */
-function photo(p, small){
+function photoUrl(p){
   var u = p && p.img;
-  if (typeof u !== "string" || !(/^https:\/\/my\.idfa\.nl\//.test(u) || (DEMO && /^icon-\d+\.png$/.test(u)))) return null;
+  return (typeof u === "string" && (/^https:\/\/my\.idfa\.nl\//.test(u) || (DEMO && /^icon-\d+\.png$/.test(u)))) ? u : null;
+}
+function initials(n){
+  var w = String(n || "").trim().split(/\s+/);
+  return ((w[0] || "").charAt(0) + (w.length > 1 ? w[w.length - 1].charAt(0) : "")).toUpperCase();
+}
+function blankPhoto(p, small){ return el("span", "pphoto blank" + (small ? " sm" : ""), initials(p.n)); }
+function photo(p, small){
+  var u = photoUrl(p);
+  if (!u) return null;
   var im = document.createElement("img");
   im.className = "pphoto" + (small ? " sm" : ""); im.loading = "lazy"; im.decoding = "async";
   im.referrerPolicy = "no-referrer"; im.alt = "Photo of " + p.n; im.src = u;
-  im.addEventListener("error", function(){ im.hidden = true; });
+  /* A photo that does not load becomes the initials circle, and can still be tapped. */
+  im.addEventListener("error", function(){
+    var b = blankPhoto(p, small);
+    if (im._pb) tappable(b, im._pb, im._grp);
+    if (im.parentNode) im.parentNode.replaceChild(b, im); else im.hidden = true;
+  });
   return im;
 }
+
+/* ---------- tap a photo to see it bigger, to show a filmmaker who to talk to ---------- */
+function bigUrl(u){
+  if (/^https:\/\/my\.idfa\.nl\/.+\/400\.jpeg$/.test(u)) return u.replace(/\/400\.jpeg$/, "/860.jpeg");
+  return u === "icon-192.png" ? "icon-512.png" : u;
+}
+var pbList = [], pbAt = 0, pbBack = null, pbX = null;
+function tappable(node, item, groupOf){
+  node._pb = item; node._grp = groupOf;
+  node.classList.add("ptap"); node.tabIndex = 0;
+  node.setAttribute("role", "button"); node.setAttribute("aria-label", "Show " + item.p.n + " bigger");
+  function go(e){ e.preventDefault(); var g = groupOf ? groupOf(node) : [item]; openPhoto(g, Math.max(0, g.indexOf(item))); }
+  node.addEventListener("click", go);
+  node.addEventListener("keydown", function(e){ if (e.key === "Enter" || e.key === " ") go(e); });
+  return node;
+}
+/* Everyone in the same list (a film's team, or who might be interested), in the order shown. */
+function listOf(node){
+  var box = node.closest ? node.closest(".fans, .pfilms") : null;
+  return box ? [].slice.call(box.querySelectorAll(".ptap")).map(function(x){ return x._pb; }) : [node._pb];
+}
+function openPhoto(list, i){
+  pbList = list; pbAt = i; pbBack = document.activeElement;
+  showPhoto();
+  $("pbox").hidden = false; document.body.style.overflow = "hidden";
+  $("pboxClose").focus();
+}
+function showPhoto(){
+  var it = pbList[pbAt], p = it.p, pic = $("pboxPic"), u = photoUrl(p);
+  pic.textContent = "";
+  if (u){
+    var im = document.createElement("img"), big = bigUrl(u);
+    im.alt = "Photo of " + p.n; im.referrerPolicy = "no-referrer"; im.src = u;
+    im.addEventListener("error", function(){ if (pbList[pbAt] === it) pic.textContent = initials(p.n); });
+    pic.appendChild(im);
+    if (big !== u){   /* the sharper 860 px photo replaces the small one once it has loaded */
+      var pre = new Image();
+      pre.referrerPolicy = "no-referrer";
+      pre.onload = function(){ if (pbList[pbAt] === it) im.src = big; };
+      pre.src = big;
+    }
+  } else pic.textContent = initials(p.n);
+  $("pboxName").textContent = p.n;
+  $("pboxSub").textContent = [p.job || p.prof || (p.roles || []).join(", "), p.co, p.cty].filter(Boolean).join(" · ");
+  var tags = $("pboxTags"), hc = hereChip(p);
+  tags.textContent = "";
+  if (p.cat) tags.appendChild(el("span", "pchip cat", p.cat));
+  if (hc) tags.appendChild(hc);
+  $("pboxCtx").textContent = it.ctx || "";
+  $("pboxWhy").textContent = it.why && it.why.length ? it.why.join(" · ") : "";
+  $("pboxNav").hidden = pbList.length < 2;
+  $("pboxPos").textContent = (pbAt + 1) + " of " + pbList.length;
+  $("pboxPrev").disabled = pbAt === 0;
+  $("pboxNext").disabled = pbAt === pbList.length - 1;
+}
+function stepPhoto(d){ var n = pbAt + d; if (n >= 0 && n < pbList.length){ pbAt = n; showPhoto(); } }
+function closePhoto(){
+  $("pbox").hidden = true; document.body.style.overflow = ""; pbList = [];
+  if (pbBack && pbBack.focus) try{ pbBack.focus(); }catch(e){}
+}
+$("pboxClose").addEventListener("click", closePhoto);
+$("pboxPrev").addEventListener("click", function(){ stepPhoto(-1); });
+$("pboxNext").addEventListener("click", function(){ stepPhoto(1); });
+$("pbox").addEventListener("click", function(e){ if (e.target === this) closePhoto(); });
+document.addEventListener("keydown", function(e){
+  if ($("pbox").hidden) return;
+  if (e.key === "Escape") closePhoto();
+  else if (e.key === "ArrowLeft") stepPhoto(-1);
+  else if (e.key === "ArrowRight") stepPhoto(1);
+});
+$("pbox").addEventListener("touchstart", function(e){ pbX = e.touches.length === 1 ? e.touches[0].clientX : null; }, { passive: true });
+$("pbox").addEventListener("touchend", function(e){   /* swipe left or right for the next or previous person */
+  if (pbX === null || !e.changedTouches.length) return;
+  var dx = e.changedTouches[0].clientX - pbX;
+  pbX = null;
+  if (Math.abs(dx) > 60) stepPhoto(dx < 0 ? 1 : -1);
+});
 function personCard(r, res){
   var p = r.p, c = el("article", "person");
   var head = el("div", "phead"), ph = photo(p);
-  if (ph) head.appendChild(ph);
+  if (ph) head.appendChild(tappable(ph, { p: p }, null));
   var who = el("div", "pwho");
   who.appendChild(el("h3", "pname", p.n));
   who.appendChild(el("span", "kind" + (p.kind === "guest" ? " guest" : ""), kindLabel(p)));
@@ -1197,7 +1322,7 @@ function personCard(r, res){
       tb.appendChild(filmRow({ f: id, r: (p.roles || []).join(", ") }, r, res));
       var fans = G.films[id].fans || [], fb = el("div", "fans");
       if (!fans.length) fb.appendChild(el("div", "fm", "No suggestions for this film yet."));
-      capped(fb, fans, 3, fanLine, "");
+      capped(fb, fans, 3, function(x){ return fanLine(x, G.films[id]); }, "");
       tb.appendChild(fb);
     });
     c.appendChild(tb);
@@ -1241,9 +1366,10 @@ function capped(box, items, n, make, word){
     box.appendChild(more);
   }
 }
-function personLine(p, sub, why){
-  var row = el("div", "mate"), ph = photo(p, true), tx = el("div", "mtx"), top = el("div");
-  row.appendChild(ph || el("span", "pphoto sm"));   /* an empty circle keeps the names in one column */
+function personLine(p, sub, why, ctx){
+  var row = el("div", "mate"), tx = el("div", "mtx"), top = el("div");
+  /* The photo, or a circle with initials when there is none; both open the bigger view. */
+  row.appendChild(tappable(photo(p, true) || blankPhoto(p, true), { p: p, why: why, ctx: ctx }, listOf));
   top.appendChild(el("b", null, p.n));
   var hc = hereChip(p);
   if (hc) top.appendChild(hc);
@@ -1254,9 +1380,9 @@ function personLine(p, sub, why){
   return row;
 }
 /* x = [person id, points, reasons] from the file */
-function fanLine(x){
+function fanLine(x, f){
   var p = G.byId[x[0]];
-  return personLine(p, [p.cat, p.co, p.cty].filter(Boolean).join(" · "), x[2]);
+  return personLine(p, [p.cat, p.co, p.cty].filter(Boolean).join(" · "), x[2], f ? "Might be interested in “" + f.t + "”" : "");
 }
 function filmCard(r, res){
   var f = r.f, c = el("article", "person");
@@ -1282,13 +1408,13 @@ function filmCard(r, res){
   var members = f.team.map(function(id){ return G.byId[id]; })
     .sort(function(a, b){ return (b.here === "In Amsterdam") - (a.here === "In Amsterdam"); });
   if (!members.length) team.appendChild(el("div", "none", "No team members in the list."));
-  members.forEach(function(p){ team.appendChild(personLine(p, (p.roles || []).join(", "))); });
+  members.forEach(function(p){ team.appendChild(personLine(p, (p.roles || []).join(", "), null, "On the team of “" + f.t + "”")); });
   c.appendChild(team);
 
   var fans = el("div", "pfilms");
   fans.appendChild(el("div", "plabel", "Might be interested (" + f.fans.length + ")"));
   if (!f.fans.length) fans.appendChild(el("div", "none", "No suggestions for this film yet."));
-  capped(fans, f.fans, 5, fanLine, "");
+  capped(fans, f.fans, 5, function(x){ return fanLine(x, f); }, "");
   c.appendChild(fans);
   return c;
 }
