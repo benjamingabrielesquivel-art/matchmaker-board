@@ -312,7 +312,7 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:0 20px calc(2
     </div>
     <div id="fView" hidden>
       <div class="bar">
-        <input class="search" id="fSearch" type="search" placeholder="Search a topic, region (Latin America, Nordic…), country, title or team member" autocomplete="off" enterkeyhint="search">
+        <input class="search" id="fSearch" type="search" placeholder="Topic, region, country, title or team member (several: iran or palestine)" autocomplete="off" enterkeyhint="search">
       </div>
       <div class="glabel">Topics</div>
       <div class="chips small" id="fTopics"></div>
@@ -328,7 +328,7 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:0 20px calc(2
     </div>
     <div id="pView">
     <div class="bar">
-      <input class="search" id="gSearch" type="search" placeholder="Search a topic, region (Latin America…), role (buyers, TV), name, company or film" autocomplete="off" enterkeyhint="search">
+      <input class="search" id="gSearch" type="search" placeholder="Topic, region, role (buyers, TV), name or company (several: use “or”)" autocomplete="off" enterkeyhint="search">
     </div>
     <div class="glabel">Topics of their films</div>
     <div class="chips small" id="gTopics"></div>
@@ -1238,8 +1238,28 @@ function topicFor(q){
   var key = TOPICS[q] ? q : SYN[q];
   return key ? TOPICS[key] : null;
 }
+/* "iran or palestine or sudan" (or with commas): everything that matches any of the parts. */
+function orParts(q){ return q.split(/\s*,\s*|\s+or(?=\s|$)\s*/).map(function(s){ return s.trim(); }).filter(Boolean); }
 function searchGuests(G, query, o){
-  var q = (query || "").trim().toLowerCase();
+  var q = (query || "").trim().toLowerCase(), alts = orParts(q);
+  if (alts.length > 1){
+    var seen = {}, list = [], notes = [], tagSet = {}, fh = {};
+    alts.forEach(function(a){
+      var r = searchGuests(G, a, o);
+      notes.push(r.note || "“" + a + "”");
+      Object.keys(r.tagSet).forEach(function(t){ tagSet[t] = 1; });
+      r.list.forEach(function(x){
+        x.hits.forEach(function(h){ fh[h] = 1; });
+        var c = seen[x.p.id];
+        if (!c){ c = seen[x.p.id] = { p: x.p, score: x.score, hits: x.hits.slice() }; list.push(c); }
+        else { c.score = Math.max(c.score, x.score); x.hits.forEach(function(h){ if (c.hits.indexOf(h) === -1) c.hits.push(h); }); }
+      });
+    });
+    var rank = { guest: 0, film: 1, participant: 1 };
+    list.sort(function(a, b){ return b.score - a.score || ((rank[a.p.kind] || 0) - (rank[b.p.kind] || 0)) || a.p.n.localeCompare(b.p.n); });
+    return { list: list, filmsHit: Object.keys(fh).length, topic: null, tagSet: tagSet, note: notes.join(" or ") };
+  }
+  if (alts.length === 1) q = alts[0];
   var terms = q ? gTerms(G, q) : [];
   if (smartSearch(terms)) return searchGuestsTerms(G, terms, o);
   var topic = q ? topicFor(q) : null, tagSet = {};
@@ -1276,7 +1296,23 @@ function searchGuests(G, query, o){
 /* Docs for Sale films (v2): the same topic words as above; a tag or topic of the film counts most.
    tagSet here is lower case. A name or title only needs to start a word, and also finds team members. */
 function searchFilms(G, query, o){
-  var q = (query || "").trim().toLowerCase();
+  var q = (query || "").trim().toLowerCase(), alts = orParts(q);
+  if (alts.length > 1){
+    var seen = {}, list = [], notes = [], tagSet = {};
+    alts.forEach(function(a){
+      var r = searchFilms(G, a, o);
+      notes.push(r.note || "“" + a + "”");
+      Object.keys(r.tagSet).forEach(function(t){ tagSet[t] = 1; });
+      r.list.forEach(function(x){
+        var c = seen[x.f.id];
+        if (!c){ c = seen[x.f.id] = { f: x.f, score: x.score }; list.push(c); }
+        else c.score = Math.max(c.score, x.score);
+      });
+    });
+    list.sort(function(a, b){ return b.score - a.score || (b.f.teamHere - a.f.teamHere) || a.f.t.localeCompare(b.f.t); });
+    return { list: list, topic: null, tagSet: tagSet, note: notes.join(" or ") };
+  }
+  if (alts.length === 1) q = alts[0];
   var terms = q ? gTerms(G, q) : [];
   if (smartSearch(terms)) return searchFilmsTerms(G, terms, o);
   var topic = q ? topicFor(q) : null, tagSet = {};
