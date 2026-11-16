@@ -11,7 +11,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Matchmaking">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://api.clickup.com; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://api.clickup.com; img-src 'self' data: https://my.idfa.nl; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; base-uri 'none'; form-action 'none'">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="icon" type="image/png" href="icon-192.png">
@@ -130,7 +130,10 @@ a.open{font-size:14px;color:var(--blue)}
 .chip small{font-weight:500;opacity:.75;margin-left:3px}
 .glist{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,430px),1fr));gap:14px;padding:12px 0 16px}
 .person{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:8px}
-.phead{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.phead{display:flex;gap:12px;align-items:center}
+.pwho{display:flex;flex:1;min-width:0;justify-content:space-between;gap:4px 10px;align-items:baseline;flex-wrap:wrap}
+.pphoto{width:56px;height:56px;border-radius:50%;object-fit:cover;flex:none;background:var(--soft)}
+.pphoto.sm{width:34px;height:34px}
 .pname{margin:0;font-size:19px;line-height:1.2;overflow-wrap:anywhere}
 .kind{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
 .kind.guest{color:var(--blue)}
@@ -1052,11 +1055,24 @@ function chip(label, count, on, onClick){
   b.setAttribute("aria-pressed", String(!!on));
   return b;
 }
+/* A photo only from IDFA's own public guest list (my.idfa.nl); the demo uses this site's icon instead of a real face. */
+function photo(p, small){
+  var u = p && p.img;
+  if (typeof u !== "string" || !(/^https:\/\/my\.idfa\.nl\//.test(u) || (DEMO && /^icon-\d+\.png$/.test(u)))) return null;
+  var im = document.createElement("img");
+  im.className = "pphoto" + (small ? " sm" : ""); im.loading = "lazy"; im.decoding = "async";
+  im.referrerPolicy = "no-referrer"; im.alt = "Photo of " + p.n; im.src = u;
+  im.addEventListener("error", function(){ im.hidden = true; });
+  return im;
+}
 function personCard(r, res){
   var p = r.p, c = el("article", "person");
-  var head = el("div", "phead");
-  head.appendChild(el("h3", "pname", p.n));
-  head.appendChild(el("span", "kind" + (p.kind === "guest" ? " guest" : ""), p.kind === "guest" ? "Guest list" : "Film team"));
+  var head = el("div", "phead"), ph = photo(p);
+  if (ph) head.appendChild(ph);
+  var who = el("div", "pwho");
+  who.appendChild(el("h3", "pname", p.n));
+  who.appendChild(el("span", "kind" + (p.kind === "guest" ? " guest" : ""), p.kind === "guest" ? "Guest list" : "Film team"));
+  head.appendChild(who);
   c.appendChild(head);
   var meta = [p.co, p.cty, p.kind === "film" && p.roles && p.roles.length ? p.roles.join(", ") : (p.prof || "")].filter(Boolean);
   if (meta.length) c.appendChild(el("div", "pmeta", meta.join("  ·  ")));
@@ -1162,10 +1178,10 @@ var DEMO_GUESTS = { v: 1, built: "2026-11-15T09:00:00Z", tags: [["Nature", 1], [
     { id: "f3", t: "The Quiet Harbour", src: ["idfa"], len: "62", cty: "Portugal", tags: [], log: "A daughter spends one winter on her father's fishing boat at sea.", link: "https://festival.idfa.nl/en/collectie/" }
   ],
   people: [
-    { id: "g1", n: "Demo Sales Agent", kind: "guest", cat: "Sales agents", co: "Demo Sales Co", cty: "France", prof: "Sales Agent", pass: ["Docs for Sale Acquisition", "Forum & DocLab Forum"], prog: "Forum One on Ones", status: "Approved", attends: true, badge: true, links: [{ f: "c1", r: "Sales (their company)" }, { f: "c2", r: "Sales (their company)" }] },
+    { id: "g1", n: "Demo Sales Agent", img: "icon-192.png", kind: "guest", cat: "Sales agents", co: "Demo Sales Co", cty: "France", prof: "Sales Agent", pass: ["Docs for Sale Acquisition", "Forum & DocLab Forum"], prog: "Forum One on Ones", status: "Approved", attends: true, badge: true, links: [{ f: "c1", r: "Sales (their company)" }, { f: "c2", r: "Sales (their company)" }] },
     { id: "g2", n: "Demo Commissioning Editor", kind: "guest", cat: "Commissioning editors & broadcasters", co: "Demo TV", cty: "Portugal", prof: "Commissioning Editor", pass: ["Docs for Sale Acquisition"], status: "Approved", attends: true, badge: false, links: [{ f: "f3", r: "TV channel (their company)" }] },
     { id: "g3", n: "Demo Buyer", kind: "guest", cat: "Buyers & distributors", co: "Demo Distribution", cty: "Spain", prof: "Buyer", pass: ["Docs for Sale Acquisition"], status: "Requested", attends: true, badge: false, links: [] },
-    { id: "p4", n: "Demo Director A", kind: "film", cat: "Producers & directors", roles: ["Director"], links: [{ f: "c1", r: "Director" }] },
+    { id: "p4", n: "Demo Director A", img: "icon-192.png", kind: "film", cat: "Producers & directors", roles: ["Director"], links: [{ f: "c1", r: "Director" }] },
     { id: "p5", n: "Demo Producer B", kind: "film", cat: "Producers & directors", co: "Demo Productions", roles: ["Producer"], links: [{ f: "c2", r: "Producer" }] }
   ] };
 
