@@ -312,7 +312,7 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:0 20px calc(2
     </div>
     <div id="fView" hidden>
       <div class="bar">
-        <input class="search" id="fSearch" type="search" placeholder="Search a topic (nature, war, music…), a title, director, country or team member" autocomplete="off" enterkeyhint="search">
+        <input class="search" id="fSearch" type="search" placeholder="Search a topic, region (Latin America, Nordic…), country, title or team member" autocomplete="off" enterkeyhint="search">
       </div>
       <div class="glabel">Topics</div>
       <div class="chips small" id="fTopics"></div>
@@ -328,7 +328,7 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:0 20px calc(2
     </div>
     <div id="pView">
     <div class="bar">
-      <input class="search" id="gSearch" type="search" placeholder="Search a topic (nature, politics, music…), a name, company, country or film" autocomplete="off" enterkeyhint="search">
+      <input class="search" id="gSearch" type="search" placeholder="Search a topic, region (Latin America…), role (buyers, TV), name, company or film" autocomplete="off" enterkeyhint="search">
     </div>
     <div class="glabel">Topics of their films</div>
     <div class="chips small" id="gTopics"></div>
@@ -999,6 +999,191 @@ var SYN = { environmental: "environment", ecology: "environment", animals: "natu
   "human rights": "justice", rights: "justice", hybrid: "experimental", "social issues": "justice" };
 function gEsc(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
 function gWords(words){ return words.length ? new RegExp("(^|[^a-z0-9])(" + words.map(gEsc).join("|") + ")(?=$|[^a-z0-9])", "i") : null; }
+
+/* Places, roles and platforms. A region, country or nationality finds PEOPLE FROM there (their own country; a Docs for
+   Sale participant without one counts by their film's production country) and FILMS MADE there (or naming one of its
+   countries in the title or text). Several words must all match: "latin america buyers", "dutch tv", "nature africa". */
+function fold(s){ return String(s == null ? "" : s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, ""); }
+function cnorm(s){ return fold(s).replace(/[^a-z0-9]+/g, " ").trim(); }
+var REGIONS = {
+  "latin america": "Argentina|Belize|Bolivia|Brazil|Chile|Colombia|Costa Rica|Cuba|Dominican Republic|Ecuador|El Salvador|French Guiana|Guadeloupe|Guatemala|Guyana|Haiti|Honduras|Martinique|Mexico|Nicaragua|Panama|Paraguay|Peru|Puerto Rico|Suriname|Uruguay|Venezuela",
+  "south america": "Argentina|Bolivia|Brazil|Chile|Colombia|Ecuador|French Guiana|Guyana|Paraguay|Peru|Suriname|Uruguay|Venezuela",
+  "central america": "Belize|Costa Rica|El Salvador|Guatemala|Honduras|Nicaragua|Panama",
+  "caribbean": "Antigua and Barbuda|Aruba|Bahamas|Barbados|Bonaire|Cayman Islands|Cuba|Curacao|Dominica|Dominican Republic|Grenada|Guadeloupe|Haiti|Jamaica|Martinique|Puerto Rico|Saint Kitts and Nevis|Saint Lucia|Saint Vincent and the Grenadines|Sint Maarten|Trinidad and Tobago",
+  "north america": "Canada|Greenland|Mexico|United States",
+  "western europe": "Austria|Belgium|France|Germany|Ireland|Liechtenstein|Luxembourg|Monaco|Netherlands|Switzerland|United Kingdom",
+  "southern europe": "Andorra|Cyprus|Greece|Italy|Malta|Portugal|San Marino|Spain|Vatican City",
+  "northern europe": "Denmark|Estonia|Faroe Islands|Finland|Greenland|Iceland|Ireland|Latvia|Lithuania|Norway|Sweden|United Kingdom",
+  "central europe": "Austria|Czech Republic|Germany|Hungary|Liechtenstein|Poland|Slovakia|Slovenia|Switzerland",
+  "eastern europe": "Albania|Belarus|Bosnia-Herzegovina|Bulgaria|Croatia|Czech Republic|Estonia|Hungary|Kosovo|Latvia|Lithuania|Moldova|Montenegro|North Macedonia|Poland|Romania|Russia|Serbia|Slovakia|Slovenia|Ukraine",
+  "nordic": "Denmark|Faroe Islands|Finland|Greenland|Iceland|Norway|Sweden",
+  "baltics": "Estonia|Latvia|Lithuania",
+  "balkans": "Albania|Bosnia-Herzegovina|Bulgaria|Croatia|Greece|Kosovo|Montenegro|North Macedonia|Romania|Serbia|Slovenia",
+  "former yugoslavia": "Bosnia-Herzegovina|Croatia|Kosovo|Montenegro|North Macedonia|Serbia|Slovenia",
+  "benelux": "Belgium|Luxembourg|Netherlands",
+  "dach": "Austria|Germany|Switzerland",
+  "iberia": "Andorra|Portugal|Spain",
+  "caucasus": "Armenia|Azerbaijan|Georgia",
+  "post-soviet": "Armenia|Azerbaijan|Belarus|Estonia|Georgia|Kazakhstan|Kyrgyzstan|Latvia|Lithuania|Moldova|Russia|Tajikistan|Turkmenistan|Ukraine|Uzbekistan",
+  "north africa": "Algeria|Egypt|Libya|Mauritania|Morocco|Sudan|Tunisia|Western Sahara",
+  "west africa": "Benin|Burkina Faso|Cape Verde|Gambia|Ghana|Guinea|Guinea-Bissau|Ivory Coast|Liberia|Mali|Niger|Nigeria|Senegal|Sierra Leone|Togo",
+  "east africa": "Burundi|Comoros|Djibouti|Eritrea|Ethiopia|Kenya|Madagascar|Mauritius|Reunion|Rwanda|Seychelles|Somalia|South Sudan|Tanzania|Uganda",
+  "central africa": "Cameroon|Central African Republic|Chad|Congo|Democratic Republic of the Congo|Equatorial Guinea|Gabon|Sao Tome and Principe",
+  "southern africa": "Angola|Botswana|Eswatini|Lesotho|Malawi|Mozambique|Namibia|South Africa|Zambia|Zimbabwe",
+  "middle east": "Bahrain|Egypt|Iran|Iraq|Israel|Jordan|Kuwait|Lebanon|Oman|Palestine|Qatar|Saudi Arabia|Syria|Turkey|United Arab Emirates|Yemen",
+  "gulf": "Bahrain|Kuwait|Oman|Qatar|Saudi Arabia|United Arab Emirates",
+  "arab world": "Algeria|Bahrain|Comoros|Djibouti|Egypt|Iraq|Jordan|Kuwait|Lebanon|Libya|Mauritania|Morocco|Oman|Palestine|Qatar|Saudi Arabia|Somalia|Sudan|Syria|Tunisia|United Arab Emirates|Yemen",
+  "east asia": "China|Hong Kong|Japan|Macau|Mongolia|North Korea|South Korea|Taiwan",
+  "southeast asia": "Brunei|Cambodia|Indonesia|Laos|Malaysia|Myanmar|Philippines|Singapore|Thailand|Timor-Leste|Vietnam",
+  "south asia": "Afghanistan|Bangladesh|Bhutan|India|Maldives|Nepal|Pakistan|Sri Lanka",
+  "central asia": "Kazakhstan|Kyrgyzstan|Tajikistan|Turkmenistan|Uzbekistan",
+  "oceania": "Australia|Fiji|New Zealand|Papua New Guinea|Samoa|Solomon Islands|Tonga|Vanuatu"
+};
+var REGION_SETS = {
+  "latin america and the caribbean": ["latin america", "caribbean"],
+  "americas": ["north america", "latin america", "caribbean"],
+  "europe": ["western europe", "southern europe", "northern europe", "central europe", "eastern europe", "balkans", "caucasus"],
+  "central and eastern europe": ["central europe", "eastern europe"],
+  "africa": ["north africa", "west africa", "east africa", "central africa", "southern africa"],
+  "sub-saharan africa": ["west africa", "east africa", "central africa", "southern africa"],
+  "mena": ["middle east", "north africa"],
+  "asia": ["east asia", "southeast asia", "south asia", "central asia"]
+};
+var PLACE_ALIAS = {
+  "latam": "latin america", "latin american": "latin america", "latino": "latin america", "latina": "latin america", "latinx": "latin america",
+  "lac": "latin america and the caribbean", "south american": "south america", "central american": "central america", "the americas": "americas",
+  "north american": "north america", "european": "europe", "western european": "western europe", "southern european": "southern europe",
+  "northern european": "northern europe", "central european": "central europe", "eastern european": "eastern europe",
+  "cee": "central and eastern europe", "scandinavia": "nordic", "scandinavian": "nordic", "nordics": "nordic", "baltic": "baltics",
+  "baltic states": "baltics", "balkan": "balkans", "ex yugoslavia": "former yugoslavia", "yugoslavia": "former yugoslavia",
+  "iberian": "iberia", "caucasian": "caucasus", "post soviet": "post-soviet", "former soviet union": "post-soviet", "soviet": "post-soviet",
+  "african": "africa", "north african": "north africa", "maghreb": "north africa", "west african": "west africa",
+  "east african": "east africa", "southern african": "southern africa", "subsaharan africa": "sub-saharan africa",
+  "middle eastern": "middle east", "mideast": "middle east", "arab": "arab world", "arabic": "arab world", "arab countries": "arab world",
+  "gulf states": "gulf", "asian": "asia", "east asian": "east asia", "south east asia": "southeast asia", "southeast asian": "southeast asia",
+  "south asian": "south asia", "central asian": "central asia",
+  "usa": "United States", "us": "United States", "united states of america": "United States", "america": "United States", "american": "United States",
+  "uk": "United Kingdom", "britain": "United Kingdom", "great britain": "United Kingdom", "british": "United Kingdom", "england": "United Kingdom",
+  "scotland": "United Kingdom", "scottish": "United Kingdom", "wales": "United Kingdom", "welsh": "United Kingdom", "northern ireland": "United Kingdom",
+  "holland": "Netherlands", "the netherlands": "Netherlands", "dutch": "Netherlands", "korea": "South Korea", "korean": "South Korea",
+  "czechia": "Czech Republic", "czech": "Czech Republic", "bosnia": "Bosnia-Herzegovina", "bosnia and herzegovina": "Bosnia-Herzegovina",
+  "bosnian": "Bosnia-Herzegovina", "macedonia": "North Macedonia", "uae": "United Arab Emirates", "emirati": "United Arab Emirates",
+  "cote d ivoire": "Ivory Coast", "ivorian": "Ivory Coast", "drc": "Democratic Republic of the Congo", "dr congo": "Democratic Republic of the Congo",
+  "german": "Germany", "french": "France", "belgian": "Belgium", "flemish": "Belgium", "spanish": "Spain", "italian": "Italy",
+  "portuguese": "Portugal", "swiss": "Switzerland", "austrian": "Austria", "danish": "Denmark", "swedish": "Sweden", "norwegian": "Norway",
+  "finnish": "Finland", "icelandic": "Iceland", "irish": "Ireland", "polish": "Poland", "slovak": "Slovakia", "hungarian": "Hungary",
+  "romanian": "Romania", "bulgarian": "Bulgaria", "greek": "Greece", "croatian": "Croatia", "serbian": "Serbia", "slovenian": "Slovenia",
+  "montenegrin": "Montenegro", "albanian": "Albania", "ukrainian": "Ukraine", "russian": "Russia", "belarusian": "Belarus",
+  "moldovan": "Moldova", "georgian": "Georgia", "armenian": "Armenia", "azerbaijani": "Azerbaijan", "estonian": "Estonia",
+  "latvian": "Latvia", "lithuanian": "Lithuania", "turkish": "Turkey", "canadian": "Canada", "mexican": "Mexico", "brazilian": "Brazil",
+  "argentine": "Argentina", "argentinian": "Argentina", "chilean": "Chile", "colombian": "Colombia", "peruvian": "Peru", "cuban": "Cuba",
+  "uruguayan": "Uruguay", "venezuelan": "Venezuela", "bolivian": "Bolivia", "ecuadorian": "Ecuador", "paraguayan": "Paraguay",
+  "panamanian": "Panama", "guatemalan": "Guatemala", "honduran": "Honduras", "chinese": "China", "japanese": "Japan", "taiwanese": "Taiwan",
+  "indian": "India", "pakistani": "Pakistan", "bangladeshi": "Bangladesh", "sri lankan": "Sri Lanka", "afghan": "Afghanistan",
+  "indonesian": "Indonesia", "filipino": "Philippines", "philippine": "Philippines", "thai": "Thailand", "vietnamese": "Vietnam",
+  "malaysian": "Malaysia", "singaporean": "Singapore", "kyrgyz": "Kyrgyzstan", "kazakh": "Kazakhstan", "iranian": "Iran", "persian": "Iran",
+  "iraqi": "Iraq", "israeli": "Israel", "palestinian": "Palestine", "lebanese": "Lebanon", "jordanian": "Jordan", "syrian": "Syria",
+  "saudi": "Saudi Arabia", "qatari": "Qatar", "egyptian": "Egypt", "moroccan": "Morocco", "tunisian": "Tunisia", "algerian": "Algeria",
+  "nigerian": "Nigeria", "kenyan": "Kenya", "south african": "South Africa", "senegalese": "Senegal", "ethiopian": "Ethiopia",
+  "ugandan": "Uganda", "ghanaian": "Ghana", "malian": "Mali", "burkinabe": "Burkina Faso", "cameroonian": "Cameroon", "rwandan": "Rwanda",
+  "tanzanian": "Tanzania", "somali": "Somalia", "zambian": "Zambia", "namibian": "Namibia", "australian": "Australia", "new zealander": "New Zealand"
+};
+/* Country names that are also everyday words or first names: they still count as a film's production country,
+   but are not looked for in a film's title or text. */
+var PLACE_TEXT_SKIP = { "chad": 1, "jordan": 1, "georgia": 1, "turkey": 1, "niger": 1, "guinea": 1, "dominica": 1, "congo": 1,
+  "us": 1, "america": 1, "mali": 1, "soviet": 1, "arab": 1 };
+var ALIASES_OF = {};
+/* Words to look for in a film's title or text for a place: the place, its countries and their nationalities. */
+function placeTextWords(t){
+  var w = [t.text].concat(ALIASES_OF[t.text] || []);
+  Object.keys(t.set).forEach(function(c){ w.push(c); (ALIASES_OF[c] || []).forEach(function(a){ w.push(a); }); });
+  return w.filter(function(x, i){ return x && !PLACE_TEXT_SKIP[x] && w.indexOf(x) === i; });
+}
+var ROLE_WORDS = {
+  "Buyers & distributors": "buyer|buyers|distributor|distributors|distribution|acquisition|acquisitions",
+  "Sales agents": "sales|sales agent|sales agents|world sales|seller|sellers|sales company|sales companies",
+  "Commissioning editors & broadcasters": "broadcaster|broadcasters|tv|television|commissioning editor|commissioning editors|commissioner|commissioners|channel|channels",
+  "Festivals, markets & curators": "festival|festivals|programmer|programmers|curator|curators|market|markets|selector|selectors",
+  "Funds & institutes": "fund|funds|funder|funders|funding|financier|financiers|institute|institutes|foundation|foundations",
+  "Press & media": "press|journalists|critic|critics",
+  "Producers & directors": "producer|producers|director|directors|filmmaker|filmmakers"
+};
+var PLAT_WORDS = {
+  "Platform / Streaming": "streaming|streamer|streamers|platform|platforms|vod|svod|avod|tvod",
+  "Theatrical": "cinema|cinemas|theatrical|cinema release",
+  "TV": "tv|television",
+  "Museum / Exhibition & Performing Arts": "museum|museums|exhibition|exhibitions|gallery|galleries|performing arts",
+  "Immersive (VR/AR/MR)": "vr|ar|xr|immersive",
+  "Interactive": "interactive"
+};
+var PLACES = null, ROLES = null, PLATS = null;
+function gDicts(){
+  if (PLACES) return;
+  PLACES = {}; ROLES = {}; PLATS = {};
+  function add(key, list){ var k = cnorm(key), s = PLACES[k] = PLACES[k] || {}; list.forEach(function(c){ s[cnorm(c)] = c; }); }
+  Object.keys(REGIONS).forEach(function(r){
+    var list = REGIONS[r].split("|");
+    add(r, list);
+    list.forEach(function(c){ add(c, [c]); });
+  });
+  Object.keys(REGION_SETS).forEach(function(u){
+    add(u, REGION_SETS[u].reduce(function(a, r){ return a.concat(REGIONS[r].split("|")); }, []));
+  });
+  Object.keys(PLACE_ALIAS).forEach(function(a){
+    var t = cnorm(PLACE_ALIAS[a]);
+    if (!PLACES[t]) add(PLACE_ALIAS[a], [PLACE_ALIAS[a]]);
+    PLACES[cnorm(a)] = PLACES[t];
+    (ALIASES_OF[t] = ALIASES_OF[t] || []).push(cnorm(a));   /* "brazilian" is also looked for in a film's text */
+  });
+  Object.keys(ROLE_WORDS).forEach(function(c){ ROLE_WORDS[c].split("|").forEach(function(w){ ROLES[cnorm(w)] = c; }); });
+  Object.keys(PLAT_WORDS).forEach(function(c){ PLAT_WORDS[c].split("|").forEach(function(w){ PLATS[cnorm(w)] = c; }); });
+}
+/* "hong kong sar" is in a set holding "hong kong"; "palestine state of" in one holding "palestine". */
+function inPlace(cn, set){
+  if (!cn) return false;
+  if (set[cn]) return true;
+  var w = cn.split(" ");
+  for (var i = w.length - 1; i > 0; i--) if (set[w.slice(0, i).join(" ")]) return true;
+  return false;
+}
+/* Split a search into terms, longest known phrase first: topic or tag, place, role or platform, else a plain word. */
+function gTerms(G, q){
+  gDicts();
+  var words = cnorm(q).split(" ").filter(Boolean), out = [], i = 0;
+  while (i < words.length){
+    var hit = null;
+    for (var n = Math.min(6, words.length - i); n >= 1 && !hit; n--){
+      var ph = words.slice(i, i + n).join(" ");
+      if (topicFor(ph)) hit = { kind: "topic", text: ph, topic: topicFor(ph), key: TOPICS[ph] ? ph : SYN[ph] };
+      else if (G.tagNames[ph]) hit = { kind: "tag", text: ph, tag: G.tagNames[ph] };
+      else if (PLACES[ph]) hit = { kind: "place", text: ph, set: PLACES[ph] };
+      else if (ROLES[ph] || PLATS[ph]) hit = { kind: "role", text: ph, cat: ROLES[ph] || null, plat: PLATS[ph] || null };
+      if (hit) hit.n = n;
+    }
+    if (!hit) hit = { kind: "word", text: words[i], n: 1 };
+    out.push(hit); i += hit.n;
+  }
+  return out;
+}
+function smartSearch(terms){ return terms.length > 1 || (terms.length === 1 && (terms[0].kind === "place" || terms[0].kind === "role")); }
+var PLACE_NAMES = { "mena": "the Middle East and North Africa", "dach": "Germany, Austria and Switzerland", "lac": "Latin America and the Caribbean",
+  "cee": "Central and Eastern Europe", "gulf": "the Gulf", "caribbean": "the Caribbean", "balkans": "the Balkans", "baltics": "the Baltics",
+  "caucasus": "the Caucasus", "middle east": "the Middle East", "americas": "the Americas", "post soviet": "former Soviet countries",
+  "nordic": "the Nordic countries", "arab world": "the Arab world", "former yugoslavia": "former Yugoslavia" };
+function placeLabel(t){
+  var names = Object.keys(t.set).map(function(k){ return t.set[k]; });
+  if (names.length === 1) return names[0];
+  var key = cnorm(PLACE_ALIAS[t.text] && !/[A-Z]/.test(PLACE_ALIAS[t.text]) ? PLACE_ALIAS[t.text] : t.text);
+  var name = PLACE_NAMES[key] || PLACE_NAMES[t.text] || key.replace(/\b[a-z]/g, function(c){ return c.toUpperCase(); }).replace(/\b(And|The|Of)\b/g, function(w){ return w.toLowerCase(); });
+  return name + " (" + names.length + " countries)";
+}
+function termsNote(terms){
+  return terms.map(function(t){
+    if (t.kind === "place") return "from " + placeLabel(t);
+    if (t.kind === "role") return [t.cat, t.plat ? "works in " + t.plat : null].filter(Boolean).join(" or ");
+    return t.kind === "tag" ? t.tag : t.text;
+  }).join(" + ");
+}
 /* v1 file: guest list + film teams (kind "guest" / "film"). v2 file: IDFA guests + Docs for Sale participants
    (kind "guest" / "participant"), each catalogue film with its team and "fans" = [person id, points, reasons]. */
 function prepGuests(data){
@@ -1006,6 +1191,8 @@ function prepGuests(data){
   (data.films || []).forEach(function(f){
     f.tags = f.tags || []; f.topics = f.topics || [];
     f.hay = [f.t, f.log, f.intro, f.tags.join(" "), f.topics.join(" "), f.cty, (f.sec || []).join(" "), f.dir, f.sales, f.cat].filter(Boolean).join(" ").toLowerCase();
+    f.hay2 = fold(f.hay); f.text2 = fold([f.t, f.log, f.intro].filter(Boolean).join(" "));
+    f.ctys = String(f.cty || "").split(",").map(cnorm).filter(Boolean);
     films[f.id] = f;
   });
   var people = (data.people || []).filter(function(p){ return p && p.n; });
@@ -1019,6 +1206,7 @@ function prepGuests(data){
     p.team.forEach(function(id){ if (p.fids.indexOf(id) === -1) p.fids.push(id); });
     p.inAms = v2 ? p.here === "In Amsterdam" : !!p.badge;
     p.hay = [p.n, p.co, p.cty, p.prof, p.job, p.type, (p.pass || []).join(" "), (p.plat || []).join(" "), p.prog, (p.roles || []).join(" "), p.cat].filter(Boolean).join(" ").toLowerCase();
+    p.hay2 = fold(p.hay); p.cn = cnorm(p.cty);
     var tags = {};
     p.fids.forEach(function(id){ films[id].tags.forEach(function(t){ tags[t] = 1; }); });
     Object.keys(tags).forEach(function(t){ tagPeople[t] = (tagPeople[t] || 0) + 1; });
@@ -1031,6 +1219,7 @@ function prepGuests(data){
     f.fans = (f.fans || []).filter(function(x){ return x && byId[x[0]]; });
     f.teamHere = f.team.some(function(id){ return byId[id].here === "In Amsterdam"; });
     f.teamHay = f.team.map(function(id){ return byId[id].n; }).join(" ").toLowerCase();
+    f.teamHay2 = fold(f.teamHay);
     var seen = {};
     f.tags.concat(f.topics).forEach(function(t){
       var k = t.toLowerCase();
@@ -1039,8 +1228,11 @@ function prepGuests(data){
     });
   });
   var filmTopics = Object.keys(labels).map(function(k){ return labels[k]; }).sort(function(a, b){ return b[1] - a[1] || a[0].localeCompare(b[0]); });
+  var tagNames = {};
+  (data.tags || []).map(function(t){ return t[0]; }).concat(Object.keys(tagPeople), filmTopics.map(function(t){ return t[0]; }))
+    .forEach(function(t){ if (t) tagNames[cnorm(t)] = t; });
   return { data: data, v2: v2, films: films, people: people, byId: byId, dfs: dfs, filmTopics: filmTopics,
-           tagPeople: tagPeople, cats: cats, groups: groups };
+           tagPeople: tagPeople, tagNames: tagNames, cats: cats, groups: groups };
 }
 function topicFor(q){
   var key = TOPICS[q] ? q : SYN[q];
@@ -1048,6 +1240,8 @@ function topicFor(q){
 }
 function searchGuests(G, query, o){
   var q = (query || "").trim().toLowerCase();
+  var terms = q ? gTerms(G, q) : [];
+  if (smartSearch(terms)) return searchGuestsTerms(G, terms, o);
   var topic = q ? topicFor(q) : null, tagSet = {};
   if (topic) topic.tags.forEach(function(t){ tagSet[t] = 1; });
   Object.keys(G.tagPeople).forEach(function(t){ if (t.toLowerCase() === q) tagSet[t] = 1; });
@@ -1083,6 +1277,8 @@ function searchGuests(G, query, o){
    tagSet here is lower case. A name or title only needs to start a word, and also finds team members. */
 function searchFilms(G, query, o){
   var q = (query || "").trim().toLowerCase();
+  var terms = q ? gTerms(G, q) : [];
+  if (smartSearch(terms)) return searchFilmsTerms(G, terms, o);
   var topic = q ? topicFor(q) : null, tagSet = {};
   if (topic){ topic.tags.forEach(function(t){ tagSet[t.toLowerCase()] = 1; }); tagSet[TOPICS[q] ? q : SYN[q]] = 1; }
   if (q) G.filmTopics.forEach(function(t){ if (t[0].toLowerCase() === q) tagSet[q] = 1; });
@@ -1103,6 +1299,90 @@ function searchFilms(G, query, o){
   });
   out.sort(function(a, b){ return b.score - a.score || (b.f.teamHere - a.f.teamHere) || a.f.t.localeCompare(b.f.t); });
   return { list: out, topic: topic, tagSet: tagSet };
+}
+/* Several terms, or a place or role: every term must match; the scores add up for the order. */
+function prefixRe(text){ return new RegExp("(^|[^a-z0-9])" + gEsc(text), "i"); }
+function searchGuestsTerms(G, terms, o){
+  var tagSetAll = {}, filmsHit = {};
+  function filmHit(id, hits){ filmsHit[id] = 1; if (hits.indexOf(id) === -1) hits.push(id); }
+  var tests = terms.map(function(t){
+    if (t.kind === "topic" || t.kind === "tag"){
+      var tagSet = {}, cache = {};
+      if (t.kind === "topic") t.topic.tags.forEach(function(x){ tagSet[x] = 1; });
+      if (G.tagNames[t.text]) tagSet[G.tagNames[t.text]] = 1;
+      Object.keys(tagSet).forEach(function(x){ tagSetAll[x] = 1; });
+      var filmRe = gWords([t.text].concat(t.kind === "topic" ? t.topic.words : [])), personRe = gWords([t.text]);
+      return function(p, hits){
+        var s = personRe.test(p.hay2) ? 100 : 0;
+        p.fids.forEach(function(id){
+          var f = G.films[id];
+          if (cache[id] === undefined) cache[id] = f.tags.some(function(x){ return tagSet[x]; }) ? 3 : filmRe.test(f.hay2) ? 2 : 0;
+          if (cache[id]){ s += cache[id]; filmHit(id, hits); }
+        });
+        return s;
+      };
+    }
+    if (t.kind === "place"){
+      var re = gWords([t.text]);
+      return function(p){
+        if (inPlace(p.cn, t.set)) return 100;
+        if (!p.cn){   /* no country of their own: a participant counts by their Docs for Sale film, only if every production country is in the place */
+          var own = p.team.length ? p.team : (p.kind === "film" ? p.links.map(function(l){ return l.f; }) : []);
+          if (own.some(function(id){ var c = G.films[id].ctys; return c.length && c.every(function(x){ return inPlace(x, t.set); }); })) return 60;
+        }
+        return re.test(p.hay2) ? 50 : 0;
+      };
+    }
+    var pre = prefixRe(t.text), wre = gWords([t.text]), isRole = t.kind === "role";
+    return function(p, hits){
+      var s = (isRole && t.cat && p.cat === t.cat ? 100 : 0) + (isRole && t.plat && (p.plat || []).indexOf(t.plat) !== -1 ? 60 : 0);
+      if (pre.test(p.hay2)) s += 100;
+      p.fids.forEach(function(id){ if (wre.test(G.films[id].hay2)){ s += 2; filmHit(id, hits); } });
+      return s;
+    };
+  });
+  var out = [];
+  G.people.forEach(function(p){
+    if (o.group !== "all" && p.kind !== o.group) return;
+    if (o.cat !== "all" && p.cat !== o.cat) return;
+    if (o.withFilms && !p.fids.length) return;
+    if (o.inAms && !p.inAms) return;
+    var total = 0, hits = [];
+    for (var i = 0; i < tests.length; i++){ var s = tests[i](p, hits); if (!s) return; total += s; }
+    out.push({ p: p, score: total, hits: hits });
+  });
+  var order = { guest: 0, film: 1, participant: 1 };
+  out.sort(function(a, b){ return b.score - a.score || ((order[a.p.kind] || 0) - (order[b.p.kind] || 0)) || a.p.n.localeCompare(b.p.n); });
+  return { list: out, filmsHit: Object.keys(filmsHit).length, topic: null, tagSet: tagSetAll, note: termsNote(terms) };
+}
+function searchFilmsTerms(G, terms, o){
+  var tagSetAll = {};
+  var tests = terms.map(function(t){
+    if (t.kind === "topic" || t.kind === "tag"){
+      var tagSet = {};
+      if (t.kind === "topic"){ t.topic.tags.forEach(function(x){ tagSet[x.toLowerCase()] = 1; }); if (t.key) tagSet[t.key] = 1; }
+      if (G.tagNames[t.text]) tagSet[G.tagNames[t.text].toLowerCase()] = 1;
+      Object.keys(tagSet).forEach(function(x){ tagSetAll[x] = 1; });
+      var re = gWords([t.text].concat(t.kind === "topic" ? t.topic.words : []));
+      return function(f){ return f.tags.concat(f.topics).some(function(x){ return tagSet[x.toLowerCase()]; }) ? 3 : re.test(f.hay2) ? 2 : 0; };
+    }
+    if (t.kind === "place"){
+      var tre = gWords(placeTextWords(t));
+      return function(f){ return f.ctys.some(function(c){ return inPlace(c, t.set); }) ? 3 : tre.test(f.text2) ? 2 : 0; };
+    }
+    var pre = prefixRe(t.text);
+    return function(f){ return pre.test(f.hay2) ? 2 : pre.test(f.teamHay2) ? 1 : 0; };
+  });
+  var out = [];
+  G.dfs.forEach(function(f){
+    if (o.teamHere && !f.teamHere) return;
+    if (o.noSales && f.sa !== false) return;
+    var total = 0;
+    for (var i = 0; i < tests.length; i++){ var s = tests[i](f); if (!s) return; total += s; }
+    out.push({ f: f, score: total });
+  });
+  out.sort(function(a, b){ return b.score - a.score || (b.f.teamHere - a.f.teamHere) || a.f.t.localeCompare(b.f.t); });
+  return { list: out, topic: null, tagSet: tagSetAll, note: termsNote(terms) };
 }
 /* GUEST-CORE-END */
 
@@ -1488,7 +1768,8 @@ function renderFilms(){
   $("fNoSaBtn").setAttribute("aria-pressed", String(fNoSa));
   var res = searchFilms(G, fQuery, { teamHere: fHere, noSales: fNoSa });
   var nHere = res.list.filter(function(x){ return x.f.teamHere; }).length;
-  $("fCount").textContent = res.list.length + (res.list.length === 1 ? " film" : " films") + " · " + nHere + " with someone of the team in Amsterdam";
+  $("fCount").textContent = res.list.length + (res.list.length === 1 ? " film" : " films") + " · " + nHere + " with someone of the team in Amsterdam" +
+    (res.note ? " · " + res.note : "");
   var list = $("fList"); list.textContent = "";
   if (!res.list.length) list.appendChild(el("div", "empty", ql ? "No Docs for Sale film matches “" + fQuery.trim() + "” with these filters." : "No film matches these filters."));
   res.list.slice(0, fShown).forEach(function(r){ list.appendChild(filmCard(r, res)); });
@@ -1527,7 +1808,8 @@ function renderPeople(){
   var nGuests = res.list.filter(function(x){ return x.p.kind === "guest"; }).length;
   $("gCount").textContent = res.list.length + (res.list.length === 1 ? " person" : " people") +
     " (" + nGuests + (G.v2 ? " IDFA guests, " : " on the guest list, ") + (res.list.length - nGuests) + (G.v2 ? " Docs for Sale participants)" : " in film teams)") +
-    (ql ? " · " + res.filmsHit + " linked film" + (res.filmsHit === 1 ? "" : "s") + " match" : "");
+    (res.note ? " · " + res.note : "") +
+    (ql && res.filmsHit ? " · " + res.filmsHit + " linked film" + (res.filmsHit === 1 ? "" : "s") + " match" : "");
   var list = $("gList"); list.textContent = "";
   if (!res.list.length){
     list.appendChild(el("div", "empty", ql ? "Nobody matches “" + gQuery.trim() + "” with these filters." : "Nobody matches these filters."));
