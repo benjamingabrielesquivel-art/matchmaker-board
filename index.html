@@ -155,6 +155,23 @@ a.open{font-size:14px;color:var(--blue)}
 .ftag.on{background:var(--yellow);color:var(--ink)}
 .flog{display:block;color:var(--muted);font-size:13px;margin-top:2px}
 .pmore summary{font-size:13px;font-weight:600;padding:2px 0}
+.pmore[open]{display:flex;flex-direction:column;gap:6px}
+.seg{display:flex;max-width:460px;margin-top:14px;border:1.5px solid var(--blue);border-radius:12px;overflow:hidden}
+.seg button{flex:1;font-size:15px;font-weight:700;padding:10px 12px;border:0;background:#fff;color:var(--blue);cursor:pointer}
+.seg button+button{border-left:1.5px solid var(--blue)}
+.seg button[aria-pressed="true"]{background:var(--blue);color:#fff}
+.plabel{font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.pname a{color:var(--blue);text-decoration:none}
+.mate{display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.4}
+.mate b{color:var(--ink)}
+.mate .mtx{min-width:0;overflow-wrap:anywhere}
+.mate .fm,.fans>.fm{color:var(--muted);font-size:13px}
+.why{display:block;color:var(--muted);font-size:13px;margin-top:1px}
+.why::before{content:"Why: ";font-weight:700}
+.here{display:inline-block;font-size:11px;font-weight:700;padding:1px 7px;border-radius:999px;background:#ddf3e5;color:#13703b;margin-left:6px;vertical-align:1px;white-space:nowrap}
+.here.off{background:#eef1f6;color:var(--muted)}
+.fans{display:flex;flex-direction:column;gap:6px;margin:2px 0 6px 12px;padding-left:10px;border-left:3px solid var(--soft)}
+.person .flog{margin:0}
 .more{display:block;margin:0 auto 40px}
 .overlay{position:fixed;inset:0;z-index:20;background:rgba(10,42,107,.55);display:flex;align-items:center;justify-content:center;padding:16px}
 .sheet{background:#fff;border-radius:20px;max-width:540px;width:100%;padding:26px;max-height:92vh;overflow:auto}
@@ -256,14 +273,36 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:0 20px calc(2
     <h2>Load the guest list on this device</h2>
     <p class="note">The guest list is not on this website. It holds other people’s details, so it travels as a file and stays only on the device you load it on.</p>
     <ol>
-      <li>Send the file <b>dfs-guestlist-2026.json</b> to this device (AirDrop from the Mac, then save it to Files).</li>
+      <li>Send the file <b>idfa-matchmaking-2026.json</b> to this device (AirDrop from the Mac, then save it to Files). The older <b>dfs-guestlist-2026.json</b> also works.</li>
       <li>Tap <b>Choose the file</b> below and pick it.</li>
     </ol>
     <span class="btn primary filebtn">Choose the file<input id="gFile" type="file" accept=".json,application/json"></span>
     <div class="msg" id="gMsg"></div>
   </div>
   <div id="gMain" hidden>
-    <div class="evhead"><span id="gInfo"></span><button class="btn small quiet" type="button" id="gRemove">Remove from this device</button></div>
+    <div class="evhead"><span id="gInfo"></span><span class="chips"><span class="btn small quiet filebtn">Load a newer file<input id="gFile2" type="file" accept=".json,application/json"></span><button class="btn small quiet" type="button" id="gRemove">Remove from this device</button></span></div>
+    <div class="msg" id="gMsg2" style="min-height:0"></div>
+    <div class="seg" id="gViews" role="group" aria-label="Show" hidden>
+      <button type="button" id="gViewFilms" aria-pressed="true">Docs for Sale films</button>
+      <button type="button" id="gViewPeople" aria-pressed="false">People</button>
+    </div>
+    <div id="fView" hidden>
+      <div class="bar">
+        <input class="search" id="fSearch" type="search" placeholder="Search a topic (nature, war, music…), a title, director, country or team member" autocomplete="off" enterkeyhint="search">
+      </div>
+      <div class="glabel">Topics</div>
+      <div class="chips small" id="fTopics"></div>
+      <div class="sub">
+        <span id="fCount"></span>
+        <span class="chips">
+          <button class="chip" type="button" id="fHereBtn" aria-pressed="false">Team in Amsterdam</button>
+          <button class="chip" type="button" id="fNoSaBtn" aria-pressed="false">No sales agent yet</button>
+        </span>
+      </div>
+      <div class="glist" id="fList"></div>
+      <button class="btn more" type="button" id="fMore" hidden>Show more</button>
+    </div>
+    <div id="pView">
     <div class="bar">
       <input class="search" id="gSearch" type="search" placeholder="Search a topic (nature, politics, music…), a name, company, country or film" autocomplete="off" enterkeyhint="search">
     </div>
@@ -281,6 +320,7 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:0 20px calc(2
     </div>
     <div class="glist" id="gList"></div>
     <button class="btn more" type="button" id="gMore" hidden>Show more</button>
+    </div>
   </div>
 </section>
 
@@ -917,24 +957,48 @@ var SYN = { environmental: "environment", ecology: "environment", animals: "natu
   "human rights": "justice", rights: "justice", hybrid: "experimental", "social issues": "justice" };
 function gEsc(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
 function gWords(words){ return words.length ? new RegExp("(^|[^a-z0-9])(" + words.map(gEsc).join("|") + ")(?=$|[^a-z0-9])", "i") : null; }
+/* v1 file: guest list + film teams (kind "guest" / "film"). v2 file: IDFA guests + Docs for Sale participants
+   (kind "guest" / "participant"), each catalogue film with its team and "fans" = [person id, points, reasons]. */
 function prepGuests(data){
-  var films = {}, tagPeople = {}, cats = {}, groups = { guest: 0, film: 0 };
+  var v2 = data.v === 2, films = {}, tagPeople = {}, cats = {}, groups = {}, byId = {};
   (data.films || []).forEach(function(f){
-    f.tags = f.tags || [];
-    f.hay = [f.t, f.log, f.intro, f.tags.join(" "), f.cty, (f.sec || []).join(" "), f.dir, f.sales, f.cat].filter(Boolean).join(" ").toLowerCase();
+    f.tags = f.tags || []; f.topics = f.topics || [];
+    f.hay = [f.t, f.log, f.intro, f.tags.join(" "), f.topics.join(" "), f.cty, (f.sec || []).join(" "), f.dir, f.sales, f.cat].filter(Boolean).join(" ").toLowerCase();
     films[f.id] = f;
   });
   var people = (data.people || []).filter(function(p){ return p && p.n; });
+  people.forEach(function(p){ byId[p.id] = p; });
   people.forEach(function(p){
     p.links = (p.links || []).filter(function(l){ return films[l.f]; });
-    p.hay = [p.n, p.co, p.cty, p.prof, p.type, (p.pass || []).join(" "), p.prog, (p.roles || []).join(" "), p.cat].filter(Boolean).join(" ").toLowerCase();
+    p.team = (p.team || []).filter(function(id){ return films[id]; });
+    p.likes = (p.likes || []).filter(function(x){ return x && films[x[0]]; });
+    p.fids = [];   /* their own films: linked films and, for participants, their Docs for Sale films */
+    p.links.forEach(function(l){ if (p.fids.indexOf(l.f) === -1) p.fids.push(l.f); });
+    p.team.forEach(function(id){ if (p.fids.indexOf(id) === -1) p.fids.push(id); });
+    p.inAms = v2 ? p.here === "In Amsterdam" : !!p.badge;
+    p.hay = [p.n, p.co, p.cty, p.prof, p.job, p.type, (p.pass || []).join(" "), (p.plat || []).join(" "), p.prog, (p.roles || []).join(" "), p.cat].filter(Boolean).join(" ").toLowerCase();
     var tags = {};
-    p.links.forEach(function(l){ films[l.f].tags.forEach(function(t){ tags[t] = 1; }); });
+    p.fids.forEach(function(id){ films[id].tags.forEach(function(t){ tags[t] = 1; }); });
     Object.keys(tags).forEach(function(t){ tagPeople[t] = (tagPeople[t] || 0) + 1; });
     cats[p.cat] = (cats[p.cat] || 0) + 1;
     groups[p.kind] = (groups[p.kind] || 0) + 1;
   });
-  return { data: data, films: films, people: people, tagPeople: tagPeople, cats: cats, groups: groups };
+  var dfs = (data.films || []).filter(function(f){ return (f.src || []).indexOf("dfs") !== -1; }), labels = {};
+  dfs.forEach(function(f){
+    f.team = (f.team || []).filter(function(id){ return byId[id]; });
+    f.fans = (f.fans || []).filter(function(x){ return x && byId[x[0]]; });
+    f.teamHere = f.team.some(function(id){ return byId[id].here === "In Amsterdam"; });
+    f.teamHay = f.team.map(function(id){ return byId[id].n; }).join(" ").toLowerCase();
+    var seen = {};
+    f.tags.concat(f.topics).forEach(function(t){
+      var k = t.toLowerCase();
+      if (seen[k]) return;
+      seen[k] = 1; labels[k] = labels[k] || [t, 0]; labels[k][1]++;
+    });
+  });
+  var filmTopics = Object.keys(labels).map(function(k){ return labels[k]; }).sort(function(a, b){ return b[1] - a[1] || a[0].localeCompare(b[0]); });
+  return { data: data, v2: v2, films: films, people: people, byId: byId, dfs: dfs, filmTopics: filmTopics,
+           tagPeople: tagPeople, cats: cats, groups: groups };
 }
 function topicFor(q){
   var key = TOPICS[q] ? q : SYN[q];
@@ -958,28 +1022,56 @@ function searchGuests(G, query, o){
   G.people.forEach(function(p){
     if (o.group !== "all" && p.kind !== o.group) return;
     if (o.cat !== "all" && p.cat !== o.cat) return;
-    if (o.withFilms && !p.links.length) return;
-    if (o.inAms && !p.badge) return;
+    if (o.withFilms && !p.fids.length) return;
+    if (o.inAms && !p.inAms) return;
     var s = 0, hits = [];
     if (q){
       if (personRe.test(p.hay)) s += 100;
-      p.links.forEach(function(l){ var fs = fscore(G.films[l.f]); if (fs){ s += fs; if (hits.indexOf(l.f) === -1) hits.push(l.f); } });
+      p.fids.forEach(function(id){ var fs = fscore(G.films[id]); if (fs){ s += fs; hits.push(id); } });
       if (!s) return;
     }
     out.push({ p: p, score: s, hits: hits });
   });
-  var order = { guest: 0, film: 1 };
-  out.sort(function(a, b){ return b.score - a.score || (order[a.p.kind] - order[b.p.kind]) || a.p.n.localeCompare(b.p.n); });
+  var order = { guest: 0, film: 1, participant: 1 };
+  out.sort(function(a, b){ return b.score - a.score || ((order[a.p.kind] || 0) - (order[b.p.kind] || 0)) || a.p.n.localeCompare(b.p.n); });
   var filmsHit = Object.keys(score).filter(function(k){ return score[k] > 0; }).length;
   return { list: out, filmsHit: filmsHit, topic: topic, tagSet: tagSet };
+}
+/* Docs for Sale films (v2): the same topic words as above; a tag or topic of the film counts most.
+   tagSet here is lower case. A name or title only needs to start a word, and also finds team members. */
+function searchFilms(G, query, o){
+  var q = (query || "").trim().toLowerCase();
+  var topic = q ? topicFor(q) : null, tagSet = {};
+  if (topic){ topic.tags.forEach(function(t){ tagSet[t.toLowerCase()] = 1; }); tagSet[TOPICS[q] ? q : SYN[q]] = 1; }
+  if (q) G.filmTopics.forEach(function(t){ if (t[0].toLowerCase() === q) tagSet[q] = 1; });
+  var anyTag = Object.keys(tagSet).length > 0;
+  var re = q ? (topic || anyTag ? gWords([q].concat(topic ? topic.words : [])) : new RegExp("(^|[^a-z0-9])" + gEsc(q), "i")) : null;
+  var out = [];
+  G.dfs.forEach(function(f){
+    if (o.teamHere && !f.teamHere) return;
+    if (o.noSales && f.sa !== false) return;
+    var s = 0;
+    if (q){
+      if (anyTag && f.tags.concat(f.topics).some(function(t){ return tagSet[t.toLowerCase()]; })) s = 3;
+      else if (re.test(f.hay)) s = 2;
+      else if (!anyTag && re.test(f.teamHay)) s = 1;
+      if (!s) return;
+    }
+    out.push({ f: f, score: s });
+  });
+  out.sort(function(a, b){ return b.score - a.score || (b.f.teamHere - a.f.teamHere) || a.f.t.localeCompare(b.f.t); });
+  return { list: out, topic: topic, tagSet: tagSet };
 }
 /* GUEST-CORE-END */
 
 var GUEST_KEY = "guestlist", G = null, gQuery = "", gGroup = "all", gCat = "all", gShown = 60;
 var gWithFilms = lsGet("mm-g-films") === "1", gInAms = lsGet("mm-g-ams") === "1";
+var gView = lsGet("mm-g-view") === "people" ? "people" : "films", fQuery = "", fShown = 30;
+var fHere = lsGet("mm-f-here") === "1", fNoSa = lsGet("mm-f-nosa") === "1";
 var GROUP_LABEL = { all: "Everyone", guest: "Guest list (acquisition passes)", film: "Film teams (Docs for Sale films)" };
+var GROUP_LABEL2 = { all: "Everyone", guest: "IDFA guests", participant: "Docs for Sale participants" };
 var CAT_ORDER = ["Producers & directors", "Sales agents", "Buyers & distributors", "Commissioning editors & broadcasters",
-                 "Festivals, markets & curators", "Funds & institutes", "Other professionals"];
+                 "Festivals, markets & curators", "Funds & institutes", "Press & media", "Other professionals"];
 
 /* The guest list is kept in this device's own storage (IndexedDB), never on the website. */
 function idb(){
@@ -1008,29 +1100,39 @@ function idbDel(k){ return idbDo("readwrite", function(s){ return s.delete(k); }
 function useGuestText(text, save){
   var data;
   try{ data = JSON.parse(text); }catch(e){ throw new Error("This file is not the guest list (it is not readable)."); }
-  if (!data || data.v !== 1 || !Array.isArray(data.people) || !Array.isArray(data.films)) throw new Error("This file is not the guest list made for this board.");
-  G = prepGuests(data); gShown = 60;
+  if (!data || (data.v !== 1 && data.v !== 2) || !Array.isArray(data.people) || !Array.isArray(data.films)) throw new Error("This file is not the guest list made for this board.");
+  G = prepGuests(data); gShown = 60; fShown = 30;
   renderGuests();
+  /* One list per device: a newly loaded file (v1 or v2) replaces the one kept before. */
   if (save) return idbSet(GUEST_KEY, text).then(function(){ return true; }, function(){ return false; });
   return Promise.resolve(true);
 }
-$("gFile").addEventListener("change", function(){
-  var file = this.files && this.files[0], input = this;
+function readGuestFile(input, msg){
+  var file = input.files && input.files[0];
   if (!file) return;
-  $("gMsg").textContent = "Reading the file…";
+  msg.textContent = "Reading the file…";
   var rd = new FileReader();
   rd.onload = function(){
     try{
       useGuestText(String(rd.result), true).then(function(saved){
-        $("gMsg").textContent = "";
-        toast(saved ? "Guest list loaded and kept on this device" : "Guest list loaded, but this device would not keep it: load it again next time");
+        msg.textContent = "";
+        var what = G && G.v2 ? "Matchmaking list" : "Guest list";
+        toast(saved ? what + " loaded and kept on this device" : what + " loaded, but this device would not keep it: load it again next time");
       });
-    }catch(e){ $("gMsg").textContent = e.message; }
+    }catch(e){ msg.textContent = e.message; }
     input.value = "";
   };
-  rd.onerror = function(){ $("gMsg").textContent = "Could not read the file."; };
+  rd.onerror = function(){ msg.textContent = "Could not read the file."; };
   rd.readAsText(file);
-});
+}
+$("gFile").addEventListener("change", function(){ readGuestFile(this, $("gMsg")); });
+$("gFile2").addEventListener("change", function(){ readGuestFile(this, $("gMsg2")); });
+$("gViewFilms").addEventListener("click", function(){ gView = "films"; lsSet("mm-g-view", "films"); renderGuests(); });
+$("gViewPeople").addEventListener("click", function(){ gView = "people"; lsSet("mm-g-view", "people"); renderGuests(); });
+$("fSearch").addEventListener("input", function(){ fQuery = this.value; fShown = 30; renderFilms(); });
+$("fHereBtn").addEventListener("click", function(){ fHere = !fHere; lsSet("mm-f-here", fHere ? "1" : "0"); fShown = 30; renderFilms(); });
+$("fNoSaBtn").addEventListener("click", function(){ fNoSa = !fNoSa; lsSet("mm-f-nosa", fNoSa ? "1" : "0"); fShown = 30; renderFilms(); });
+$("fMore").addEventListener("click", function(){ fShown += 30; renderFilms(); });
 $("gRemove").addEventListener("click", function(){
   if (!confirmRemove()) return;
   G = null;
@@ -1071,45 +1173,133 @@ function personCard(r, res){
   if (ph) head.appendChild(ph);
   var who = el("div", "pwho");
   who.appendChild(el("h3", "pname", p.n));
-  who.appendChild(el("span", "kind" + (p.kind === "guest" ? " guest" : ""), p.kind === "guest" ? "Guest list" : "Film team"));
+  who.appendChild(el("span", "kind" + (p.kind === "guest" ? " guest" : ""), kindLabel(p)));
   head.appendChild(who);
   c.appendChild(head);
-  var meta = [p.co, p.cty, p.kind === "film" && p.roles && p.roles.length ? p.roles.join(", ") : (p.prof || "")].filter(Boolean);
+  var meta = [p.co, p.cty, p.kind !== "guest" && p.roles && p.roles.length ? p.roles.join(", ") : (p.job || p.prof || "")].filter(Boolean);
   if (meta.length) c.appendChild(el("div", "pmeta", meta.join("  ·  ")));
   var chips = el("div", "pchips");
   chips.appendChild(el("span", "pchip cat", p.cat));
   (p.pass || []).forEach(function(x){ chips.appendChild(el("span", "pchip", x)); });
+  if (p.here === "In Amsterdam") chips.appendChild(el("span", "pchip ok", "In Amsterdam"));
+  else if (p.here === "Online only") chips.appendChild(el("span", "pchip", "Online only"));
   if (p.status && p.status !== "Approved") chips.appendChild(el("span", "pchip warn", p.status));
   if (p.attends === false) chips.appendChild(el("span", "pchip warn", "Not attending"));
   if (p.badge) chips.appendChild(el("span", "pchip ok", "Badge picked up"));
   c.appendChild(chips);
+  if (p.plat && p.plat.length) c.appendChild(el("div", "pmeta", "Works in: " + p.plat.join(", ")));
   if (p.prog) c.appendChild(el("div", "pmeta", "Meetings: " + p.prog));
 
-  var box = el("div", "pfilms");
-  if (!p.links.length){
-    box.appendChild(el("div", "none", p.kind === "guest" ? "No films linked to this guest yet." : "No films linked."));
-  } else {
-    var links = p.links.slice().sort(function(a, b){ return (r.hits.indexOf(b.f) !== -1) - (r.hits.indexOf(a.f) !== -1); });
-    var first = links.slice(0, 4), rest = links.slice(4);
-    first.forEach(function(l){ box.appendChild(filmRow(l, r, res)); });
-    if (rest.length){
-      var more = el("details", "pmore");
-      more.appendChild(el("summary", null, "+ " + rest.length + " more film" + (rest.length === 1 ? "" : "s")));
-      rest.forEach(function(l){ more.appendChild(filmRow(l, r, res)); });
-      box.appendChild(more);
-    }
+  if (G.v2 && p.team.length){
+    var tb = el("div", "pfilms");
+    tb.appendChild(el("div", "plabel", p.team.length === 1 ? "Their Docs for Sale film, and who might want it" : "Their Docs for Sale films, and who might want them"));
+    p.team.forEach(function(id){
+      tb.appendChild(filmRow({ f: id, r: (p.roles || []).join(", ") }, r, res));
+      var fans = G.films[id].fans || [], fb = el("div", "fans");
+      if (!fans.length) fb.appendChild(el("div", "fm", "No suggestions for this film yet."));
+      capped(fb, fans, 3, fanLine, "");
+      tb.appendChild(fb);
+    });
+    c.appendChild(tb);
   }
-  c.appendChild(box);
+  if (G.v2 && p.likes.length){
+    var lb = el("div", "pfilms");
+    lb.appendChild(el("div", "plabel", "Docs for Sale films they might like"));
+    capped(lb, p.likes, 4, function(x){ return filmRow({ f: x[0] }, r, res, x[2]); }, "film");
+    c.appendChild(lb);
+  }
+  var own = G.v2 ? p.links.filter(function(l){ return p.team.indexOf(l.f) === -1; }) : p.links;
+  if (own.length || !G.v2 || (!p.team.length && !p.likes.length)){
+    var box = el("div", "pfilms");
+    if (!own.length){
+      box.appendChild(el("div", "none", G.v2 ? "No films linked or suggested yet." : p.kind === "guest" ? "No films linked to this guest yet." : "No films linked."));
+    } else {
+      if (G.v2) box.appendChild(el("div", "plabel", "Films linked to them"));
+      var links = own.slice().sort(function(a, b){ return (r.hits.indexOf(b.f) !== -1) - (r.hits.indexOf(a.f) !== -1); });
+      capped(box, links, 4, function(l){ return filmRow(l, r, res); }, "film");
+    }
+    c.appendChild(box);
+  }
   return c;
 }
-function filmRow(l, r, res){
+function kindLabel(p){
+  if (G && G.v2) return p.kind === "participant" ? "Docs for Sale team" : "IDFA guest";
+  return p.kind === "guest" ? "Guest list" : "Film team";
+}
+function hereChip(p){
+  if (p.here === "In Amsterdam") return el("span", "here", "In Amsterdam");
+  if (p.here === "Online only") return el("span", "here off", "Online only");
+  return null;
+}
+/* The first n rows, the rest behind "+ k more". */
+function capped(box, items, n, make, word){
+  items.slice(0, n).forEach(function(x){ box.appendChild(make(x)); });
+  if (items.length > n){
+    var more = el("details", "pmore"), k = items.length - n;
+    more.appendChild(el("summary", null, "+ " + k + " more" + (word ? " " + word + (k === 1 ? "" : "s") : "")));
+    items.slice(n).forEach(function(x){ more.appendChild(make(x)); });
+    box.appendChild(more);
+  }
+}
+function personLine(p, sub, why){
+  var row = el("div", "mate"), ph = photo(p, true), tx = el("div", "mtx"), top = el("div");
+  row.appendChild(ph || el("span", "pphoto sm"));   /* an empty circle keeps the names in one column */
+  top.appendChild(el("b", null, p.n));
+  var hc = hereChip(p);
+  if (hc) top.appendChild(hc);
+  tx.appendChild(top);
+  if (sub) tx.appendChild(el("div", "fm", sub));
+  if (why && why.length) tx.appendChild(el("div", "why", why.join(" · ")));
+  row.appendChild(tx);
+  return row;
+}
+/* x = [person id, points, reasons] from the file */
+function fanLine(x){
+  var p = G.byId[x[0]];
+  return personLine(p, [p.cat, p.co, p.cty].filter(Boolean).join(" · "), x[2]);
+}
+function filmCard(r, res){
+  var f = r.f, c = el("article", "person");
+  var head = el("div", "phead"), who = el("div", "pwho"), h = el("h3", "pname");
+  if (f.link && /^https:\/\/festival\.idfa\.nl\//.test(f.link)){ var a = el("a", null, f.t); a.href = f.link; a.target = "_blank"; a.rel = "noopener noreferrer"; h.appendChild(a); }
+  else h.textContent = f.t;
+  who.appendChild(h);
+  who.appendChild(el("span", "kind guest", "Docs for Sale"));
+  head.appendChild(who); c.appendChild(head);
+  var meta = [f.cat, f.len ? f.len + " min" : "", f.cty, f.prem].filter(Boolean);
+  if (meta.length) c.appendChild(el("div", "pmeta", meta.join("  ·  ")));
+  var chips = el("div", "pchips");
+  if (f.sa === false) chips.appendChild(el("span", "pchip warn", "No sales agent yet"));
+  else if (f.sales) chips.appendChild(el("span", "pchip", "Sales: " + f.sales));
+  if (f.teamHere) chips.appendChild(el("span", "pchip ok", "Team in Amsterdam"));
+  f.tags.forEach(function(t){ chips.appendChild(el("span", "ftag" + (res.tagSet[t.toLowerCase()] ? " on" : ""), t)); });
+  c.appendChild(chips);
+  if (f.log || f.intro) c.appendChild(el("div", "flog", f.log || (f.intro.length > 220 ? f.intro.slice(0, 217) + "…" : f.intro)));
+  if (f.dir) c.appendChild(el("div", "pmeta", "Director: " + f.dir));
+
+  var team = el("div", "pfilms");
+  team.appendChild(el("div", "plabel", "Team (" + f.team.length + ")"));
+  var members = f.team.map(function(id){ return G.byId[id]; })
+    .sort(function(a, b){ return (b.here === "In Amsterdam") - (a.here === "In Amsterdam"); });
+  if (!members.length) team.appendChild(el("div", "none", "No team members in the list."));
+  members.forEach(function(p){ team.appendChild(personLine(p, (p.roles || []).join(", "))); });
+  c.appendChild(team);
+
+  var fans = el("div", "pfilms");
+  fans.appendChild(el("div", "plabel", "Might be interested (" + f.fans.length + ")"));
+  if (!f.fans.length) fans.appendChild(el("div", "none", "No suggestions for this film yet."));
+  capped(fans, f.fans, 5, fanLine, "");
+  c.appendChild(fans);
+  return c;
+}
+function filmRow(l, r, res, why){
   var f = G.films[l.f], hit = r.hits.indexOf(l.f) !== -1;
   var row = el("div", "frow" + (hit ? " match" : ""));
   var title;
   if (f.link && /^https:\/\/festival\.idfa\.nl\//.test(f.link)){ title = el("a", "ft", f.t); title.href = f.link; title.target = "_blank"; title.rel = "noopener noreferrer"; }
   else title = el("span", "ft", f.t);
   row.appendChild(title);
-  row.appendChild(el("span", "rel", "  ·  " + l.r));
+  if (l.r) row.appendChild(el("span", "rel", "  ·  " + l.r));
   var fm = [f.cat, f.len ? f.len + " min" : "", f.cty].filter(Boolean).join(", ");
   if (fm) row.appendChild(el("span", "fm", "  ·  " + fm));
   if (f.tags.length){
@@ -1118,6 +1308,7 @@ function filmRow(l, r, res){
     row.appendChild(tg);
   }
   if (hit && (f.log || f.intro)) row.appendChild(el("span", "flog", f.log || (f.intro.length > 180 ? f.intro.slice(0, 177) + "…" : f.intro)));
+  if (why && why.length) row.appendChild(el("span", "why", why.join(" · ")));
   return row;
 }
 function renderGuests(){
@@ -1125,10 +1316,40 @@ function renderGuests(){
   $("gLoad").hidden = !!G; $("gMain").hidden = !G;
   if (!G) return;
   var d = G.data;
-  $("gInfo").textContent = (DEMO ? "Demo guest list, made up. " : "") + "Built " +
-    ams(d.built, { weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" }) +
-    " · " + (G.groups.guest || 0) + " guests, " + (G.groups.film || 0) + " film team members, " + Object.keys(G.films).length + " films";
-
+  $("gInfo").textContent = (DEMO ? "Demo, made up. " : "") + "Built " +
+    ams(d.built, { weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" }) + " · " + (G.v2
+      ? (G.groups.guest || 0) + " IDFA guests, " + (G.groups.participant || 0) + " Docs for Sale participants, " + G.dfs.length + " Docs for Sale films"
+      : (G.groups.guest || 0) + " guests, " + (G.groups.film || 0) + " film team members, " + Object.keys(G.films).length + " films");
+  var films = G.v2 && gView === "films";
+  $("gViews").hidden = !G.v2;
+  $("gViewFilms").setAttribute("aria-pressed", String(films));
+  $("gViewPeople").setAttribute("aria-pressed", String(!films));
+  $("fView").hidden = !films; $("pView").hidden = films;
+  if (films) renderFilms(); else renderPeople();
+}
+var fAllTopics = false;
+function renderFilms(){
+  var ql = fQuery.trim().toLowerCase(), topics = $("fTopics"), shown = fAllTopics ? G.filmTopics : G.filmTopics.slice(0, 14);
+  topics.textContent = "";
+  shown.forEach(function(t){
+    topics.appendChild(chip(t[0], t[1], ql === t[0].toLowerCase(), function(){
+      fQuery = ql === t[0].toLowerCase() ? "" : t[0]; $("fSearch").value = fQuery; fShown = 30; renderFilms();
+    }));
+  });
+  if (G.filmTopics.length > 14) topics.appendChild(button("chip", fAllTopics ? "Fewer topics" : "+ " + (G.filmTopics.length - 14) + " more topics", function(){ fAllTopics = !fAllTopics; renderFilms(); }));
+  $("fHereBtn").setAttribute("aria-pressed", String(fHere));
+  $("fNoSaBtn").setAttribute("aria-pressed", String(fNoSa));
+  var res = searchFilms(G, fQuery, { teamHere: fHere, noSales: fNoSa });
+  var nHere = res.list.filter(function(x){ return x.f.teamHere; }).length;
+  $("fCount").textContent = res.list.length + (res.list.length === 1 ? " film" : " films") + " · " + nHere + " with someone of the team in Amsterdam";
+  var list = $("fList"); list.textContent = "";
+  if (!res.list.length) list.appendChild(el("div", "empty", ql ? "No Docs for Sale film matches “" + fQuery.trim() + "” with these filters." : "No film matches these filters."));
+  res.list.slice(0, fShown).forEach(function(r){ list.appendChild(filmCard(r, res)); });
+  $("fMore").hidden = res.list.length <= fShown;
+  $("fMore").textContent = "Show more (" + (res.list.length - fShown) + " left)";
+}
+function renderPeople(){
+  var d = G.data;
   var topics = $("gTopics"); topics.textContent = "";
   var ql = gQuery.trim().toLowerCase();
   (d.tags || []).forEach(function(t){
@@ -1139,8 +1360,10 @@ function renderGuests(){
     }));
   });
   var groups = $("gGroups"); groups.textContent = "";
-  ["all", "guest", "film"].forEach(function(k){
-    groups.appendChild(chip(GROUP_LABEL[k], k === "all" ? G.people.length : (G.groups[k] || 0), gGroup === k, function(){ gGroup = k; gShown = 60; renderGuests(); }));
+  var keys = G.v2 ? ["all", "guest", "participant"] : ["all", "guest", "film"], labels = G.v2 ? GROUP_LABEL2 : GROUP_LABEL;
+  if (keys.indexOf(gGroup) === -1) gGroup = "all";
+  keys.forEach(function(k){
+    groups.appendChild(chip(labels[k], k === "all" ? G.people.length : (G.groups[k] || 0), gGroup === k, function(){ gGroup = k; gShown = 60; renderGuests(); }));
   });
   var cats = $("gCats"); cats.textContent = "";
   cats.appendChild(chip("All roles", null, gCat === "all", function(){ gCat = "all"; gShown = 60; renderGuests(); }));
@@ -1150,11 +1373,12 @@ function renderGuests(){
   });
   $("gFilmsBtn").setAttribute("aria-pressed", String(gWithFilms));
   $("gAmsBtn").setAttribute("aria-pressed", String(gInAms));
+  $("gAmsBtn").textContent = G.v2 ? "In Amsterdam" : "Badge picked up";
 
   var res = searchGuests(G, gQuery, { group: gGroup, cat: gCat, withFilms: gWithFilms, inAms: gInAms });
   var nGuests = res.list.filter(function(x){ return x.p.kind === "guest"; }).length;
   $("gCount").textContent = res.list.length + (res.list.length === 1 ? " person" : " people") +
-    " (" + nGuests + " on the guest list, " + (res.list.length - nGuests) + " in film teams)" +
+    " (" + nGuests + (G.v2 ? " IDFA guests, " : " on the guest list, ") + (res.list.length - nGuests) + (G.v2 ? " Docs for Sale participants)" : " in film teams)") +
     (ql ? " · " + res.filmsHit + " linked film" + (res.filmsHit === 1 ? "" : "s") + " match" : "");
   var list = $("gList"); list.textContent = "";
   if (!res.list.length){
@@ -1165,7 +1389,7 @@ function renderGuests(){
   $("gMore").textContent = "Show more (" + (res.list.length - gShown) + " left)";
 }
 function loadGuests(){
-  if (DEMO){ G = prepGuests(DEMO_GUESTS); renderGuests(); return; }
+  if (DEMO){ G = prepGuests(/[?&]demo=v1\b/.test(location.search) ? DEMO_GUESTS : DEMO_MATCH); renderGuests(); return; }
   idbGet(GUEST_KEY).then(function(text){
     if (text){ try{ useGuestText(text, false); }catch(e){ G = null; } }
     renderGuests();
@@ -1183,6 +1407,35 @@ var DEMO_GUESTS = { v: 1, built: "2026-11-15T09:00:00Z", tags: [["Nature", 1], [
     { id: "g3", n: "Demo Buyer", kind: "guest", cat: "Buyers & distributors", co: "Demo Distribution", cty: "Spain", prof: "Buyer", pass: ["Docs for Sale Acquisition"], status: "Requested", attends: true, badge: false, links: [] },
     { id: "p4", n: "Demo Director A", img: "icon-192.png", kind: "film", cat: "Producers & directors", roles: ["Director"], links: [{ f: "c1", r: "Director" }] },
     { id: "p5", n: "Demo Producer B", kind: "film", cat: "Producers & directors", co: "Demo Productions", roles: ["Producer"], links: [{ f: "c2", r: "Producer" }] }
+  ] };
+/* The same, made up, in the v2 matchmaking format (?demo). ?demo=v1 shows the older format. */
+var DEMO_MATCH = { v: 2, built: "2026-11-16T09:00:00Z", tags: [["Human Interest", 2], ["Nature", 1], ["Climate", 1], ["Music", 1]],
+  films: [
+    { id: "c1", t: "Salt Roads", src: ["dfs"], cat: "Feature", len: "84", cty: "Netherlands, Belgium", prem: "World premiere", tags: ["Nature", "Climate", "Human Interest"], topics: ["Nature", "Climate"], sales: null, sa: false, dir: "Demo Director A",
+      log: "Salt harvesters follow the tides along a shrinking coast.", team: ["p4", "p6"],
+      fans: [["g1", 9, ["Docs for Sale pass", "Works in cinemas", "The film has no sales agent yet"]], ["g3", 7, ["Based in Belgium, a production country", "Works in streaming"]],
+             ["g2", 5, ["Docs for Sale pass", "Same region (Western Europe)"]], ["g5", 4, ["Works in festivals"]], ["g6", 4, ["Based in the Netherlands, a production country"]], ["g7", 3, ["Same region (Western Europe)"]]] },
+    { id: "c2", t: "Night Shift Choir", src: ["dfs", "idfa"], cat: "Feature", len: "91", cty: "Germany", tags: ["Music", "Human Interest"], topics: ["Music", "Health"], sales: "Demo Sales Co", sa: true, dir: "Demo Director C",
+      log: "Hospital night workers form a choir.", link: "https://festival.idfa.nl/en/collectie/", team: ["p5"],
+      fans: [["g2", 6, ["Their company airs films on TV (1 of their 1 films here)"]]] },
+    { id: "c3", t: "Paper Kites", src: ["dfs"], cat: "Short", len: "24", cty: "Kenya", tags: [], topics: ["Children"], sales: null, sa: false, dir: "Demo Director D",
+      intro: "Children in a coastal town build kites from old newspapers for a yearly contest.", team: ["p7"], fans: [] },
+    { id: "f3", t: "The Quiet Harbour", src: ["idfa"], len: "62", tags: [], topics: ["Family"], log: "A daughter spends one winter on her father's fishing boat at sea.", link: "https://festival.idfa.nl/en/collectie/", team: [], fans: [] }
+  ],
+  people: [
+    { id: "g1", n: "Demo Sales Agent", img: "icon-192.png", kind: "guest", guest: true, here: "In Amsterdam", cat: "Sales agents", job: "Head of Acquisitions", co: "Demo Sales Co", cty: "France", plat: ["Theatrical", "TV"], pass: ["Docs for Sale Acquisition"], badge: true, roles: [], team: [],
+      links: [{ f: "c2", r: "Sales (their company)" }], likes: [["c1", 9, ["Docs for Sale pass", "Works in cinemas", "The film has no sales agent yet"]]] },
+    { id: "g2", n: "Demo Commissioning Editor", kind: "guest", guest: true, here: "In Amsterdam", cat: "Commissioning editors & broadcasters", job: "Commissioning Editor", co: "Demo TV", cty: "Portugal", plat: ["TV"], pass: ["Docs for Sale Acquisition"], roles: [], team: [],
+      links: [{ f: "f3", r: "TV channel (their company)" }], likes: [["c2", 6, ["Their company airs films on TV (1 of their 1 films here)"]], ["c1", 5, ["Docs for Sale pass", "Same region (Western Europe)"]]] },
+    { id: "g3", n: "Demo Buyer", img: "icon-192.png", kind: "guest", guest: true, here: "Online only", cat: "Buyers & distributors", job: "Buyer", co: "Demo Distribution", cty: "Belgium", plat: ["Platform / Streaming"], pass: [], roles: [], team: [], links: [],
+      likes: [["c1", 7, ["Based in Belgium, a production country", "Works in streaming"]]] },
+    { id: "g5", n: "Demo Festival Programmer", kind: "guest", guest: true, here: "In Amsterdam", cat: "Festivals, markets & curators", co: "Demo Film Festival", cty: "Belgium", plat: [], pass: [], roles: [], team: [], links: [], likes: [["c1", 4, ["Works in festivals"]]] },
+    { id: "g6", n: "Demo Fund Officer", kind: "guest", guest: true, here: "In Amsterdam", cat: "Funds & institutes", co: "Demo Film Fund", cty: "Netherlands", plat: [], pass: [], roles: [], team: [], links: [], likes: [["c1", 4, ["Based in the Netherlands, a production country"]]] },
+    { id: "g7", n: "Demo Journalist", kind: "guest", guest: true, here: null, cat: "Press & media", co: "Demo Magazine", cty: "Germany", plat: [], pass: [], roles: [], team: [], links: [], likes: [["c1", 3, ["Same region (Western Europe)"]]] },
+    { id: "p4", n: "Demo Director A", img: "icon-192.png", kind: "participant", guest: true, here: "In Amsterdam", cat: "Producers & directors", co: "Demo Docs", cty: "Netherlands", plat: [], pass: [], roles: ["Director"], team: ["c1"], links: [], likes: [] },
+    { id: "p5", n: "Demo Producer B", kind: "participant", guest: false, here: null, cat: "Producers & directors", co: "Demo Productions", plat: [], pass: [], roles: ["Producer"], team: ["c2"], links: [{ f: "c2", r: "Producer" }], likes: [] },
+    { id: "p6", n: "Demo Producer C", kind: "participant", guest: false, here: null, cat: "Producers & directors", plat: [], pass: [], roles: ["Producer"], team: ["c1"], links: [], likes: [] },
+    { id: "p7", n: "Demo Director D", kind: "participant", guest: true, here: "Online only", cat: "Producers & directors", cty: "Kenya", plat: [], pass: [], roles: ["Director"], team: ["c3"], links: [], likes: [] }
   ] };
 
 /* ---------- tabs ---------- */
