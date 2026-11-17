@@ -143,6 +143,7 @@ a.open{font-size:14px;color:var(--blue)}
 .pchip.cat{background:var(--blue);color:#fff}
 .pchip.warn{background:#fde2e0;color:#a3251a}
 .pchip.ok{background:#ddf3e5;color:#13703b}
+.pchip.fund,.here.fund{background:#fff1cc;color:#6e4a00}
 .pfilms{display:flex;flex-direction:column;gap:6px;border-top:1px solid var(--line);padding-top:8px}
 .pfilms .none{font-size:13px;color:var(--muted)}
 .frow{font-size:14px;line-height:1.45}
@@ -1104,10 +1105,18 @@ var ROLE_WORDS = {
   "Sales agents": "sales|sales agent|sales agents|world sales|seller|sellers|sales company|sales companies",
   "Commissioning editors & broadcasters": "broadcaster|broadcasters|tv|television|commissioning editor|commissioning editors|commissioner|commissioners|channel|channels",
   "Festivals, markets & curators": "festival|festivals|programmer|programmers|curator|curators|market|markets|selector|selectors",
-  "Funds & institutes": "fund|funds|funder|funders|funding|financier|financiers|institute|institutes|foundation|foundations",
+  "Funding": "fund|funds|funder|funders|funding|financier|financiers|financing|grant|grants",
+  "Funds & institutes": "institute|institutes|foundation|foundations",
   "Press & media": "press|journalists|critic|critics",
   "Producers & directors": "producer|producers|director|directors|filmmaker|filmmakers"
 };
+/* "Funding": people who give money to films. IDFA's own guest list profession "Fund", or fund, funding or funder
+   (or a Dutch or German "...fonds") in their job title or company. Narrower than the role "Funds & institutes",
+   which also holds cultural organisations, film institutes, promotion bodies and schools. */
+var FUNDING = "Funding";
+var FUND_RE = /(^|[^a-z0-9])(fund|funds|funding|funder|funders|[a-z]*fonds)([^a-z0-9]|$)/;
+function isFunder(p){ return FUND_RE.test(fold([p.prof, p.job, p.co].filter(Boolean).join(" | "))); }
+function catOk(p, cat){ return cat === "all" || (cat === FUNDING ? !!p.fund : p.cat === cat); }
 var PLAT_WORDS = {
   "Platform / Streaming": "streaming|streamer|streamers|platform|platforms|vod|svod|avod|tvod",
   "Theatrical": "cinema|cinemas|theatrical|cinema release",
@@ -1187,7 +1196,7 @@ function termsNote(terms){
 /* v1 file: guest list + film teams (kind "guest" / "film"). v2 file: IDFA guests + Docs for Sale participants
    (kind "guest" / "participant"), each catalogue film with its team and "fans" = [person id, points, reasons]. */
 function prepGuests(data){
-  var v2 = data.v === 2, films = {}, tagPeople = {}, cats = {}, groups = {}, byId = {};
+  var v2 = data.v === 2, films = {}, tagPeople = {}, cats = {}, groups = {}, byId = {}, fund = 0;
   (data.films || []).forEach(function(f){
     f.tags = f.tags || []; f.topics = f.topics || [];
     f.hay = [f.t, f.log, f.intro, f.tags.join(" "), f.topics.join(" "), f.cty, (f.sec || []).join(" "), f.dir, f.sales, f.cat].filter(Boolean).join(" ").toLowerCase();
@@ -1207,6 +1216,7 @@ function prepGuests(data){
     p.inAms = v2 ? p.here === "In Amsterdam" : !!p.badge;
     p.hay = [p.n, p.co, p.cty, p.prof, p.job, p.type, (p.pass || []).join(" "), (p.plat || []).join(" "), p.prog, (p.roles || []).join(" "), p.cat].filter(Boolean).join(" ").toLowerCase();
     p.hay2 = fold(p.hay); p.cn = cnorm(p.cty);
+    p.fund = isFunder(p); if (p.fund) fund++;
     var tags = {};
     p.fids.forEach(function(id){ films[id].tags.forEach(function(t){ tags[t] = 1; }); });
     Object.keys(tags).forEach(function(t){ tagPeople[t] = (tagPeople[t] || 0) + 1; });
@@ -1232,7 +1242,7 @@ function prepGuests(data){
   (data.tags || []).map(function(t){ return t[0]; }).concat(Object.keys(tagPeople), filmTopics.map(function(t){ return t[0]; }))
     .forEach(function(t){ if (t) tagNames[cnorm(t)] = t; });
   return { data: data, v2: v2, films: films, people: people, byId: byId, dfs: dfs, filmTopics: filmTopics,
-           tagPeople: tagPeople, tagNames: tagNames, cats: cats, groups: groups };
+           tagPeople: tagPeople, tagNames: tagNames, cats: cats, groups: groups, fund: fund };
 }
 function topicFor(q){
   var key = TOPICS[q] ? q : SYN[q];
@@ -1277,7 +1287,7 @@ function searchGuests(G, query, o){
   var out = [];
   G.people.forEach(function(p){
     if (o.group !== "all" && p.kind !== o.group) return;
-    if (o.cat !== "all" && p.cat !== o.cat) return;
+    if (!catOk(p, o.cat)) return;
     if (o.withFilms && !p.fids.length) return;
     if (o.inAms && !p.inAms) return;
     var s = 0, hits = [];
@@ -1371,7 +1381,7 @@ function searchGuestsTerms(G, terms, o){
     }
     var pre = prefixRe(t.text), wre = gWords([t.text]), isRole = t.kind === "role";
     return function(p, hits){
-      var s = (isRole && t.cat && p.cat === t.cat ? 100 : 0) + (isRole && t.plat && (p.plat || []).indexOf(t.plat) !== -1 ? 60 : 0);
+      var s = (isRole && t.cat && catOk(p, t.cat) ? 100 : 0) + (isRole && t.plat && (p.plat || []).indexOf(t.plat) !== -1 ? 60 : 0);
       if (pre.test(p.hay2)) s += 100;
       p.fids.forEach(function(id){ if (wre.test(G.films[id].hay2)){ s += 2; filmHit(id, hits); } });
       return s;
@@ -1380,7 +1390,7 @@ function searchGuestsTerms(G, terms, o){
   var out = [];
   G.people.forEach(function(p){
     if (o.group !== "all" && p.kind !== o.group) return;
-    if (o.cat !== "all" && p.cat !== o.cat) return;
+    if (!catOk(p, o.cat)) return;
     if (o.withFilms && !p.fids.length) return;
     if (o.inAms && !p.inAms) return;
     var total = 0, hits = [];
@@ -1587,6 +1597,7 @@ function showPhoto(){
   var tags = $("pboxTags"), hc = hereChip(p);
   tags.textContent = "";
   if (p.cat) tags.appendChild(el("span", "pchip cat", p.cat));
+  if (p.fund) tags.appendChild(el("span", "pchip fund", FUNDING));
   if (hc) tags.appendChild(hc);
   $("pboxCtx").textContent = it.ctx || "";
   $("pboxWhy").textContent = it.why && it.why.length ? it.why.join(" · ") : "";
@@ -1631,6 +1642,7 @@ function personCard(r, res, item, items){
   if (meta.length) c.appendChild(el("div", "pmeta", meta.join("  ·  ")));
   var chips = el("div", "pchips");
   chips.appendChild(el("span", "pchip cat", p.cat));
+  if (p.fund) chips.appendChild(el("span", "pchip fund", FUNDING));
   (p.pass || []).forEach(function(x){ chips.appendChild(el("span", "pchip", x)); });
   if (p.here === "In Amsterdam") chips.appendChild(el("span", "pchip ok", "In Amsterdam"));
   else if (p.here === "Online only") chips.appendChild(el("span", "pchip", "Online only"));
@@ -1680,6 +1692,7 @@ function faceTile(r, item, items){
   t.appendChild(el("div", "fname", p.n));
   var sub = [p.kind !== "guest" && p.roles && p.roles.length ? p.roles.join(", ") : (p.job || p.prof || ""), p.co].filter(Boolean).join(" · ");
   if (sub) t.appendChild(el("div", "fsub", sub));
+  if (p.fund) t.appendChild(el("span", "here fund", FUNDING));
   var hc = hereChip(p);
   if (hc) t.appendChild(hc);
   return t;
@@ -1831,6 +1844,8 @@ function renderPeople(){
   });
   var cats = $("gCats"); cats.textContent = "";
   cats.appendChild(chip("All roles", null, gCat === "all", function(){ gCat = "all"; gShown = 60; renderGuests(); }));
+  if (gCat === FUNDING && !G.fund) gCat = "all";
+  if (G.fund) cats.appendChild(chip(FUNDING, G.fund, gCat === FUNDING, function(){ gCat = gCat === FUNDING ? "all" : FUNDING; gShown = 60; renderGuests(); }));
   CAT_ORDER.forEach(function(k){
     if (!G.cats[k]) return;
     cats.appendChild(chip(k, G.cats[k], gCat === k, function(){ gCat = gCat === k ? "all" : k; gShown = 60; renderGuests(); }));
@@ -1898,7 +1913,8 @@ var DEMO_MATCH = { v: 2, built: "2026-11-16T09:00:00Z", tags: [["Human Interest"
     { id: "g3", n: "Demo Buyer", img: "icon-192.png", kind: "guest", guest: true, here: "Online only", cat: "Buyers & distributors", job: "Buyer", co: "Demo Distribution", cty: "Belgium", plat: ["Platform / Streaming"], pass: [], roles: [], team: [], links: [],
       likes: [["c1", 7, ["Based in Belgium, a production country", "Works in streaming"]]] },
     { id: "g5", n: "Demo Festival Programmer", kind: "guest", guest: true, here: "In Amsterdam", cat: "Festivals, markets & curators", co: "Demo Film Festival", cty: "Belgium", plat: [], pass: [], roles: [], team: [], links: [], likes: [["c1", 4, ["Works in festivals"]]] },
-    { id: "g6", n: "Demo Fund Officer", kind: "guest", guest: true, here: "In Amsterdam", cat: "Funds & institutes", co: "Demo Film Fund", cty: "Netherlands", plat: [], pass: [], roles: [], team: [], links: [], likes: [["c1", 4, ["Based in the Netherlands, a production country"]]] },
+    { id: "g6", n: "Demo Fund Officer", kind: "guest", guest: true, here: "In Amsterdam", cat: "Funds & institutes", prof: "Fund", co: "Demo Film Fund", cty: "Netherlands", plat: [], pass: [], roles: [], team: [], links: [], likes: [["c1", 4, ["Based in the Netherlands, a production country"]]] },
+    { id: "g8", n: "Demo Institute Officer", kind: "guest", guest: true, here: "In Amsterdam", cat: "Funds & institutes", prof: "Film Institute/Promotion body", co: "Demo Film Institute", cty: "Denmark", plat: [], pass: [], roles: [], team: [], links: [], likes: [] },
     { id: "g7", n: "Demo Journalist", kind: "guest", guest: true, here: null, cat: "Press & media", co: "Demo Magazine", cty: "Germany", plat: [], pass: [], roles: [], team: [], links: [], likes: [["c1", 3, ["Same region (Western Europe)"]]] },
     { id: "p4", n: "Demo Director A", img: "icon-192.png", kind: "participant", guest: true, here: "In Amsterdam", cat: "Producers & directors", co: "Demo Docs", cty: "Netherlands", plat: [], pass: [], roles: ["Director"], team: ["c1"], links: [], likes: [] },
     { id: "p5", n: "Demo Producer B", kind: "participant", guest: false, here: null, cat: "Producers & directors", co: "Demo Productions", plat: [], pass: [], roles: ["Producer"], team: ["c2"], links: [{ f: "c2", r: "Producer" }], likes: [] },
