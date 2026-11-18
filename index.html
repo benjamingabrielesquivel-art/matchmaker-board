@@ -99,6 +99,9 @@ dd{margin:4px 0 0;font-size:16px;line-height:1.5;white-space:pre-wrap;overflow-w
 .btn[disabled]{opacity:.5;cursor:default}
 a.open{font-size:14px;color:var(--blue)}
 .empty{grid-column:1/-1;text-align:center;padding:64px 20px;color:var(--muted);font-size:18px;line-height:1.5}
+.dayhead{grid-column:1/-1;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 12px;margin:20px 0 -4px;padding-bottom:8px;border-bottom:2px solid var(--ink);color:var(--ink);font-size:22px;font-weight:800;letter-spacing:-.01em}
+.dayhead:first-child{margin-top:4px}
+.dayhead .dayn{font-size:14px;font-weight:600;color:var(--muted);letter-spacing:0}
 /* industry events */
 .evhead{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;align-items:baseline;padding-top:16px;font-size:15px;color:var(--muted)}
 .daychips{padding-top:12px}
@@ -673,11 +676,11 @@ var demoRaw = [
     xi:"A co-producer may hold TV rights for Belgium; I am not sure if that blocks a sales deal.",k:["l2","l4"],
     q:"Which kind of sales agent fits an 84-minute observational film, and should I sign before my next festival?",
     n:"[Sat 14 Nov 09:20 · XX] Made-up note: check the Belgian TV rights before suggesting sales agents."}),
-  demoTask("d2", 26, "Demo Filmmaker Two", {t:"The Quiet Harbour",g:"Personal, experimental",c:"Portugal",l:"62",
+  demoTask("d2", 1466, "Demo Filmmaker Two", {t:"The Quiet Harbour",g:"Personal, experimental",c:"Portugal",l:"62",
     s:"A daughter returns to her father's empty fishing boat and films one winter on board.",p:1,pi:"",
     f:"None yet.",r:0,ri:"Made-up Distribution, Benelux theatrical only.",x:1,xi:"",k:["l1","l4"],
     q:"Is it too late to plan a world premiere in spring, and which festivals should I aim for first?"}),
-  demoTask("d3", 95, "Demo Filmmaker Three", {t:"",g:"",c:"Kenya",l:"",s:"",p:null,pi:"",f:"",r:null,ri:"",x:null,xi:"",
+  demoTask("d3", 2975, "Demo Filmmaker Three", {t:"",g:"",c:"Kenya",l:"",s:"",p:null,pi:"",f:"",r:null,ri:"",x:null,xi:"",
     k:["l5"],q:"I only have a rough cut. Is it worth talking to anyone yet?"})
 ];
 var demoLater = demoTask("d4", 0, "Demo Filmmaker Four", {t:"Night Shift Choir",g:"Musical documentary",c:"Germany",l:"91",
@@ -714,6 +717,15 @@ function whenText(ms){
   var day = sameDay ? "Today" : d.toLocaleDateString("en-GB", { weekday: "short", day: "numeric", month: "short" });
   var ago = mins < 1 ? "just now" : mins < 60 ? mins + " min ago" : mins < 600 ? Math.floor(mins / 60) + " h " + (mins % 60) + " min ago" : "";
   return day + ", " + t + (ago ? " · " + ago : "");
+}
+/* Day headings: signups grouped by the day they came in, in Amsterdam time. */
+function intakeDayKey(ms){ return ms ? new Date(ms).toLocaleDateString("en-CA", { timeZone: TZ }) : "unknown"; }
+function intakeDayLabel(k){
+  if (k === "unknown") return "Date unknown";
+  var d = new Date(k + "T12:00:00Z").toLocaleDateString("en-GB", { weekday: "short", day: "numeric", month: "short", timeZone: "UTC" });
+  if (k === todayAms()) return "Today · " + d;
+  if (k === new Date(Date.now() - 864e5).toLocaleDateString("en-CA", { timeZone: TZ })) return "Yesterday · " + d;
+  return d;
 }
 function matchesFilter(it){
   if (filter === "all") return true;
@@ -833,7 +845,24 @@ function render(force){
     return;
   }
   if (!shown.length){ grid.appendChild(el("div", "empty", "Nothing matches this search or filter.")); return; }
-  shown.forEach(function(it){ grid.appendChild(card(it)); });
+  /* One heading per day the signups came in: newest day first, oldest first when that switch is on. */
+  var day = null, head = null;
+  function closeDay(){
+    if (head) head.n.textContent = head.count + (head.count === 1 ? " filmmaker" : " filmmakers") + (head.unseen ? " · " + head.unseen + " not seen yet" : "");
+  }
+  shown.forEach(function(it){
+    var k = intakeDayKey(it.created);
+    if (k !== day){
+      closeDay(); day = k;
+      var h = el("h2", "dayhead");
+      h.appendChild(el("span", "dayname", intakeDayLabel(k)));
+      head = { n: h.appendChild(el("span", "dayn", "")), count: 0, unseen: 0 };
+      grid.appendChild(h);
+    }
+    head.count++; if (!seen[it.id]) head.unseen++;
+    grid.appendChild(card(it));
+  });
+  closeDay();
 }
 $("grid").addEventListener("focusout", function(){
   setTimeout(function(){ if (pendingRender && !typingInGrid()) render(); }, 0);
